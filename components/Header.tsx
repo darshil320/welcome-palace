@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaPhone } from "react-icons/fa6";
+import { FaBars, FaPhone, FaXmark } from "react-icons/fa6";
 import { contact, navLinks } from "@/lib/content";
 
 export function Header() {
@@ -11,6 +11,21 @@ export function Header() {
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [roomsInView, setRoomsInView] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [lastPathname, setLastPathname] = useState(pathname);
+
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
+    setMenuOpen(false);
+  }
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     let frame = 0;
@@ -48,7 +63,7 @@ export function Header() {
         scrolled ? "bg-cream/90 shadow-[0_1px_0_rgba(20,19,14,0.07)] backdrop-saturate-150 backdrop-blur-lg" : ""
       }`}
     >
-      <Link href="/" className="flex flex-col text-ink no-underline">
+      <Link href="/" className="relative z-10 flex flex-col text-ink no-underline">
         <span className="font-display text-[22px] leading-none font-semibold tracking-tight">
           Welcome Palace<span className="text-gold">*</span>
         </span>
@@ -74,15 +89,61 @@ export function Header() {
         ))}
       </nav>
 
-      <a
-        href={contact.phoneHref}
-        className={`inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-[11px] text-[14px] font-semibold whitespace-nowrap text-ink no-underline transition-colors duration-[250ms] hover:border-ink hover:bg-ink hover:text-white ${
-          scrolled ? "border-ink bg-ink text-white" : ""
+      <div className="relative z-10 flex items-center gap-3">
+        <a
+          href={contact.phoneHref}
+          className={`inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-[11px] text-[14px] font-semibold whitespace-nowrap text-ink no-underline transition-colors duration-[250ms] hover:border-ink hover:bg-ink hover:text-white ${
+            scrolled ? "border-ink bg-ink text-white" : ""
+          }`}
+        >
+          <FaPhone className="text-xs" />
+          <span className="hidden sm:inline">{contact.phoneDisplay}</span>
+        </a>
+
+        <button
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          className={`inline-flex h-[46px] w-[46px] flex-none items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-[250ms] lg:hidden ${
+            scrolled ? "border-ink" : ""
+          }`}
+        >
+          {menuOpen ? <FaXmark className="text-[16px]" /> : <FaBars className="text-[16px]" />}
+        </button>
+      </div>
+
+      <div
+        className={`fixed inset-0 top-0 z-0 bg-cream transition-opacity duration-300 lg:hidden ${
+          menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <FaPhone className="text-xs" />
-        <span className="hidden sm:inline">{contact.phoneDisplay}</span>
-      </a>
+        <nav className="flex h-full flex-col items-start justify-center gap-2 px-[clamp(24px,8vw,54px)]">
+          {navLinks.map((link, i) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className={`font-display text-[clamp(30px,8vw,44px)] font-semibold tracking-tight no-underline transition-[opacity,transform] duration-300 ${
+                isActive(link.href) ? "text-gold-deep" : "text-ink"
+              } ${menuOpen ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}
+              style={{ transitionDelay: menuOpen ? `${i * 45}ms` : "0ms" }}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href={contact.phoneHref}
+            className={`mt-8 inline-flex items-center gap-2.5 rounded-full bg-ink px-6 py-3.5 text-[15px] font-semibold whitespace-nowrap text-white no-underline transition-[opacity,transform] duration-300 ${
+              menuOpen ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+            }`}
+            style={{ transitionDelay: menuOpen ? `${navLinks.length * 45}ms` : "0ms" }}
+          >
+            <FaPhone className="text-xs" />
+            {contact.phoneDisplay}
+          </a>
+        </nav>
+      </div>
     </header>
   );
 }
