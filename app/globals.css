@@ -1,26 +1,362 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-schibsted), sans-serif;
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+
+  --color-cream: #efece6;
+  --color-ink: #1a1712;
+  --color-ink-soft: #3d382f;
+  --color-muted: #6b6459;
+  --color-muted-2: #8a8378;
+  --color-faint: #a49c8e;
+  --color-line: #e0dbd1;
+  --color-line-soft: #d8d3ca;
+  --color-line-strong: #cfc9bd;
+  --color-panel: #faf8f4;
+  --color-chip: #f2efe8;
+  --color-dark: #14110c;
+  --color-dark-2: #16130e;
+  --color-gold: #c9a84c;
+  --color-gold-deep: #9a7b2b;
+  --color-gold-soft: #f4ecd6;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+::selection {
+  background: rgba(201, 168, 76, 0.24);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes rise-up {
+  from {
+    transform: translateY(115%);
+  }
+  to {
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+}
+
+.mask-line > span {
+  display: block;
+  transform: translateY(115%);
+}
+
+.mask-line.play > span {
+  animation: rise-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Word-level mask reveal (inline words rising independently) */
+.mask-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.mask-word > span {
+  display: inline-block;
+  transform: translateY(118%);
+}
+
+.mask-word.play > span {
+  animation: rise-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.fade-load {
+  opacity: 0;
+}
+
+.fade-load.play {
+  animation: fade-in 1s ease forwards;
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(8px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.2, 0.75, 0.2, 1),
+    filter 0.7s ease;
+  transition-delay: var(--rd, 0s);
+}
+
+.reveal-up.is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.img-warm {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, #d99a49, #7a3c12);
+  mix-blend-mode: soft-light;
+  opacity: var(--img-warmth, 0.14);
+  pointer-events: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.foot-word {
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+}
+
+/* ── Alive layer: ambient motion utilities ───────────────────── */
+
+/* Slow Ken Burns drift for hero media */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.hero-zoom {
+  animation: hero-zoom 24s cubic-bezier(0.33, 0, 0.67, 1) infinite alternate;
+  will-change: transform;
+}
+
+/* Infinite editorial marquee — track holds two identical groups */
+@keyframes marquee-scroll {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 38s linear infinite;
+  will-change: transform;
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(26, 23, 18, 0.5);
+}
+
+/* Magnetic hover wrapper — transform is driven from JS, eased here */
+.magnetic {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.2, 0.75, 0.2, 1);
+  will-change: transform;
+}
+
+/* Spinning circular-text badge */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 16s linear infinite;
+  will-change: transform;
+}
+
+/* Drifting radial glows (dark CTA panel) */
+@keyframes glow-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-46px, 34px, 0) scale(1.18);
+  }
+}
+
+.glow-drift {
+  animation: glow-drift 12s ease-in-out infinite alternate;
+}
+
+.glow-drift-2 {
+  animation: glow-drift 16s ease-in-out infinite alternate-reverse;
+}
+
+/* Twinkling gold sparkles */
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateY(0) scale(0.85);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translateY(-10px) scale(1.1);
+  }
+}
+
+.sparkle {
+  animation: sparkle 5s ease-in-out infinite;
+}
+
+/* One-shot shimmer sweep across a button on hover */
+@keyframes shimmer-sweep {
+  to {
+    left: 130%;
+  }
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 44%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+
+.btn-shimmer:hover::after {
+  animation: shimmer-sweep 0.9s ease forwards;
+}
+
+/* Film grain — fixed, subtle, above everything but inert */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+.mosaic-grid {
+  transform: scale(calc(1.22 - 0.22 * var(--p, 1)));
+  gap: calc(24px * var(--p, 1));
+  max-width: calc(880px + 360px * (1 - var(--p, 1)));
+  will-change: transform;
+}
+
+.mosaic-item {
+  border-radius: calc(20px * var(--p, 1));
+}
+
+.rooms-head {
+  opacity: var(--pt, 1);
+  transform: translateY(calc((1 - var(--pt, 1)) * 22px));
+}
+
+.acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.38s cubic-bezier(0.3, 0.8, 0.3, 1);
+}
+
+.acc-body.is-open {
+  grid-template-rows: 1fr;
+}
+
+.acc-body > div {
+  overflow: hidden;
+}
+
+/* ── Room booking modals ─────────────────────────────────────── */
+.room-dialog {
+  background: transparent;
+  border: none;
+  padding: 0;
+  /* overflow:hidden clips rounded corners; height is set per-dialog via inline style */
+  overflow: hidden;
+}
+
+.room-dialog::backdrop {
+  background: rgba(20, 16, 10, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+/* Prevent body scroll when a dialog is open */
+body:has(dialog[open]) {
+  overflow: hidden;
+  /* Prevent layout shift when scrollbar disappears */
+  padding-right: var(--scrollbar-width, 0px);
+}
+
+/* Smooth modal entrance */
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+dialog[open] {
+  animation: modal-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mask-line > span,
+  .mask-word > span {
+    animation: none !important;
+    transform: none;
+  }
+  .hero-zoom,
+  .marquee-track,
+  .spin-slow,
+  .glow-drift,
+  .glow-drift-2,
+  .sparkle {
+    animation: none !important;
+  }
+  .btn-shimmer::after {
+    display: none;
+  }
+  .magnetic {
+    transition: none;
+  }
+  .fade-load {
+    animation: none !important;
+    opacity: 1;
+  }
+  .reveal-up {
+    transition: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .foot-word {
+    opacity: 1;
+    transition: none;
+  }
 }
