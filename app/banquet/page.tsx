@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FaCheck } from "react-icons/fa6";
+import { Check } from "lucide-react";
 import { GuideLines } from "@/components/GuideLines";
 import { Reveal } from "@/components/Reveal";
 import { MaskReveal } from "@/components/MaskReveal";
@@ -7,6 +7,7 @@ import { WarmVideo } from "@/components/WarmVideo";
 import { VideoTile } from "@/components/VideoTile";
 import { PageHero } from "@/components/PageHero";
 import { TariffCard } from "@/components/TariffCard";
+import { cldVideo } from "@/lib/cloudinary";
 import { FeatureIcon } from "@/components/FeatureIcon";
 import { waLink } from "@/lib/content";
 import {
@@ -28,7 +29,7 @@ export default function BanquetPage() {
   return (
     <>
       <PageHero
-        videoSrc="/videos/banquet/wedding-function.mp4"
+        videoSrc={cldVideo("banquet/wedding-function.mp4")}
         eyebrow="125–175 Guests · Full Privacy"
         title="Banquet Hall & Events"
         subtitle="Celebrations • Weddings • Corporate • Haldi • Mehandi • Sangeet • Satsang"
@@ -50,7 +51,7 @@ export default function BanquetPage() {
           </Reveal>
 
           <Reveal delay={0.16} className="mt-[38px] grid gap-6 md:grid-cols-[1.25fr_1fr]">
-            <WarmVideo src="/videos/banquet-hall-tour.mp4" className="min-h-[420px] rounded-[22px]" />
+            <WarmVideo src={cldVideo("banquet-hall-tour.mp4")} className="min-h-[420px] rounded-[22px]" />
 
             <div className="flex flex-col rounded-[22px] border border-line bg-panel p-[26px]">
               <div className="text-[11px] font-semibold tracking-[0.14em] text-gold-deep uppercase">
@@ -125,7 +126,7 @@ export default function BanquetPage() {
                 rel="noopener"
                 className="mt-5 inline-flex items-center justify-center gap-[9px] rounded-full bg-ink px-[22px] py-3.5 text-[14px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.02]"
               >
-                <FaCheck className="text-[11px]" />
+                <Check className="w-[11px] h-[11px]" />
                 Book Banquet Now
               </a>
             </TariffCard>

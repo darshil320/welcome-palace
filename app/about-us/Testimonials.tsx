@@ -1,4 +1,4 @@
-import { FaQuoteLeft, FaStar } from "react-icons/fa6";
+import { Quote, Star } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { testimonials } from "@/app/about-us/content";
 
@@ -11,10 +11,10 @@ export function Testimonials() {
           delay={i * 0.08}
           className="flex flex-col rounded-[22px] border border-line bg-white p-[26px] shadow-[0_30px_60px_-42px_rgba(20,16,10,0.25)]"
         >
-          <FaQuoteLeft className="text-[22px] text-gold" />
+          <Quote className="w-[22px] h-[22px] text-gold" />
           <div className="mt-4 flex gap-1 text-[13px] text-gold">
             {Array.from({ length: 5 }).map((_, starIndex) => (
-              <FaStar key={starIndex} />
+              <Star key={starIndex} className="w-[13px] h-[13px]" />
             ))}
           </div>
           <p className="mt-4 flex-1 text-[15px] leading-[1.75] font-medium text-ink-soft">

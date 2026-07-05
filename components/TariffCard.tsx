@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { FaCheck } from "react-icons/fa6";
+import { Check } from "lucide-react";
 
 export function TariffCard({
   title,
@@ -24,7 +24,7 @@ export function TariffCard({
         <h3 className="font-display text-[24px] font-semibold">{title}</h3>
         {badge ? (
           <span className="inline-flex items-center gap-[7px] rounded-full bg-gold-soft px-[13px] py-[7px] text-[11.5px] font-semibold text-gold-deep">
-            <FaCheck className="text-[10px]" />
+            <Check className="w-[10px] h-[10px]" />
             {badge}
           </span>
         ) : null}

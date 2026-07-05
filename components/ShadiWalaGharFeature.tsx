@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { FaArrowLeft, FaArrowRight, FaArrowRightLong, FaLocationDot, FaStar } from "react-icons/fa6";
+import { ArrowLeft, ArrowRight, MapPin, Star } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { WarmImage } from "@/components/WarmImage";
 import { useCarousel } from "@/hooks/useCarousel";
+import { cldImage } from "@/lib/cloudinary";
 import { waLink } from "@/lib/content";
 
 const TRACK_ID = "exploreTrack";
@@ -19,16 +20,17 @@ export function ShadiWalaGharFeature() {
       <div className="mx-auto max-w-[1180px] px-[clamp(18px,4vw,54px)]">
         <Reveal className="grid items-stretch gap-6 md:grid-cols-[1.25fr_1fr]">
           <WarmImage
-            src="/images/banquet-mehandi.jpg"
+            src={cldImage("banquet-mehandi.jpg")}
             alt="Shadi Wala Ghar — entire floor buyout, mehandi ceremony setup"
             fill
             sizes="(max-width: 820px) 100vw, 62vw"
+            priority
             className="min-h-[420px] rounded-[22px]"
           >
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,10,0)_40%,rgba(20,16,10,0.86)_100%)]" />
             <div className="absolute inset-x-0 bottom-0 p-[clamp(22px,3vw,34px)]">
               <span className="inline-flex items-center gap-[7px] rounded-full bg-white/92 px-[13px] py-1.5 text-[12px] font-semibold text-ink">
-                <FaLocationDot className="text-[11px] text-gold-deep" />
+                <MapPin className="w-[11px] h-[11px] text-gold-deep" />
                 Piplod, Surat
               </span>
               <h3 className="mt-4 font-display text-[clamp(26px,3.4vw,40px)] leading-[1.03] font-semibold tracking-[-0.015em] text-white">
@@ -52,7 +54,7 @@ export function ShadiWalaGharFeature() {
                   className="group inline-flex items-center gap-[9px] rounded-full border border-white/55 px-[22px] py-[13px] text-[14px] font-semibold text-white no-underline"
                 >
                   See Details{" "}
-                  <FaArrowRightLong className="text-[12px] transition-transform duration-[220ms] group-hover:translate-x-1" />
+                  <ArrowRight className="w-[12px] h-[12px] transition-transform duration-[220ms] group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>
@@ -61,10 +63,11 @@ export function ShadiWalaGharFeature() {
           <div className="flex flex-col gap-4">
             <div className="grid flex-1 grid-cols-2 gap-4">
               <WarmImage
-                src="/images/banquet-haldi-detail.jpeg"
+                src={cldImage("banquet-haldi-detail.jpeg")}
                 alt="Haldi ceremony detail"
                 fill
                 sizes="(max-width: 820px) 50vw, 20vw"
+                priority
                 className="min-h-[150px] rounded-[18px]"
               />
               <div className="flex flex-col items-center justify-center rounded-[18px] bg-ink p-[18px] text-center text-white">
@@ -74,7 +77,7 @@ export function ShadiWalaGharFeature() {
                 <div className="mt-1.5 mb-1 font-display text-[44px] leading-none font-semibold">5.0</div>
                 <div className="flex gap-0.5 text-[12px] tracking-[2px] text-gold">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <FaStar key={i} />
+                    <Star key={i} className="w-[12px] h-[12px]" />
                   ))}
                 </div>
               </div>
@@ -101,7 +104,7 @@ export function ShadiWalaGharFeature() {
                     aria-label="Previous space"
                     className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-[13px] text-ink transition-colors duration-[250ms] hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
                   >
-                    <FaArrowLeft />
+                    <ArrowLeft className="w-[13px] h-[13px]" />
                   </button>
                   <button
                     type="button"
@@ -110,7 +113,7 @@ export function ShadiWalaGharFeature() {
                     aria-label="Next space"
                     className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-[13px] text-ink transition-colors duration-[250ms] hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
                   >
-                    <FaArrowRight />
+                    <ArrowRight className="w-[13px] h-[13px]" />
                   </button>
                 </div>
               </div>

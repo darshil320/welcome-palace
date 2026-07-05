@@ -1,3 +1,5 @@
+import { cldImage } from "@/lib/cloudinary";
+
 export const accommodationRows = [
   { label: "7 Deluxe Rooms", detail: "Double Occ.", price: "₹24,500" },
   { label: "3 Suite Rooms", detail: "Jacuzzi Attached", price: "₹13,500" },
@@ -51,9 +53,9 @@ export const banquetSlotOptions = [
 ] as const;
 
 export const gallery = [
-  { src: "/images/banquet-mehandi.jpg", alt: "Mehandi ceremony set up across the entire floor" },
-  { src: "/images/banquet-haldi.jpg", alt: "Haldi ceremony celebration at Welcome Palace" },
-  { src: "/images/banquet-haldi-detail.jpeg", alt: "Haldi ceremony decor detail" },
-  { src: "/images/room-110.jpg", alt: "Pariwar Niwas family residence interior" },
-  { src: "/images/room-114.jpg", alt: "Honeymoon suite with jacuzzi" },
-] as const;
+  { src: cldImage("banquet-mehandi.jpg"), alt: "Mehandi ceremony set up across the entire floor" },
+  { src: cldImage("banquet-haldi.jpg"), alt: "Haldi ceremony celebration at Welcome Palace" },
+  { src: cldImage("banquet-haldi-detail.jpeg"), alt: "Haldi ceremony decor detail" },
+  { src: cldImage("room-110.jpg"), alt: "Pariwar Niwas family residence interior" },
+  { src: cldImage("room-114.jpg"), alt: "Honeymoon suite with jacuzzi" },
+];

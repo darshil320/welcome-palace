@@ -1,4 +1,4 @@
-import { FaArrowRightLong } from "react-icons/fa6";
+import { ArrowRight } from "lucide-react";
 import { Magnetic } from "@/components/Magnetic";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
@@ -71,7 +71,7 @@ export function CelebrateCta() {
                 className="btn-shimmer group inline-flex items-center gap-[11px] rounded-full bg-gold px-8 py-4 text-[15px] font-semibold text-[#1c1608] no-underline"
               >
                 Book Banquet Now
-                <FaArrowRightLong className="text-[13px] transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="w-[13px] h-[13px] transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </Magnetic>
           </div>

@@ -1,4 +1,5 @@
 import type { FeatureIconName } from "@/components/FeatureIcon";
+import { cldImage } from "@/lib/cloudinary";
 
 export const contact = {
   phoneDisplay: "+91 80000 14410",
@@ -34,17 +35,17 @@ export const heroStats = [
 ];
 
 export const mosaicImages = [
-  { src: "/images/room-101.jpg", alt: "Guest room 101 interior" },
-  { src: "/images/room-103.jpg", alt: "Guest room 103 interior" },
-  { src: "/images/room-105.jpg", alt: "Guest room 105 interior" },
-  { src: "/images/room-109.jpg", alt: "Guest room 109 interior" },
-  { src: "/images/room-111.jpg", alt: "Guest room 111 interior" },
-  { src: "/images/room-112.jpg", alt: "Guest room 112 interior" },
+  { src: cldImage("room-101.jpg"), alt: "Guest room 101 interior" },
+  { src: cldImage("room-103.jpg"), alt: "Guest room 103 interior" },
+  { src: cldImage("room-105.jpg"), alt: "Guest room 105 interior" },
+  { src: cldImage("room-109.jpg"), alt: "Guest room 109 interior" },
+  { src: cldImage("room-111.jpg"), alt: "Guest room 111 interior" },
+  { src: cldImage("room-112.jpg"), alt: "Guest room 112 interior" },
 ];
 
 export const spaces = [
   {
-    image: "/images/room-104.jpg",
+    image: cldImage("room-104.jpg"),
     alt: "Deluxe Room 104",
     tag: "Stay · 7 rooms",
     name: "Deluxe Rooms",
@@ -52,7 +53,7 @@ export const spaces = [
     message: "Hi Welcome Palace! I'd like to book a Deluxe Room.",
   },
   {
-    image: "/images/room-108.jpg",
+    image: cldImage("room-108.jpg"),
     alt: "Suite Room 108",
     tag: "Stay · 6 rooms",
     name: "Suite Rooms",
@@ -60,7 +61,7 @@ export const spaces = [
     message: "Hi Welcome Palace! I'd like to book a Suite Room.",
   },
   {
-    image: "/images/room-114.jpg",
+    image: cldImage("room-114.jpg"),
     alt: "Honeymoon Suite 114",
     tag: "Jacuzzi · 3 suites",
     name: "Honeymoon Suites",
@@ -68,7 +69,7 @@ export const spaces = [
     message: "Hi Welcome Palace! I'd like to book a Honeymoon Suite with jacuzzi.",
   },
   {
-    image: "/images/room-110.jpg",
+    image: cldImage("room-110.jpg"),
     alt: "Pariwar Niwas family residence",
     tag: "Group · up to 12",
     name: "Pariwar Niwas",
@@ -76,7 +77,7 @@ export const spaces = [
     message: "Hi Welcome Palace! I'm interested in Pariwar Niwas.",
   },
   {
-    image: "/images/banquet-haldi.jpg",
+    image: cldImage("banquet-haldi.jpg"),
     alt: "Banquet Hall set up for a Haldi ceremony",
     tag: "Events · 125–175",
     name: "Banquet Hall",

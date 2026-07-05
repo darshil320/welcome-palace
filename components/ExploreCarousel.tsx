@@ -1,6 +1,6 @@
 "use client";
 
-import { FaArrowLeft, FaArrowRight, FaArrowRightLong } from "react-icons/fa6";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { GuideLines } from "@/components/GuideLines";
 import { Reveal } from "@/components/Reveal";
 import { WarmImage } from "@/components/WarmImage";
@@ -33,7 +33,7 @@ export function ExploreCarousel() {
               aria-label="Previous"
               className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-[250ms] hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
             >
-              <FaArrowLeft />
+              <ArrowLeft className="w-4 h-4" />
             </button>
             <button
               type="button"
@@ -42,7 +42,7 @@ export function ExploreCarousel() {
               aria-label="Next"
               className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-[250ms] hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
             >
-              <FaArrowRight />
+              <ArrowRight className="w-4 h-4" />
             </button>
           </Reveal>
         </div>
@@ -70,7 +70,7 @@ export function ExploreCarousel() {
                   {space.tag}
                 </span>
                 <span className="absolute right-3.5 bottom-3.5 inline-flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-white/92 text-ink opacity-0 transition-[opacity,transform] duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  <FaArrowRightLong className="-rotate-45 text-[12px]" />
+                  <ArrowRight className="-rotate-45 w-[12px] h-[12px]" />
                 </span>
                 <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,10,0)_65%,rgba(20,16,10,0.28)_100%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </WarmImage>

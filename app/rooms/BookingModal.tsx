@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FaTimes } from "react-icons/fa";
-import { FaCheck } from "react-icons/fa6";
+import { X, Check } from "lucide-react";
 import {
   roomData,
   calculateRoomPrice,
@@ -142,7 +141,7 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
             className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line bg-panel text-ink-soft transition-colors hover:bg-ink hover:text-white"
             aria-label="Close booking form"
           >
-            <FaTimes className="text-[13px]" />
+            <X className="w-[13px] h-[13px]" />
           </button>
         </div>
 
@@ -297,7 +296,7 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
             id="add-to-enquiry-cart"
             className="mt-1 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-ink px-8 py-4 text-[15px] font-semibold text-white transition-transform duration-[220ms] hover:scale-[1.015]"
           >
-            <FaCheck className="text-[12px]" />
+            <Check className="w-[12px] h-[12px]" />
             Add to Enquiry
           </button>
 

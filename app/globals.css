@@ -156,6 +156,7 @@ html {
 
 .marquee-track {
   animation: marquee-scroll 38s linear infinite;
+  animation-play-state: var(--animation-play-state, running);
   will-change: transform;
 }
 

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { FaCrown } from "react-icons/fa6";
+import { Crown } from "lucide-react";
 import { GuideLines } from "@/components/GuideLines";
 import { MaskReveal } from "@/components/MaskReveal";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
+import { cldVideo } from "@/lib/cloudinary";
 import { cateringIntro, luxuryPlans, standardPlans, type CateringPlan } from "@/app/catering/content";
 import { EnquiryForm } from "@/app/catering/EnquiryForm";
 
@@ -25,7 +26,7 @@ function PlanCard({ plan, index }: { plan: CateringPlan; index: number }) {
     >
       {plan.luxury ? (
         <span className="absolute top-6 right-6 inline-flex items-center gap-1.5 rounded-full bg-gold px-3 py-1.5 text-[10.5px] font-bold tracking-[0.12em] text-[#1c1608] uppercase">
-          <FaCrown className="text-[11px]" />
+          <Crown className="w-[11px] h-[11px]" />
           Luxury
         </span>
       ) : null}
@@ -83,7 +84,7 @@ export default function CateringPage() {
   return (
     <>
       <PageHero
-        videoSrc="/videos/banquet/wedding-function.mp4"
+        videoSrc={cldVideo("banquet/wedding-function.mp4")}
         eyebrow="Taste of Heritage"
         title="Chandni Chowk Live Kitchen"
         subtitle="Pure Veg • Live Counters • Heritage Flavours of Surat"
@@ -164,7 +165,7 @@ export default function CateringPage() {
         <div className="relative z-10 mx-auto max-w-[1180px] px-[clamp(18px,4vw,54px)]">
           <div className="max-w-[640px]">
             <Reveal className="inline-flex items-center gap-2 rounded-full border border-gold/60 bg-gold-soft px-3.5 py-[7px] text-[11px] font-semibold tracking-[0.14em] text-gold-deep uppercase">
-              <FaCrown className="text-[11px]" />
+              <Crown className="w-[11px] h-[11px]" />
               Luxury Plans · Minimum 500 Guests
             </Reveal>
             <Reveal

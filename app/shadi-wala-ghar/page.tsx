@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { FaCheck, FaHotTubPerson, FaShieldHeart, FaUsers } from "react-icons/fa6";
+import { Check, Waves, Heart, Users } from "lucide-react";
 import { GuideLines } from "@/components/GuideLines";
 import { MaskReveal } from "@/components/MaskReveal";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
+import { cldVideo } from "@/lib/cloudinary";
 import { TariffCard } from "@/components/TariffCard";
 import { WarmImage } from "@/components/WarmImage";
 import {
@@ -24,16 +25,16 @@ export const metadata: Metadata = {
 };
 
 const eliteHighlights = [
-  { icon: FaHotTubPerson, label: "Jacuzzi Suites" },
-  { icon: FaUsers, label: "Family Groups" },
-  { icon: FaShieldHeart, label: "Full Privacy" },
+  { icon: Waves, label: "Jacuzzi Suites" },
+  { icon: Users, label: "Family Groups" },
+  { icon: Heart, label: "Full Privacy" },
 ];
 
 export default function ShadiWalaGharPage() {
   return (
     <>
       <PageHero
-        videoSrc="/videos/pariwar-niwas.mp4"
+        videoSrc={cldVideo("pariwar-niwas.mp4")}
         eyebrow="Piplod, Surat"
         title="Shadi Wala Ghar"
         subtitle="Entire Floor • All Rooms • Banquet Hall • Family Stays Together"
@@ -147,14 +148,14 @@ export default function ShadiWalaGharPage() {
 
           <Reveal delay={0.2} className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="flex flex-wrap items-center gap-3 rounded-[18px] border border-line bg-white p-5">
-              <FaCheck className="text-[13px] text-gold-deep" />
+              <Check className="w-[13px] h-[13px] text-gold-deep" />
               <span className="text-[14.5px] font-semibold text-ink-soft">
                 Elite Features: 5 Luxury Jacuzzi Tubs &middot; 15&ndash;20 Extra Mattresses &middot; 100%
                 Property Privacy
               </span>
             </div>
             <div className="flex flex-wrap items-center gap-3 rounded-[18px] border border-line bg-white p-5">
-              <FaUsers className="text-[13px] text-gold-deep" />
+              <Users className="w-[13px] h-[13px] text-gold-deep" />
               <span className="text-[14.5px] font-semibold text-ink-soft">
                 Occupancy: On-Bed 40 Pax &middot; Niwas 12 Pax &middot; Total Guests 61 Pax
               </span>
@@ -173,7 +174,7 @@ export default function ShadiWalaGharPage() {
           <Reveal delay={0.24} className="mt-6 flex flex-wrap gap-2.5">
             {eliteFeatures.map((feature) => (
               <span key={feature} className="inline-flex items-center gap-2 rounded-full bg-gold-soft px-[15px] py-2.5 text-[13px] font-semibold text-gold-deep">
-                <FaCheck className="text-[10px]" />
+                <Check className="w-[10px] h-[10px]" />
                 {feature}
               </span>
             ))}

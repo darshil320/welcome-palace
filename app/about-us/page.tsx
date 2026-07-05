@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FaArrowRightLong, FaLocationDot, FaPhone } from "react-icons/fa6";
+import { ArrowRight, MapPin, Phone } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { MaskReveal } from "@/components/MaskReveal";
@@ -8,6 +8,7 @@ import { WarmVideo } from "@/components/WarmVideo";
 import { WarmImage } from "@/components/WarmImage";
 import { CountUp } from "@/components/CountUp";
 import { FeatureIcon } from "@/components/FeatureIcon";
+import { cldImage, cldVideo } from "@/lib/cloudinary";
 import { contact, waLink } from "@/lib/content";
 import { journeyMilestones, missionVisionValues, highlightCards } from "@/app/about-us/content";
 import { Testimonials } from "@/app/about-us/Testimonials";
@@ -23,7 +24,7 @@ export default function AboutUsPage() {
   return (
     <>
       <PageHero
-        videoSrc="/videos/hero.mp4"
+        videoSrc={cldVideo("hero.mp4")}
         eyebrow="Piplod, Surat · Est. 2013"
         title="About Welcome Palace"
         subtitle="Your Home for Memorable Celebrations & Luxury Family Stays in Surat"
@@ -35,7 +36,7 @@ export default function AboutUsPage() {
         <div className="relative z-10 mx-auto max-w-[1180px] px-[clamp(18px,4vw,54px)]">
           <div className="grid items-center gap-[clamp(32px,5vw,72px)] md:grid-cols-[1fr_1.05fr]">
             <Reveal className="aspect-[4/5] rounded-[22px] shadow-[0_30px_60px_-34px_rgba(20,16,10,0.35)] md:order-2">
-              <WarmVideo src="/videos/hero.mp4" className="h-full w-full rounded-[22px]">
+              <WarmVideo src={cldVideo("hero.mp4")} className="h-full w-full rounded-[22px]">
                 <span className="absolute top-5 left-5 rounded-full bg-white/92 px-3.5 py-[7px] text-[11px] font-semibold tracking-[0.08em] text-ink uppercase">
                   Property Experience
                 </span>
@@ -159,7 +160,7 @@ export default function AboutUsPage() {
         <div className="relative z-10 mx-auto max-w-[880px] px-[clamp(18px,4vw,54px)] text-center">
           <Reveal className="mx-auto h-[104px] w-[104px] overflow-hidden rounded-full border-4 border-white shadow-[0_20px_44px_-20px_rgba(154,123,43,0.5)]">
             <WarmImage
-              src="/images/baba-neem-karoli.jpg"
+              src={cldImage("baba-neem-karoli.jpg")}
               alt="Baba Neem Karoli, spiritual guide"
               fill
               sizes="104px"
@@ -293,7 +294,7 @@ export default function AboutUsPage() {
                 Find Us in Piplod, Surat
               </Reveal>
               <Reveal delay={0.16} className="mt-6 flex items-start gap-3.5 rounded-2xl border border-line bg-white p-5">
-                <FaLocationDot className="mt-0.5 flex-none text-[18px] text-gold-deep" />
+                <MapPin className="mt-0.5 flex-none w-[18px] h-[18px] text-gold-deep" />
                 <p className="text-[15px] leading-[1.7] font-medium text-ink-soft">{contact.fullAddress}</p>
               </Reveal>
 
@@ -304,7 +305,7 @@ export default function AboutUsPage() {
                     href={`tel:${phone.replace(/\s+/g, "")}`}
                     className="flex items-center gap-3.5 rounded-2xl border border-line bg-white p-4 text-[15px] font-semibold text-ink-soft no-underline transition-colors duration-[220ms] hover:border-line-strong"
                   >
-                    <FaPhone className="text-[15px] text-gold-deep" />
+                    <Phone className="w-[15px] h-[15px] text-gold-deep" />
                     {phone}
                   </a>
                 ))}
@@ -318,7 +319,7 @@ export default function AboutUsPage() {
                   className="inline-flex items-center gap-2.5 rounded-full bg-ink px-[26px] py-3.5 text-[15px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.03]"
                 >
                   Chat on WhatsApp
-                  <FaArrowRightLong className="text-[13px]" />
+                  <ArrowRight className="w-[13px] h-[13px]" />
                 </a>
               </Reveal>
             </div>

@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaPhone, FaWhatsapp, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { Share2, Heart, Phone, MessageCircle, Share, Play } from "lucide-react";
 import { FooterStatement } from "@/components/FooterStatement";
 import { contact, footerExploreLinks, socialLinks } from "@/lib/content";
 
 const socialIcons = {
-  facebook: FaFacebookF,
-  instagram: FaInstagram,
-  youtube: FaYoutube,
-  twitter: FaXTwitter,
-  whatsapp: FaWhatsapp,
+  facebook: Share2,
+  instagram: Heart,
+  youtube: Play,
+  twitter: Share,
+  whatsapp: MessageCircle,
 } as const;
 
 export function Footer() {
@@ -51,7 +51,7 @@ export function Footer() {
               href={contact.phoneHref}
               className="mt-6 inline-flex items-center gap-[9px] rounded-full bg-gold px-5.5 py-3.25 text-[14px] font-semibold text-[#1c1608] no-underline"
             >
-              <FaPhone className="text-[12px]" />
+              <Phone className="w-[12px] h-[12px]" />
               {contact.phoneDisplay}
             </a>
           </div>

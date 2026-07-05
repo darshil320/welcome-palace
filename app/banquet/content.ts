@@ -1,4 +1,5 @@
 import type { FeatureIconName } from "@/components/FeatureIcon";
+import { cldVideo } from "@/lib/cloudinary";
 
 export const banquetEventTypes: { icon: FeatureIconName; label: string }[] = [
   { icon: "music", label: "Satsang & Kirtan" },
@@ -8,12 +9,12 @@ export const banquetEventTypes: { icon: FeatureIconName; label: string }[] = [
 ];
 
 export const banquetVideoGallery = [
-  { src: "/videos/banquet/cultural-event.mp4", label: "Cultural Event" },
-  { src: "/videos/banquet/wedding-function.mp4", label: "Wedding Function" },
-  { src: "/videos/banquet/spiritual-event.mp4", label: "Spiritual Event" },
-  { src: "/videos/banquet/haldi-vibes.mp4", label: "Haldi Special" },
-  { src: "/videos/banquet/haldi-celebration.mp4", label: "Haldi Celebration" },
-  { src: "/videos/banquet/mehandi-highlights.mp4", label: "Mehandi Highlights" },
+  { src: cldVideo("banquet/cultural-event.mp4"), label: "Cultural Event" },
+  { src: cldVideo("banquet/wedding-function.mp4"), label: "Wedding Function" },
+  { src: cldVideo("banquet/spiritual-event.mp4"), label: "Spiritual Event" },
+  { src: cldVideo("banquet/haldi-vibes.mp4"), label: "Haldi Special" },
+  { src: cldVideo("banquet/haldi-celebration.mp4"), label: "Haldi Celebration" },
+  { src: cldVideo("banquet/mehandi-highlights.mp4"), label: "Mehandi Highlights" },
 ];
 
 export const banquetTariffRows = [
@@ -30,10 +31,10 @@ export const banquetTariffExtras = [
 ];
 
 export const haldiMehandiHighlights = [
-  { src: "/videos/banquet/haldi-ceremony.mp4", label: "Haldi Ceremony" },
-  { src: "/videos/banquet/mehandi-function.mp4", label: "Mehandi Function" },
-  { src: "/videos/banquet/haldi-vibes.mp4", label: "Haldi Vibes" },
-  { src: "/videos/banquet/mehandi-night.mp4", label: "Mehandi Night" },
+  { src: cldVideo("banquet/haldi-ceremony.mp4"), label: "Haldi Ceremony" },
+  { src: cldVideo("banquet/mehandi-function.mp4"), label: "Mehandi Function" },
+  { src: cldVideo("banquet/haldi-vibes.mp4"), label: "Haldi Vibes" },
+  { src: cldVideo("banquet/mehandi-night.mp4"), label: "Mehandi Night" },
 ];
 
 export const banquetSlotOptions = [

@@ -1,10 +1,11 @@
-import { FaArrowRightLong } from "react-icons/fa6";
+import { ArrowRight } from "lucide-react";
 import { GuideLines } from "@/components/GuideLines";
 import { Parallax } from "@/components/Parallax";
 import { Reveal } from "@/components/Reveal";
 import { WarmVideo } from "@/components/WarmVideo";
 import { FeatureIcon } from "@/components/FeatureIcon";
 import { romanticFeatures, waLink } from "@/lib/content";
+import { cldVideo, cldImage } from "@/lib/cloudinary";
 
 const priceChips = [
   { label: "Romantic Décor", price: "+₹2,000" },
@@ -19,7 +20,7 @@ export function RomanticStay() {
         <div className="grid items-center gap-[clamp(32px,5vw,72px)] md:grid-cols-[1fr_1.05fr]">
           <Parallax speed={0.06} className="order-first md:order-none">
             <Reveal className="aspect-[4/5] rounded-[22px] shadow-[0_30px_60px_-34px_rgba(20,16,10,0.35)]">
-              <WarmVideo src="/videos/romantic-decor.mp4" className="h-full w-full rounded-[22px]" />
+              <WarmVideo src={cldVideo("romantic-decor.mp4")} poster={cldImage("romantic-decor-poster.jpg")} className="h-full w-full rounded-[22px]" />
             </Reveal>
           </Parallax>
 
@@ -61,7 +62,7 @@ export function RomanticStay() {
                 className="group mt-7 inline-flex items-center gap-2.5 rounded-full bg-ink px-[26px] py-3.5 text-[15px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.03]"
               >
                 Book Romantic Stay Now
-                <FaArrowRightLong className="text-[12px] transition-transform duration-[220ms] group-hover:translate-x-1" />
+                <ArrowRight className="w-[12px] h-[12px] transition-transform duration-[220ms] group-hover:translate-x-1" />
               </a>
             </Reveal>
           </div>

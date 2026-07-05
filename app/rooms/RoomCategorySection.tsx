@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { FaArrowRightLong, FaBed, FaStar, FaUsers } from "react-icons/fa6";
+import { ArrowRight, Bed, Star, Users } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { roomCategories, type RoomCategory } from "@/app/rooms/content";
 
@@ -76,7 +76,7 @@ export function RoomCategorySection({ onSelectCategory }: Props) {
                       {cat.title}
                     </h3>
                     <div className="mt-1.5 flex items-center gap-1.5 text-[12px] font-medium text-white/70">
-                      <FaBed className="text-[10px]" />
+                      <Bed className="w-[10px] h-[10px]" />
                       {cat.count}
                     </div>
 
@@ -87,7 +87,7 @@ export function RoomCategorySection({ onSelectCategory }: Props) {
                       }`}
                     >
                       Select Room
-                      <FaArrowRightLong
+                      <ArrowRight
                         className={`text-[11px] transition-transform duration-300 ${
                           hovered === cat.id ? "translate-x-1.5" : ""
                         }`}
@@ -103,12 +103,12 @@ export function RoomCategorySection({ onSelectCategory }: Props) {
         {/* Amenities strip */}
         <Reveal delay={0.18} className="mt-[clamp(32px,4vw,48px)] flex flex-wrap justify-center gap-x-6 gap-y-2 border-t border-line pt-7">
           {[
-            { icon: <FaBed />, label: "Premium Bedding" },
-            { icon: <FaStar />, label: "Daily Housekeeping" },
-            { icon: <FaUsers />, label: "24/7 Room Service" },
-            { icon: <FaStar />, label: "Free Wi-Fi" },
-            { icon: <FaBed />, label: "LCD TV" },
-            { icon: <FaStar />, label: "5% GST Inclusive Pricing" },
+            { icon: <Bed className="w-[10px] h-[10px]" />, label: "Premium Bedding" },
+            { icon: <Star className="w-[10px] h-[10px]" />, label: "Daily Housekeeping" },
+            { icon: <Users className="w-[10px] h-[10px]" />, label: "24/7 Room Service" },
+            { icon: <Star className="w-[10px] h-[10px]" />, label: "Free Wi-Fi" },
+            { icon: <Bed className="w-[10px] h-[10px]" />, label: "LCD TV" },
+            { icon: <Star className="w-[10px] h-[10px]" />, label: "5% GST Inclusive Pricing" },
           ].map((a) => (
             <span key={a.label} className="flex items-center gap-1.5 text-[12.5px] font-medium text-muted-2">
               <span className="text-[10px] text-gold-deep">{a.icon}</span>

@@ -1,5 +1,7 @@
 // ─── Room Data ───────────────────────────────────────────────────────────────
 
+import { cldImage, cldVideo } from "@/lib/cloudinary";
+
 export interface RoomData {
   no: string;
   type: string;
@@ -13,21 +15,21 @@ export interface RoomData {
 }
 
 export const roomData: RoomData[] = [
-  { no: "102", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: "/images/room-104.jpg" },
-  { no: "104", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: "/images/room-104.jpg" },
-  { no: "105", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: "/images/room-105.jpg" },
-  { no: "106", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: "/images/room-104.jpg" },
-  { no: "109", type: "Premium Deluxe",    base24: 4000, base3: 1200, base6: 1700, base12: 2200, max: 4, isFamily: false, image: "/images/room-109.jpg" },
-  { no: "112", type: "Premium Deluxe",    base24: 4000, base3: 1200, base6: 1700, base12: 2200, max: 4, isFamily: false, image: "/images/room-112.jpg" },
-  { no: "201", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: "/images/room-104.jpg" },
-  { no: "101", type: "Suite Room",        base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: "/images/room-101.jpg" },
-  { no: "107", type: "Suite Room",        base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: "/images/room-107.jpg" },
-  { no: "202", type: "Suite Room",        base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: "/images/room-107.jpg" },
-  { no: "111", type: "Honeymoon Suite · Jacuzzi", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: "/images/room-111.jpg" },
-  { no: "103", type: "Honeymoon Suite · Pre-Décor", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: "/images/room-103.jpg" },
-  { no: "108", type: "Honeymoon Suite · Jacuzzi", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: "/images/room-108.jpg" },
-  { no: "110", type: "Family Room",       base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 5, isFamily: true,  image: "/images/room-110.jpg" },
-  { no: "114", type: "Family Room",       base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 5, isFamily: true,  image: "/images/room-114.jpg" },
+  { no: "102", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: cldImage("room-104.jpg") },
+  { no: "104", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: cldImage("room-104.jpg") },
+  { no: "105", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: cldImage("room-105.jpg") },
+  { no: "106", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: cldImage("room-104.jpg") },
+  { no: "109", type: "Premium Deluxe",    base24: 4000, base3: 1200, base6: 1700, base12: 2200, max: 4, isFamily: false, image: cldImage("room-109.jpg") },
+  { no: "112", type: "Premium Deluxe",    base24: 4000, base3: 1200, base6: 1700, base12: 2200, max: 4, isFamily: false, image: cldImage("room-112.jpg") },
+  { no: "201", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: cldImage("room-104.jpg") },
+  { no: "101", type: "Suite Room",        base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: cldImage("room-101.jpg") },
+  { no: "107", type: "Suite Room",        base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: cldImage("room-107.jpg") },
+  { no: "202", type: "Suite Room",        base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: cldImage("room-107.jpg") },
+  { no: "111", type: "Honeymoon Suite · Jacuzzi", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: cldImage("room-111.jpg") },
+  { no: "103", type: "Honeymoon Suite · Pre-Décor", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: cldImage("room-103.jpg") },
+  { no: "108", type: "Honeymoon Suite · Jacuzzi", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: cldImage("room-108.jpg") },
+  { no: "110", type: "Family Room",       base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 5, isFamily: true,  image: cldImage("room-110.jpg") },
+  { no: "114", type: "Family Room",       base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 5, isFamily: true,  image: cldImage("room-114.jpg") },
 ];
 
 // ─── Room Categories ──────────────────────────────────────────────────────────
@@ -47,7 +49,7 @@ export const roomCategories: {
     id: "Deluxe",
     title: "Deluxe Rooms",
     subtitle: "Spacious & Elegant",
-    image: "/images/room-104.jpg",
+    image: cldImage("room-104.jpg"),
     priceFrom: "from ₹3,500/night",
     count: "7 rooms available",
     rooms: ["102", "104", "105", "106", "109", "112", "201"],
@@ -56,7 +58,7 @@ export const roomCategories: {
     id: "Suite",
     title: "Suite Rooms",
     subtitle: "Premium Luxury",
-    image: "/images/room-107.jpg",
+    image: cldImage("room-107.jpg"),
     priceFrom: "from ₹4,500/night",
     count: "3 rooms available",
     rooms: ["101", "107", "202"],
@@ -65,7 +67,7 @@ export const roomCategories: {
     id: "Honeymoon",
     title: "Honeymoon Suites",
     subtitle: "Private Jacuzzi · Pre-Décor",
-    image: "/images/room-111.jpg",
+    image: cldImage("room-111.jpg"),
     priceFrom: "from ₹5,500/night",
     count: "3 suites available",
     rooms: ["111", "103", "108"],
@@ -74,7 +76,7 @@ export const roomCategories: {
     id: "Family",
     title: "Family Rooms",
     subtitle: "Up to 5 Guests",
-    image: "/images/room-110.jpg",
+    image: cldImage("room-110.jpg"),
     priceFrom: "from ₹5,500/night",
     count: "2 rooms available",
     rooms: ["110", "114"],
@@ -131,14 +133,14 @@ export function calculateRoomPrice(
 // ─── Themed Decoration Gallery ────────────────────────────────────────────────
 
 export const themedDecorations = [
-  { src: "/videos/romantic-decor.mp4", label: "Romantic Decoration" },
-  { src: "/videos/romantic-decor.mp4", label: "Birthday Decoration" },
-  { src: "/videos/romantic-decor.mp4", label: "Anniversary Decoration" },
-  { src: "/videos/ambient-jacuzzi.mp4", label: "Jacuzzi Experience" },
-  { src: "/videos/romantic-decor.mp4", label: "Sorry Decoration" },
-  { src: "/videos/romantic-decor.mp4", label: "Candle Light Dinner" },
-  { src: "/videos/romantic-decor.mp4", label: "Cricket Theme" },
-  { src: "/videos/romantic-decor.mp4", label: "Special Occasion" },
+  { src: cldVideo("romantic-decor.mp4"), label: "Romantic Decoration" },
+  { src: cldVideo("romantic-decor.mp4"), label: "Birthday Decoration" },
+  { src: cldVideo("romantic-decor.mp4"), label: "Anniversary Decoration" },
+  { src: cldVideo("ambient-jacuzzi.mp4"), label: "Jacuzzi Experience" },
+  { src: cldVideo("romantic-decor.mp4"), label: "Sorry Decoration" },
+  { src: cldVideo("romantic-decor.mp4"), label: "Candle Light Dinner" },
+  { src: cldVideo("romantic-decor.mp4"), label: "Cricket Theme" },
+  { src: cldVideo("romantic-decor.mp4"), label: "Special Occasion" },
 ];
 
 // ─── Pariwar Niwas Pricing ────────────────────────────────────────────────────

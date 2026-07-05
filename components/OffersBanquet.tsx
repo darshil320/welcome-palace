@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { FaArrowRightLong, FaCheck } from "react-icons/fa6";
+import { ArrowRight, Check } from "lucide-react";
 import { GuideLines } from "@/components/GuideLines";
 import { Reveal } from "@/components/Reveal";
+import { cldVideo, cldImage } from "@/lib/cloudinary";
 import { MaskReveal } from "@/components/MaskReveal";
 import { banquetTags, homeFullDayOffer, tariffExtras, tariffRows, waLink } from "@/lib/content";
 
@@ -37,8 +38,8 @@ export function OffersBanquet() {
 
         <Reveal className="mt-[38px] grid gap-6 md:grid-cols-2">
           <div className="relative min-h-[300px] overflow-hidden rounded-[22px]">
-            <video autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover">
-              <source src="/videos/banquet-hall-tour.mp4" type="video/mp4" />
+            <video autoPlay muted loop playsInline preload="metadata" poster={cldImage("banquet-hall-tour-poster.jpg")} className="absolute inset-0 h-full w-full object-cover">
+              <source src={cldVideo("banquet-hall-tour.mp4")} type="video/mp4" />
             </video>
             <div className="img-warm" />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,10,0)_34%,rgba(20,16,10,0.86)_100%)]" />
@@ -61,7 +62,7 @@ export function OffersBanquet() {
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h3 className="font-display text-[24px] font-semibold">Banquet Tariff</h3>
               <span className="inline-flex items-center gap-[7px] rounded-full bg-gold-soft px-[13px] py-[7px] text-[11.5px] font-semibold text-gold-deep">
-                <FaCheck className="text-[10px]" />
+                <Check className="w-[10px] h-[10px]" />
                 Outside Catering Allowed
               </span>
             </div>
@@ -138,7 +139,7 @@ export function OffersBanquet() {
               className="mt-5 inline-flex items-center justify-center gap-[9px] rounded-full bg-ink px-[22px] py-3.5 text-[14px] font-semibold text-white no-underline"
             >
               Book Banquet Now
-              <FaArrowRightLong className="text-[12px]" />
+              <ArrowRight className="w-[12px] h-[12px]" />
             </a>
           </div>
         </Reveal>

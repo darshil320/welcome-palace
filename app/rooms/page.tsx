@@ -4,13 +4,14 @@ import { GuideLines } from "@/components/GuideLines";
 import { Reveal } from "@/components/Reveal";
 import { MaskReveal } from "@/components/MaskReveal";
 import { TariffCard } from "@/components/TariffCard";
+import { cldVideo } from "@/lib/cloudinary";
 import { RomanticStay } from "@/components/RomanticStay";
 import { RoomsClient } from "@/app/rooms/RoomsClient";
 import { PariwarNiwasBooking } from "@/app/rooms/PariwarNiwasBooking";
 import { ThemedDecorSection } from "@/app/rooms/ThemedDecorSection";
 import { roomTariffRows, roomAmenities } from "@/app/rooms/content";
 import { waLink } from "@/lib/content";
-import { FaCheck } from "react-icons/fa6";
+import { Check } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Rooms & Booking | Welcome Palace Surat",
@@ -23,7 +24,7 @@ export default function RoomsPage() {
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <PageHero
-        videoSrc="/videos/hero.mp4"
+        videoSrc={cldVideo("hero.mp4")}
         eyebrow="15 Luxury Rooms · Piplod, Surat"
         title="Rooms & Stays"
         subtitle="Deluxe · Suite · Honeymoon · Family · Pariwar Niwas"
@@ -56,7 +57,7 @@ export default function RoomsPage() {
                   rel="noopener"
                   className="mt-5 inline-flex items-center justify-center gap-[9px] rounded-full bg-ink px-[22px] py-3.5 text-[14px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.02]"
                 >
-                  <FaCheck className="text-[11px]" />
+                  <Check className="w-[11px] h-[11px]" />
                   Book Now via WhatsApp
                 </a>
               </TariffCard>
@@ -75,7 +76,7 @@ export default function RoomsPage() {
                   {roomAmenities.map((a) => (
                     <div key={a} className="flex items-center gap-3 text-[14px] font-medium text-ink-soft">
                       <span className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-gold-soft text-[9px] text-gold-deep">
-                        <FaCheck />
+                        <Check className="w-[9px] h-[9px]" />
                       </span>
                       {a}
                     </div>

@@ -1,20 +1,20 @@
-import type { IconType } from "react-icons";
-import { FaBowlFood, FaLeaf, FaTruck } from "react-icons/fa6";
+import type { LucideIcon } from "lucide-react";
+import { UtensilsCrossed, Leaf, Truck } from "lucide-react";
 
 export const cateringIntro = [
   {
-    icon: FaBowlFood as IconType,
+    icon: UtensilsCrossed as LucideIcon,
     title: "Personal Chef",
     description:
       "Our in-house experts from Chandni Chowk cook live. Food made exactly to your family's choice and taste.",
   },
   {
-    icon: FaLeaf as IconType,
+    icon: Leaf as LucideIcon,
     title: "Pure Veg Feast",
     description: "From Tilak feasts to Mehandi snacks, enjoy the legendary pure veg flavors of Surat.",
   },
   {
-    icon: FaTruck as IconType,
+    icon: Truck as LucideIcon,
     title: "Outside Catering",
     description: "Bring the Chandni Chowk taste to your own doorstep with our premium parcel service.",
   },

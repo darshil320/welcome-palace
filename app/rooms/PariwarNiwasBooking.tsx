@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FaArrowRightLong, FaCheck, FaXmark } from "react-icons/fa6";
+import { ArrowRight, Check, X } from "lucide-react";
 import { GuideLines } from "@/components/GuideLines";
 import { Reveal } from "@/components/Reveal";
 import { WarmVideo } from "@/components/WarmVideo";
 import { FeatureIcon } from "@/components/FeatureIcon";
 import { pariwarFeatures, waLink } from "@/lib/content";
 import { pariwarPricing, getNumberOfNights } from "@/app/rooms/content";
+import { cldVideo } from "@/lib/cloudinary";
 
 type BookingType = "full" | "room1" | "room2" | "both";
 type StayPeriod = "short" | "long";
@@ -127,7 +128,7 @@ export function PariwarNiwasBooking() {
           {/* LEFT — Video + Features */}
           <Reveal className="space-y-6">
             <div className="aspect-[4/5] overflow-hidden rounded-[22px] shadow-[0_30px_60px_-34px_rgba(20,16,10,0.35)]">
-              <WarmVideo src="/videos/pariwar-niwas.mp4" className="h-full w-full rounded-[22px]" />
+              <WarmVideo src={cldVideo("pariwar-niwas.mp4")} className="h-full w-full rounded-[22px]" />
             </div>
             <div className="grid grid-cols-2 gap-x-6 gap-y-3">
               {pariwarFeatures.map((feat) => (
@@ -294,7 +295,7 @@ export function PariwarNiwasBooking() {
             >
               {error ? (
                 <div className="flex items-center justify-center gap-2 text-[14px] font-semibold text-red-600">
-                  <FaXmark />
+                  <X className="w-[14px] h-[14px]" />
                   {error}
                 </div>
               ) : price !== null ? (
@@ -322,9 +323,9 @@ export function PariwarNiwasBooking() {
               id="pariwar-enquire-whatsapp"
               className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-ink px-8 py-4 text-[15px] font-semibold text-white transition-transform duration-[220ms] hover:scale-[1.015]"
             >
-              <FaCheck className="text-[12px]" />
+              <Check className="w-[12px] h-[12px]" />
               Enquire on WhatsApp
-              <FaArrowRightLong className="text-[12px] transition-transform duration-[220ms] group-hover:translate-x-1" />
+              <ArrowRight className="w-[12px] h-[12px] transition-transform duration-[220ms] group-hover:translate-x-1" />
             </button>
 
             <p className="text-center text-[11.5px] font-medium text-faint">

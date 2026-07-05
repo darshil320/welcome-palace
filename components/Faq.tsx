@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { FaPlus } from "react-icons/fa6";
+import { Plus } from "lucide-react";
 import { GuideLines } from "@/components/GuideLines";
 import { Reveal } from "@/components/Reveal";
 import { WarmImage } from "@/components/WarmImage";
+import { cldImage } from "@/lib/cloudinary";
 import { faqItems } from "@/lib/content";
 
 export function Faq() {
@@ -30,7 +31,7 @@ export function Faq() {
             </Reveal>
             <Reveal delay={0.24} className="aspect-[16/11] rounded-[20px]">
               <WarmImage
-                src="/images/room-107.jpg"
+                src={cldImage("room-107.jpg")}
                 alt="Welcome Palace guest room"
                 fill
                 sizes="(max-width: 820px) 100vw, 50vw"
@@ -61,7 +62,7 @@ export function Faq() {
                         isOpen ? "rotate-45 border-gold bg-gold text-[#1c1608]" : "border-line-strong text-ink"
                       }`}
                     >
-                      <FaPlus />
+                      <Plus className="w-[11px] h-[11px]" />
                     </span>
                   </button>
                   <div className={`acc-body ${isOpen ? "is-open" : ""}`}>

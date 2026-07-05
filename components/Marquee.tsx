@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+
 const items = [
   "Shadi Wala Ghar",
   "Pariwar Niwas",
@@ -7,8 +11,42 @@ const items = [
 ];
 
 export function Marquee() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0,
+      }
+    );
+
+    observer.observe(container);
+
+    return () => {
+      observer.unobserve(container);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section aria-hidden="true" className="overflow-hidden border-y border-line bg-cream py-[clamp(16px,2.4vw,28px)] select-none">
+    <section
+      ref={containerRef}
+      data-marquee-container
+      aria-hidden="true"
+      className="overflow-hidden border-y border-line bg-cream py-[clamp(16px,2.4vw,28px)] select-none"
+      style={{
+        '--animation-play-state': isVisible ? 'running' : 'paused',
+      } as React.CSSProperties}
+    >
       <div className="marquee-track flex w-max">
         {[0, 1].map((dup) => (
           <div key={dup} className="flex items-center">

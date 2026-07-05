@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaCircleCheck, FaPlus } from "react-icons/fa6";
+import { CheckCircle, Plus } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { cancellationPolicies, generalTerms } from "@/app/about-us/content";
 
@@ -32,7 +32,7 @@ export function PolicyAccordion() {
                     isOpen ? "rotate-45 border-gold bg-gold text-[#1c1608]" : "border-line-strong text-ink"
                   }`}
                 >
-                  <FaPlus />
+                  <Plus className="w-[11px] h-[11px]" />
                 </span>
               </button>
               <div className={`acc-body ${isOpen ? "is-open" : ""}`}>
@@ -40,7 +40,7 @@ export function PolicyAccordion() {
                   <ul className="space-y-2.5 px-[22px] pb-[22px]">
                     {policy.points.map((point) => (
                       <li key={point} className="flex gap-2.5 text-[14px] leading-[1.65] font-medium text-muted">
-                        <FaCircleCheck className="mt-0.5 flex-none text-[13px] text-gold-deep" />
+                        <CheckCircle className="mt-0.5 flex-none w-[13px] h-[13px] text-gold-deep" />
                         <span>{point}</span>
                       </li>
                     ))}
@@ -57,7 +57,7 @@ export function PolicyAccordion() {
         <ul className="mt-3.5 space-y-2.5">
           {generalTerms.map((term) => (
             <li key={term} className="flex gap-2.5 text-[14px] leading-[1.65] font-medium text-muted">
-              <FaCircleCheck className="mt-0.5 flex-none text-[13px] text-gold-deep" />
+              <CheckCircle className="mt-0.5 flex-none w-[13px] h-[13px] text-gold-deep" />
               <span>{term}</span>
             </li>
           ))}

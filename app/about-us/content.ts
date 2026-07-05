@@ -1,4 +1,5 @@
 import type { FeatureIconName } from "@/components/FeatureIcon";
+import { cldImage } from "@/lib/cloudinary";
 
 export const journeyMilestones = [
   {
@@ -39,7 +40,7 @@ export const highlightCards: {
 }[] = [
   {
     icon: "bed",
-    image: "/images/room-108.jpg",
+    image: cldImage("room-108.jpg"),
     alt: "Premium luxury suite at Welcome Palace",
     title: "15 Premium Luxury Rooms",
     description: "Deluxe, Suite, Family Rooms & Honeymoon Suites with Jacuzzi",
@@ -48,7 +49,7 @@ export const highlightCards: {
   },
   {
     icon: "couch",
-    image: "/images/room-110.jpg",
+    image: cldImage("room-110.jpg"),
     alt: "Pariwar Niwas private family residence",
     title: "Pariwar Niwas",
     description: "Private 2-bedroom residence with kitchen & hall",
@@ -57,7 +58,7 @@ export const highlightCards: {
   },
   {
     icon: "users",
-    image: "/images/banquet-haldi.jpg",
+    image: cldImage("banquet-haldi.jpg"),
     alt: "Banquet hall set up for a celebration",
     title: "Banquet Hall",
     description: "Up to 175 guests — weddings, corporate & spiritual events",
@@ -66,7 +67,7 @@ export const highlightCards: {
   },
   {
     icon: "utensils",
-    image: "/images/banquet-mehandi.jpg",
+    image: cldImage("banquet-mehandi.jpg"),
     alt: "Chandni Chowk live kitchen catering setup",
     title: "Chandni Chowk Live Kitchen",
     description: "Pure-veg catering with live counters",

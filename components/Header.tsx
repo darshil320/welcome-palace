@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaBars, FaPhone, FaXmark } from "react-icons/fa6";
+import { Menu, Phone, X } from "lucide-react";
 import { contact, navLinks } from "@/lib/content";
 
 export function Header() {
@@ -96,7 +96,7 @@ export function Header() {
             scrolled ? "border-ink bg-ink text-white" : ""
           }`}
         >
-          <FaPhone className="text-xs" />
+          <Phone className="w-4 h-4" />
           <span className="hidden sm:inline">{contact.phoneDisplay}</span>
         </a>
 
@@ -109,7 +109,7 @@ export function Header() {
             scrolled ? "border-ink" : ""
           }`}
         >
-          {menuOpen ? <FaXmark className="text-[16px]" /> : <FaBars className="text-[16px]" />}
+          {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
         </button>
       </div>
 
@@ -139,7 +139,7 @@ export function Header() {
             }`}
             style={{ transitionDelay: menuOpen ? `${navLinks.length * 45}ms` : "0ms" }}
           >
-            <FaPhone className="text-xs" />
+            <Phone className="w-4 h-4" />
             {contact.phoneDisplay}
           </a>
         </nav>

@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { FaArrowDownLong, FaArrowRightLong, FaLocationDot } from "react-icons/fa6";
+import { ArrowDown, ArrowRight, MapPin } from "lucide-react";
 import { Magnetic } from "@/components/Magnetic";
 import { WordsReveal } from "@/components/WordsReveal";
+import { cldVideo, cldImage } from "@/lib/cloudinary";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 export function Hero() {
@@ -26,16 +27,22 @@ export function Hero() {
     let frame = 0;
 
     const update = () => {
+      // Boundary check: refs must exist
+      if (!mediaRef.current || !contentRef.current) return;
+
+      // Check if hero is visible on screen
+      const heroRect = mediaRef.current.getBoundingClientRect();
+      if (heroRect.bottom < 0) return; // Hero is above viewport, skip parallax
+
       const y = window.scrollY;
       const viewport = window.innerHeight;
-      if (mediaRef.current) {
-        mediaRef.current.style.transform = `translate3d(0, ${Math.min(y * 0.22, viewport).toFixed(1)}px, 0)`;
-      }
-      if (contentRef.current) {
-        const progress = Math.min(y / (viewport * 0.55), 1);
-        contentRef.current.style.opacity = String(1 - progress * 0.9);
-        contentRef.current.style.transform = `translate3d(0, ${(y * 0.1).toFixed(1)}px, 0)`;
-      }
+
+      mediaRef.current.style.transform = `translate3d(0, ${Math.min(y * 0.22, viewport).toFixed(1)}px, 0)`;
+
+      const progress = Math.min(y / (viewport * 0.55), 1);
+      contentRef.current.style.opacity = String(1 - progress * 0.9);
+      contentRef.current.style.transform = `translate3d(0, ${(y * 0.1).toFixed(1)}px, 0)`;
+
       frame = 0;
     };
 
@@ -57,8 +64,8 @@ export function Hero() {
     <section id="top" className="px-[clamp(12px,2.4vw,26px)] pt-[88px]">
       <div className="relative h-[min(82svh,760px)] min-h-[520px] overflow-hidden rounded-3xl">
         <div ref={mediaRef} className="absolute inset-0 will-change-transform">
-          <video autoPlay muted loop playsInline preload="auto" className="hero-zoom absolute inset-0 h-full w-full object-cover">
-            <source src="/videos/hero.mp4" type="video/mp4" />
+          <video autoPlay muted loop playsInline preload="none" poster={cldImage("hero-poster.jpg")} className="hero-zoom absolute inset-0 h-full w-full object-cover">
+            <source src={cldVideo("hero.mp4")} type="video/mp4" />
           </video>
           <div className="img-warm" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,10,0.42)_0%,rgba(20,16,10,0)_34%,rgba(20,16,10,0)_55%,rgba(20,16,10,0.72)_100%)]" />
@@ -70,7 +77,7 @@ export function Hero() {
           }`}
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[12px] font-semibold tracking-[0.08em] text-white backdrop-blur-md">
-            <FaLocationDot className="text-[11px] text-gold" />
+            <MapPin className="w-[11px] h-[11px] text-gold" />
             Piplod, Surat · Est. 2013
           </span>
         </div>
@@ -93,7 +100,7 @@ export function Hero() {
             </text>
           </svg>
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 transition-colors duration-300 group-hover:border-gold group-hover:bg-gold group-hover:text-[#1c1608]">
-            <FaArrowDownLong className="text-[12px] transition-transform duration-300 group-hover:translate-y-0.5" />
+            <ArrowDown className="w-[12px] h-[12px] transition-transform duration-300 group-hover:translate-y-0.5" />
           </span>
         </Link>
 
@@ -121,7 +128,7 @@ export function Hero() {
             >
               Explore our stays
               <span className="inline-flex h-[38px] w-[38px] items-center justify-center rounded-full bg-ink text-white">
-                <FaArrowRightLong className="text-[13px] transition-transform duration-300 group-hover:translate-x-0.5" />
+                <ArrowRight className="w-[13px] h-[13px] transition-transform duration-300 group-hover:translate-x-0.5" />
               </span>
             </Link>
           </Magnetic>

@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { FaShoppingCart, FaTrash, FaTimes, FaWhatsapp } from "react-icons/fa";
-import { FaArrowRightLong } from "react-icons/fa6";
+import { ShoppingCart, Trash2, X, MessageCircle, ArrowRight } from "lucide-react";
 import { type EnquiryItem } from "@/app/rooms/BookingModal";
 import { slotLabels, type StaySlot } from "@/app/rooms/content";
 import { contact } from "@/lib/content";
@@ -74,7 +73,7 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
             : "bg-panel border border-line px-4 py-3 text-ink-soft"
         }`}
       >
-        <FaShoppingCart className="text-[15px]" />
+        <ShoppingCart className="w-[15px] h-[15px]" />
         <span className="text-[14px] font-semibold">
           {items.length > 0 ? `Enquiry (${items.length})` : "Cart"}
         </span>
@@ -111,7 +110,7 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
               className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line bg-panel text-ink-soft transition-colors hover:bg-ink hover:text-white"
               aria-label="Close cart"
             >
-              <FaTimes className="text-[13px]" />
+              <X className="w-[13px] h-[13px]" />
             </button>
           </div>
 
@@ -119,7 +118,7 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
           <div className="flex-1 overflow-y-auto overscroll-contain p-5 space-y-4">
             {items.length === 0 ? (
               <div className="py-12 text-center">
-                <FaShoppingCart className="mx-auto mb-4 text-[36px] text-faint" />
+                <ShoppingCart className="mx-auto mb-4 w-[36px] h-[36px] text-faint" />
                 <p className="text-[15px] font-medium text-muted-2">
                   Your enquiry cart is empty.
                 </p>
@@ -159,7 +158,7 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
                         className="flex h-7 w-7 flex-none items-center justify-center rounded-full border border-line text-muted-2 transition-colors hover:border-red-300 hover:bg-red-50 hover:text-red-500"
                         aria-label={`Remove room ${item.roomNo} from cart`}
                       >
-                        <FaTrash className="text-[10px]" />
+                        <Trash2 className="w-[10px] h-[10px]" />
                       </button>
                     </div>
                     <div className="mt-3 flex items-baseline gap-1">
@@ -190,9 +189,9 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
                 onClick={checkout}
                 className="flex w-full items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-8 py-4 text-[15px] font-semibold text-white shadow-[0_4px_20px_-4px_rgba(37,211,102,0.4)] transition-transform hover:scale-[1.015]"
               >
-                <FaWhatsapp className="text-[17px]" />
+                <MessageCircle className="w-[17px] h-[17px]" />
                 Send Enquiry via WhatsApp
-                <FaArrowRightLong className="text-[12px]" />
+                <ArrowRight className="w-[12px] h-[12px]" />
               </button>
               <p className="mt-3 text-center text-[11.5px] font-medium text-faint">
                 Our team responds within 2 hours · No payment required now

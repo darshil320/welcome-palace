@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { WarmVideo } from "@/components/WarmVideo";
 import { FeatureIcon } from "@/components/FeatureIcon";
 import { pariwarFeatures, waLink } from "@/lib/content";
+import { cldVideo } from "@/lib/cloudinary";
 
 export function PariwarNiwas() {
   return (
@@ -50,7 +51,7 @@ export function PariwarNiwas() {
 
           <Parallax speed={0.06}>
             <Reveal className="aspect-[4/5] rounded-[22px] shadow-[0_30px_60px_-34px_rgba(20,16,10,0.35)]">
-              <WarmVideo src="/videos/pariwar-niwas.mp4" className="h-full w-full rounded-[22px]" />
+              <WarmVideo src={cldVideo("pariwar-niwas.mp4")} className="h-full w-full rounded-[22px]" />
             </Reveal>
           </Parallax>
         </div>
