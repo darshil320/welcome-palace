@@ -17,11 +17,22 @@ import {
   occupancyStats,
 } from "@/app/shadi-wala-ghar/content";
 import { EnquiryForm } from "@/app/shadi-wala-ghar/EnquiryForm";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const description =
+  "Book the entire floor at Welcome Palace Surat — 16 rooms plus a private banquet hall so your whole family stays, eats and celebrates together, from ₹61,000 for a full 60-pax buyout.";
 
 export const metadata: Metadata = {
   title: "Shadi Wala Ghar | Welcome Palace Surat - Family Wedding Stay",
-  description:
-    "Book the entire floor at Welcome Palace Surat — 16 rooms plus a private banquet hall so your whole family stays, eats and celebrates together, from ₹61,000 for a full 60-pax buyout.",
+  description,
+  alternates: { canonical: "/shadi-wala-ghar" },
+  openGraph: {
+    type: "website",
+    url: "/shadi-wala-ghar",
+    title: "Shadi Wala Ghar | Welcome Palace Surat - Family Wedding Stay",
+    description,
+  },
 };
 
 const eliteHighlights = [
@@ -33,6 +44,12 @@ const eliteHighlights = [
 export default function ShadiWalaGharPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Shadi Wala Ghar", path: "/shadi-wala-ghar" },
+        ])}
+      />
       <PageHero
         videoSrc={cldVideo("pariwar-niwas.mp4")}
         eyebrow="Piplod, Surat"

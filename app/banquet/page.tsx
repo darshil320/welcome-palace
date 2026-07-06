@@ -18,16 +18,33 @@ import {
   haldiMehandiHighlights,
 } from "@/app/banquet/content";
 import { EnquiryForm } from "@/app/banquet/EnquiryForm";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const description =
+  "Book Welcome Palace's Banquet Hall in Surat for 125–175 guests — weddings, Satsang, Haldi, Mehandi, Sangeet, corporate meets and more, with outside catering allowed.";
 
 export const metadata: Metadata = {
   title: "Banquet Hall & Events | Welcome Palace Surat",
-  description:
-    "Book Welcome Palace's Banquet Hall in Surat for 125–175 guests — weddings, Satsang, Haldi, Mehandi, Sangeet, corporate meets and more, with outside catering allowed.",
+  description,
+  alternates: { canonical: "/banquet" },
+  openGraph: {
+    type: "website",
+    url: "/banquet",
+    title: "Banquet Hall & Events | Welcome Palace Surat",
+    description,
+  },
 };
 
 export default function BanquetPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Banquet Hall", path: "/banquet" },
+        ])}
+      />
       <PageHero
         videoSrc={cldVideo("banquet/wedding-function.mp4")}
         eyebrow="125–175 Guests · Full Privacy"

@@ -12,16 +12,33 @@ import { ThemedDecorSection } from "@/app/rooms/ThemedDecorSection";
 import { roomTariffRows, roomAmenities } from "@/app/rooms/content";
 import { waLink } from "@/lib/content";
 import { Check } from "lucide-react";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const description =
+  "Book one of 15 luxury rooms at Welcome Palace, Piplod, Surat — Deluxe Rooms from ₹3,500, Suite Rooms from ₹4,500, Honeymoon Suites with Jacuzzi from ₹5,500, Pariwar Niwas family residence at ₹11,000/night.";
 
 export const metadata: Metadata = {
   title: "Rooms & Booking | Welcome Palace Surat",
-  description:
-    "Book one of 15 luxury rooms at Welcome Palace, Piplod, Surat — Deluxe Rooms from ₹3,500, Suite Rooms from ₹4,500, Honeymoon Suites with Jacuzzi from ₹5,500, Pariwar Niwas family residence at ₹11,000/night.",
+  description,
+  alternates: { canonical: "/rooms" },
+  openGraph: {
+    type: "website",
+    url: "/rooms",
+    title: "Rooms & Booking | Welcome Palace Surat",
+    description,
+  },
 };
 
 export default function RoomsPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Rooms", path: "/rooms" },
+        ])}
+      />
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <PageHero
         videoSrc={cldVideo("hero.mp4")}

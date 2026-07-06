@@ -13,16 +13,33 @@ import { contact, waLink } from "@/lib/content";
 import { journeyMilestones, missionVisionValues, highlightCards } from "@/app/about-us/content";
 import { Testimonials } from "@/app/about-us/Testimonials";
 import { PolicyAccordion } from "@/app/about-us/PolicyAccordion";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const description =
+  "Welcome Palace - Surat's premium Shadi Wala Ghar & luxury hotel since 2013. A unit of TW Hospitality Services Pvt. Ltd. Rooms, Banquet, Live Kitchen, Catering & more.";
 
 export const metadata: Metadata = {
   title: "About Us | Welcome Palace - Luxury Stay & Banquets Surat",
-  description:
-    "Welcome Palace - Surat's premium Shadi Wala Ghar & luxury hotel since 2013. A unit of TW Hospitality Services Pvt. Ltd. Rooms, Banquet, Live Kitchen, Catering & more.",
+  description,
+  alternates: { canonical: "/about-us" },
+  openGraph: {
+    type: "website",
+    url: "/about-us",
+    title: "About Us | Welcome Palace - Luxury Stay & Banquets Surat",
+    description,
+  },
 };
 
 export default function AboutUsPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "About Us", path: "/about-us" },
+        ])}
+      />
       <PageHero
         videoSrc={cldVideo("hero.mp4")}
         eyebrow="Piplod, Surat · Est. 2013"

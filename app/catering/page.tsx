@@ -7,11 +7,22 @@ import { Reveal } from "@/components/Reveal";
 import { cldVideo } from "@/lib/cloudinary";
 import { cateringIntro, luxuryPlans, standardPlans, type CateringPlan } from "@/app/catering/content";
 import { EnquiryForm } from "@/app/catering/EnquiryForm";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const description =
+  "Pure veg, live-kitchen catering in Surat by Chandni Chowk Live Kitchen — heritage flavours, live counters and six curated plans from ₹650 to ₹1,850 per person.";
 
 export const metadata: Metadata = {
   title: "Catering | Chandni Chowk Live Kitchen - Welcome Palace Surat",
-  description:
-    "Pure veg, live-kitchen catering in Surat by Chandni Chowk Live Kitchen — heritage flavours, live counters and six curated plans from ₹650 to ₹1,850 per person.",
+  description,
+  alternates: { canonical: "/catering" },
+  openGraph: {
+    type: "website",
+    url: "/catering",
+    title: "Catering | Chandni Chowk Live Kitchen - Welcome Palace Surat",
+    description,
+  },
 };
 
 function PlanCard({ plan, index }: { plan: CateringPlan; index: number }) {
@@ -83,6 +94,12 @@ function PlanCard({ plan, index }: { plan: CateringPlan; index: number }) {
 export default function CateringPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Catering", path: "/catering" },
+        ])}
+      />
       <PageHero
         videoSrc={cldVideo("banquet/wedding-function.mp4")}
         eyebrow="Taste of Heritage"

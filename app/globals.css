@@ -326,6 +326,53 @@ dialog[open] {
   animation: modal-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* ── Loading screen animations ───────────────────────────────── */
+
+@keyframes loader-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loader-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes loader-line-in {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.loader-fade-up {
+  opacity: 0;
+  animation: loader-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.loader-fade-in {
+  opacity: 0;
+  animation: loader-fade-in 0.7s ease both;
+}
+
+.loader-line-in {
+  animation: loader-line-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mask-line > span,
   .mask-word > span {
@@ -359,5 +406,12 @@ dialog[open] {
   .foot-word {
     opacity: 1;
     transition: none;
+  }
+  .loader-fade-up,
+  .loader-fade-in,
+  .loader-line-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

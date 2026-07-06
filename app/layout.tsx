@@ -6,7 +6,11 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { GrainOverlay } from "@/components/GrainOverlay";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { LoadingScreen } from "@/components/LoadingScreen";
+import { JsonLd } from "@/components/JsonLd";
 import { GTM_ID } from "@/lib/analytics";
+import { SITE_URL, SITE } from "@/lib/seo";
+import { siteGraph } from "@/lib/schema";
 import "./globals.css";
 
 const schibstedGrotesk = Schibsted_Grotesk({
@@ -22,12 +26,56 @@ const hankenGrotesk = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     template: "%s | Welcome Palace",
-    default: "Welcome Palace | Your Peaceful Retreat in Surat",
+    default: "Welcome Palace | Luxury Hotel, Banquet & Catering in Piplod, Surat",
   },
   description:
-    "15 luxury rooms, the Pariwar Niwas family residence and a private banquet hall for 125–175 guests — Welcome Palace is your Shadi Wala Ghar in Piplod, Surat.",
+    "Welcome Palace is your Shadi Wala Ghar in Piplod, Surat — 15 luxury rooms, the Pariwar Niwas family residence, a private banquet hall for 125–175 guests and in-house Chandni Chowk Live Kitchen catering. Book entire-floor family wedding stays.",
+  keywords: [
+    "hotel in Piplod Surat",
+    "banquet hall Surat",
+    "Shadi Wala Ghar",
+    "wedding venue Surat",
+    "family wedding stay Surat",
+    "catering Surat",
+    "Pariwar Niwas",
+    "luxury rooms Surat",
+    "Welcome Palace Surat",
+  ],
+  applicationName: "Welcome Palace",
+  authors: [{ name: SITE.legalName }],
+  creator: SITE.legalName,
+  publisher: SITE.legalName,
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: SITE.locale,
+    siteName: "Welcome Palace",
+    url: SITE_URL,
+    title: "Welcome Palace | Luxury Hotel, Banquet & Catering in Piplod, Surat",
+    description:
+      "Your Shadi Wala Ghar in Surat — 15 luxury rooms, a private banquet hall for 125–175 guests and in-house Live Kitchen catering.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Welcome Palace | Luxury Hotel & Banquet in Piplod, Surat",
+    description:
+      "Your Shadi Wala Ghar in Surat — luxury rooms, banquet hall for 125–175 guests and in-house catering.",
+  },
+  category: "travel",
 };
 
 export default function RootLayout({
@@ -36,8 +84,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${schibstedGrotesk.variable} ${hankenGrotesk.variable}`}>
+    <html lang="en-IN" className={`${schibstedGrotesk.variable} ${hankenGrotesk.variable}`}>
       {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
+      <JsonLd data={siteGraph()} />
       <body className="bg-cream text-ink font-sans antialiased overflow-x-hidden">
         {GTM_ID && (
           <noscript>
@@ -60,6 +109,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <LoadingScreen />
         <Header />
         <main className="overflow-x-hidden">{children}</main>
         <Footer />

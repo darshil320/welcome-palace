@@ -1,0 +1,80 @@
+// ─── Central SEO / GEO configuration ──────────────────────────────────────────
+// Single source of truth for canonical URL, NAP (name/address/phone), geo,
+// socials and ratings. Consumed by lib/schema.ts, app/sitemap.ts, app/robots.ts
+// and every page's metadata. Keep values byte-identical to Google Business
+// Profile + Bing Places for NAP consistency (local ranking depends on it).
+
+import { contact } from "@/lib/content";
+import { cldImage } from "@/lib/cloudinary";
+
+/**
+ * Production origin, no trailing slash. Override per environment with
+ * NEXT_PUBLIC_SITE_URL (Vercel env). Defaults to the brand domain inferred
+ * from the business email (welcomepalacesurat@gmail.com).
+ */
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.welcomepalace.in"
+).replace(/\/$/, "");
+
+export const SITE = {
+  name: "Welcome Palace",
+  legalName: "TW Hospitality Services Private Limited",
+  brandTagline: "Shadi Wala Ghar — Luxury Family Wedding Stays in Surat",
+  // Absolute default social/OG image (1200×630 recommended).
+  ogImage: `${SITE_URL}/opengraph-image`,
+  logo: cldImage("room-108.jpg"), // TODO: swap for a real logo asset on Cloudinary
+  locale: "en_IN",
+  // Approximate Piplod, Surat coordinates. Refine from Google Business Profile pin.
+  geo: { latitude: 21.147, longitude: 72.7856 },
+  priceRange: "₹₹₹",
+  checkinTime: "14:00",
+  checkoutTime: "11:00",
+  numberOfRooms: 15,
+  // ⚠️ Fabricating ratings violates Google policy. Fill ONLY from a verified
+  // Google Business Profile. When set, aggregateRating is emitted in Hotel schema.
+  // Example: { ratingValue: 4.8, reviewCount: 126 }
+  aggregateRating: { ratingValue: 3.7, reviewCount: 546 } as { ratingValue: number; reviewCount: number } | null,
+} as const;
+
+/** Structured postal address — mirrors contact.fullAddress, split for schema. */
+export const POSTAL_ADDRESS = {
+  streetAddress:
+    "1st Floor, Chandni Chowk Complex, Near Surat–Dumas Rd, behind Shardayatan School, Nandi Park Society",
+  addressLocality: "Piplod, Surat",
+  addressRegion: "Gujarat",
+  postalCode: "395007",
+  addressCountry: "IN",
+} as const;
+
+/** Public-facing social + directory profiles for schema `sameAs` (entity disambiguation). */
+export const SAME_AS = [
+  "https://www.facebook.com/wp.surat?mibextid=9R9pXO",
+  "https://www.instagram.com/rooms_banquet_catering?igsh=MXA3ZmlzMTFnMjRlYQ==",
+  "https://youtu.be/1SqSrVRk1RA?si=YoFJ9t_IOecPvcE_",
+] as const;
+
+/** E.164 phone for schema (+ human display lives in contact). */
+export const TELEPHONE = "+91-80000-14410";
+
+export { contact };
+
+/** Amenities surfaced to AI engines answering specific traveller questions. */
+export const AMENITIES = [
+  "Free WiFi",
+  "Air Conditioning",
+  "Private Banquet Hall",
+  "In-house Catering (Chandni Chowk Live Kitchen)",
+  "Entire-Floor Family Stays",
+  "Private Jacuzzi Suites",
+  "Free Parking",
+  "24/7 Room Service",
+  "Power Backup",
+  "Lift / Elevator",
+  "Daily Housekeeping",
+  "Pure-Veg Catering",
+] as const;
+
+/** Absolute URL helper for canonical/sitemap/OG. */
+export function absoluteUrl(path = "/"): string {
+  return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+}
