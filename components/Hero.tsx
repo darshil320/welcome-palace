@@ -62,8 +62,8 @@ export function Hero() {
 
   return (
     <section id="top" className="px-[clamp(12px,2.4vw,26px)] pt-[88px]">
-      <div className="relative h-[min(82svh,760px)] min-h-[520px] overflow-hidden rounded-3xl">
-        <div ref={mediaRef} className="absolute inset-0 will-change-transform">
+      <div className="relative overflow-hidden rounded-3xl" style={{ height: "min(82svh, 760px)", minHeight: "520px" }}>
+        <div ref={mediaRef} className="absolute inset-0" style={{ willChange: "transform" }}>
           <video autoPlay muted loop playsInline preload="none" poster={cldImage("hero-poster.jpg")} className="hero-zoom absolute inset-0 h-full w-full object-cover">
             <source src={cldVideo("hero.mp4")} type="video/mp4" />
           </video>

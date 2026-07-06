@@ -114,7 +114,7 @@ export function Header() {
       </div>
 
       <div
-        className={`fixed inset-0 top-0 z-0 bg-cream transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 top-0 z-[60] bg-cream transition-opacity duration-300 lg:hidden ${
           menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
