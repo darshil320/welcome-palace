@@ -26,22 +26,33 @@ export function Hero() {
     if (reduced) return;
     let frame = 0;
 
-    const update = () => {
-      // Boundary check: refs must exist
-      if (!mediaRef.current || !contentRef.current) return;
+    // Media has 120px overhang top+bottom (see markup), so translate is capped
+    // at 120px — it can never reveal a gap inside the overflow-hidden container.
+    const MAX_SHIFT = 120;
 
-      // Check if hero is visible on screen
-      const heroRect = mediaRef.current.getBoundingClientRect();
-      if (heroRect.bottom < 0) return; // Hero is above viewport, skip parallax
+    const update = () => {
+      const media = mediaRef.current;
+      const content = contentRef.current;
+      if (!media || !content) return;
+
+      // Measure the (untransformed) container, not the media itself.
+      const container = media.parentElement;
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      // Off-screen: leave the last (in-bounds) transform in place, do nothing.
+      if (rect.bottom < 0 || rect.top > window.innerHeight) {
+        frame = 0;
+        return;
+      }
 
       const y = window.scrollY;
       const viewport = window.innerHeight;
 
-      mediaRef.current.style.transform = `translate3d(0, ${Math.min(y * 0.22, viewport).toFixed(1)}px, 0)`;
+      media.style.transform = `translate3d(0, ${Math.min(y * 0.18, MAX_SHIFT).toFixed(1)}px, 0)`;
 
       const progress = Math.min(y / (viewport * 0.55), 1);
-      contentRef.current.style.opacity = String(1 - progress * 0.9);
-      contentRef.current.style.transform = `translate3d(0, ${(y * 0.1).toFixed(1)}px, 0)`;
+      content.style.opacity = String(1 - progress * 0.9);
+      content.style.transform = `translate3d(0, ${(y * 0.1).toFixed(1)}px, 0)`;
 
       frame = 0;
     };
@@ -63,7 +74,7 @@ export function Hero() {
   return (
     <section id="top" className="px-[clamp(12px,2.4vw,26px)] pt-[88px]">
       <div className="relative overflow-hidden rounded-3xl" style={{ height: "min(82svh, 760px)", minHeight: "520px" }}>
-        <div ref={mediaRef} className="absolute inset-0" style={{ willChange: "transform" }}>
+        <div ref={mediaRef} className="absolute inset-x-0 -top-[120px] -bottom-[120px]" style={{ willChange: "transform" }}>
           <video autoPlay muted loop playsInline preload="none" poster={cldImage("hero-poster.jpg")} className="hero-zoom absolute inset-0 h-full w-full object-cover">
             <source src={cldVideo("hero.mp4")} type="video/mp4" />
           </video>
