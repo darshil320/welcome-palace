@@ -58,6 +58,7 @@ export function Header() {
   };
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-[70] flex items-center justify-between gap-6 px-[clamp(18px,4vw,54px)] py-5 transition-[background,box-shadow] duration-[400ms] ${
         scrolled ? "bg-cream/90 shadow-[0_1px_0_rgba(20,19,14,0.07)] backdrop-saturate-150 backdrop-blur-lg" : ""
@@ -112,38 +113,52 @@ export function Header() {
           {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
         </button>
       </div>
-
-      <div
-        className={`fixed inset-0 top-0 z-[60] bg-cream transition-opacity duration-300 lg:hidden ${
-          menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-        }`}
-      >
-        <nav className="flex h-full flex-col items-start justify-center gap-2 px-[clamp(24px,8vw,54px)]">
-          {navLinks.map((link, i) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className={`font-display text-[clamp(30px,8vw,44px)] font-semibold tracking-tight no-underline transition-[opacity,transform] duration-300 ${
-                isActive(link.href) ? "text-gold-deep" : "text-ink"
-              } ${menuOpen ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}
-              style={{ transitionDelay: menuOpen ? `${i * 45}ms` : "0ms" }}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <a
-            href={contact.phoneHref}
-            className={`mt-8 inline-flex items-center gap-2.5 rounded-full bg-ink px-6 py-3.5 text-[15px] font-semibold whitespace-nowrap text-white no-underline transition-[opacity,transform] duration-300 ${
-              menuOpen ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-            }`}
-            style={{ transitionDelay: menuOpen ? `${navLinks.length * 45}ms` : "0ms" }}
-          >
-            <Phone className="w-4 h-4" />
-            {contact.phoneDisplay}
-          </a>
-        </nav>
-      </div>
     </header>
+
+    {/* Mobile menu overlay — rendered OUTSIDE <header> so the header's
+        backdrop-blur (a backdrop-filter) can't become its containing block and
+        clip this fixed panel to the header box. Full-viewport, opaque, top z. */}
+    <div
+      aria-hidden={!menuOpen}
+      className={`fixed inset-0 z-[100] bg-cream transition-opacity duration-300 lg:hidden ${
+        menuOpen ? "pointer-events-auto visible opacity-100" : "pointer-events-none invisible opacity-0"
+      }`}
+    >
+      <button
+        type="button"
+        onClick={() => setMenuOpen(false)}
+        aria-label="Close menu"
+        className="absolute top-5 right-[clamp(18px,4vw,54px)] inline-flex h-[46px] w-[46px] flex-none items-center justify-center rounded-full border border-line-strong text-ink"
+      >
+        <X className="w-4 h-4" />
+      </button>
+
+      <nav className="flex h-full flex-col items-start justify-center gap-2 px-[clamp(24px,8vw,54px)]">
+        {navLinks.map((link, i) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            onClick={() => setMenuOpen(false)}
+            className={`font-display text-[clamp(30px,8vw,44px)] font-semibold tracking-tight no-underline transition-[opacity,transform] duration-300 ${
+              isActive(link.href) ? "text-gold-deep" : "text-ink"
+            } ${menuOpen ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}
+            style={{ transitionDelay: menuOpen ? `${i * 45}ms` : "0ms" }}
+          >
+            {link.label}
+          </Link>
+        ))}
+        <a
+          href={contact.phoneHref}
+          className={`mt-8 inline-flex items-center gap-2.5 rounded-full bg-ink px-6 py-3.5 text-[15px] font-semibold whitespace-nowrap text-white no-underline transition-[opacity,transform] duration-300 ${
+            menuOpen ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+          }`}
+          style={{ transitionDelay: menuOpen ? `${navLinks.length * 45}ms` : "0ms" }}
+        >
+          <Phone className="w-4 h-4" />
+          {contact.phoneDisplay}
+        </a>
+      </nav>
+    </div>
+    </>
   );
 }
