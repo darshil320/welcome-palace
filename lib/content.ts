@@ -35,17 +35,17 @@ export const heroStats = [
 ];
 
 export const mosaicImages = [
-  { src: cldImage("room-101.jpg"), alt: "Guest room 101 interior" },
-  { src: cldImage("room-103.jpg"), alt: "Guest room 103 interior" },
-  { src: cldImage("room-105.jpg"), alt: "Guest room 105 interior" },
-  { src: cldImage("room-109.jpg"), alt: "Guest room 109 interior" },
-  { src: cldImage("room-111.jpg"), alt: "Guest room 111 interior" },
-  { src: cldImage("room-112.jpg"), alt: "Guest room 112 interior" },
+  { src: cldImage("new-rooms/room-101-a.jpg"), alt: "Guest room 101 interior" },
+  { src: cldImage("new-rooms/room-103-a.jpg"), alt: "Guest room 103 interior" },
+  { src: cldImage("new-rooms/room-105-a.jpg"), alt: "Guest room 105 interior" },
+  { src: cldImage("new-rooms/room-109-a.jpg"), alt: "Guest room 109 interior" },
+  { src: cldImage("new-rooms/room-111-a.jpg"), alt: "Guest room 111 interior" },
+  { src: cldImage("new-rooms/room-112-a.jpg"), alt: "Guest room 112 interior" },
 ];
 
 export const spaces = [
   {
-    image: cldImage("room-104.jpg"),
+    image: cldImage("new-rooms/room-104-a.jpg"),
     alt: "Deluxe Room 104",
     tag: "Stay · 7 rooms",
     name: "Deluxe Rooms",
@@ -53,7 +53,7 @@ export const spaces = [
     message: "Hi Welcome Palace! I'd like to book a Deluxe Room.",
   },
   {
-    image: cldImage("room-108.jpg"),
+    image: cldImage("new-rooms/room-108-a.jpg"),
     alt: "Suite Room 108",
     tag: "Stay · 6 rooms",
     name: "Suite Rooms",
@@ -61,7 +61,7 @@ export const spaces = [
     message: "Hi Welcome Palace! I'd like to book a Suite Room.",
   },
   {
-    image: cldImage("room-114.jpg"),
+    image: cldImage("new-rooms/room-114-a.jpg"),
     alt: "Honeymoon Suite 114",
     tag: "Jacuzzi · 3 suites",
     name: "Honeymoon Suites",
@@ -69,7 +69,7 @@ export const spaces = [
     message: "Hi Welcome Palace! I'd like to book a Honeymoon Suite with jacuzzi.",
   },
   {
-    image: cldImage("room-110.jpg"),
+    image: cldImage("new-rooms/room-110-a.jpg"),
     alt: "Pariwar Niwas family residence",
     tag: "Group · up to 12",
     name: "Pariwar Niwas",

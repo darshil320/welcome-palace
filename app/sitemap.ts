@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
+import { roomPdps } from "@/app/rooms/[slug]/pdp-content";
 
 // Static routes. Build-time lastModified is fine for a mostly-static brochure
 // site; regenerate on deploy. Home + Shadi Wala Ghar are the priority landing
@@ -8,6 +9,11 @@ const routes: { path: string; changeFrequency: MetadataRoute.Sitemap[number]["ch
   { path: "/", changeFrequency: "weekly", priority: 1.0 },
   { path: "/shadi-wala-ghar", changeFrequency: "monthly", priority: 0.9 },
   { path: "/rooms", changeFrequency: "weekly", priority: 0.9 },
+  ...roomPdps.map((p) => ({
+    path: `/rooms/${p.slug}`,
+    changeFrequency: "weekly" as const,
+    priority: 0.85,
+  })),
   { path: "/banquet", changeFrequency: "monthly", priority: 0.8 },
   { path: "/catering", changeFrequency: "monthly", priority: 0.8 },
   { path: "/about-us", changeFrequency: "monthly", priority: 0.6 },

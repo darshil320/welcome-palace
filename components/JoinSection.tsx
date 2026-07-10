@@ -33,7 +33,7 @@ export function JoinSection() {
             poster={cldImage("ambient-jacuzzi-poster.jpg")}
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.04]"
           >
-            <source src={cldVideo("ambient-jacuzzi.mp4")} type="video/mp4" />
+            <source src={cldVideo("new/jacuzzi-hero.mp4")} type="video/mp4" />
           </video>
           <div className="img-warm" />
           <div className="absolute inset-0 bg-[rgba(20,16,10,0.28)] transition-colors duration-700 group-hover:bg-[rgba(20,16,10,0.38)]" />

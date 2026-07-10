@@ -101,7 +101,7 @@ export default function CateringPage() {
         ])}
       />
       <PageHero
-        videoSrc={cldVideo("banquet/wedding-function.mp4")}
+        videoSrc={cldVideo("new/chandni-chowk-1.mp4")}
         eyebrow="Taste of Heritage"
         title="Chandni Chowk Live Kitchen"
         subtitle="Pure Veg • Live Counters • Heritage Flavours of Surat"

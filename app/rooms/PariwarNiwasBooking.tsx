@@ -128,7 +128,7 @@ export function PariwarNiwasBooking() {
           {/* LEFT — Video + Features */}
           <Reveal className="space-y-6">
             <div className="aspect-[4/5] overflow-hidden rounded-[22px] shadow-[0_30px_60px_-34px_rgba(20,16,10,0.35)]">
-              <WarmVideo src={cldVideo("pariwar-niwas.mp4")} className="h-full w-full rounded-[22px]" />
+              <WarmVideo src={cldVideo("new/room-101-tour.mp4")} className="h-full w-full rounded-[22px]" />
             </div>
             <div className="grid grid-cols-2 gap-x-6 gap-y-3">
               {pariwarFeatures.map((feat) => (

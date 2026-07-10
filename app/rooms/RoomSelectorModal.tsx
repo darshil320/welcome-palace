@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { X, Bed, Eye, Calendar } from "lucide-react";
 import { roomData, roomCategories, type RoomCategory } from "@/app/rooms/content";
+import { getPdpByCategory } from "@/app/rooms/[slug]/pdp-content";
 
 interface Props {
   category: RoomCategory | null;
@@ -33,6 +35,7 @@ export function RoomSelectorModal({ category, onClose, onBookRoom }: Props) {
   const rooms = category
     ? roomData.filter((r) => catData?.rooms.includes(r.no))
     : [];
+  const pdp = category ? getPdpByCategory(category) : null;
 
   return (
     <dialog
@@ -108,17 +111,18 @@ export function RoomSelectorModal({ category, onClose, onBookRoom }: Props) {
                   </div>
 
                   <div className="flex gap-2 mt-3">
-                    <button
-                      id={`view-room-${room.no}`}
-                      onClick={() => {
-                        // Future: open room video/gallery
-                      }}
-                      className="flex items-center gap-1.5 rounded-full border border-line-strong px-3.5 py-1.5 text-[12px] font-semibold text-ink-soft transition-colors hover:border-ink hover:text-ink"
-                      aria-label={`View room ${room.no}`}
-                    >
-                      <Eye className="w-[10px] h-[10px]" />
-                      View
-                    </button>
+                    {pdp && (
+                      <Link
+                        id={`view-room-${room.no}`}
+                        href={`/rooms/${pdp.slug}`}
+                        onClick={onClose}
+                        className="flex items-center gap-1.5 rounded-full border border-line-strong px-3.5 py-1.5 text-[12px] font-semibold text-ink-soft no-underline transition-colors hover:border-ink hover:text-ink"
+                        aria-label={`View ${pdp.title} details`}
+                      >
+                        <Eye className="w-[10px] h-[10px]" />
+                        View
+                      </Link>
+                    )}
                     <button
                       id={`book-room-${room.no}`}
                       onClick={() => {
