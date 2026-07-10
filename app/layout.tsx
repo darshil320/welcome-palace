@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { GrainOverlay } from "@/components/GrainOverlay";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { OfferPopup } from "@/components/OfferPopup";
 import { JsonLd } from "@/components/JsonLd";
 import { GTM_ID } from "@/lib/analytics";
 import { SITE_URL, SITE } from "@/lib/seo";
@@ -116,6 +117,7 @@ export default function RootLayout({
         <ScrollProgress />
         <GrainOverlay />
         <Analytics />
+        <OfferPopup />
       </body>
     </html>
   );
