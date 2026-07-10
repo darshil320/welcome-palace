@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { LongStayOffer } from "@/app/rooms/LongStayOffer";
 import { Marquee } from "@/components/Marquee";
 import { WelcomeSection } from "@/components/WelcomeSection";
 import { ExploreCarousel } from "@/components/ExploreCarousel";
@@ -18,6 +19,7 @@ export default function Home() {
     <>
       <JsonLd data={faqSchema([...faqItems])} />
       <Hero />
+      <LongStayOffer />
       <WelcomeSection />
       <Marquee />
       <ExploreCarousel />

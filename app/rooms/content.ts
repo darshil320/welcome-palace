@@ -143,6 +143,15 @@ export const themedDecorations = [
   { src: cldVideo("new/room-decor.mp4"), label: "Special Occasion" },
 ];
 
+// ─── Long Stay Offer ──────────────────────────────────────────────────────────
+
+export const longStayOffer = {
+  minNights: 10,
+  pricePerNight: 1650,
+  roomType: "Deluxe Room",
+  regularPricePerNight: 3500,
+};
+
 // ─── Pariwar Niwas Pricing ────────────────────────────────────────────────────
 
 export const pariwarPricing = {

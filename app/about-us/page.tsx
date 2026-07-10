@@ -41,7 +41,7 @@ export default function AboutUsPage() {
         ])}
       />
       <PageHero
-        videoSrc={cldVideo("hero.mp4")}
+        videoSrc={cldVideo("new/pariwar-niwas-hero.mp4")}
         eyebrow="Piplod, Surat · Est. 2013"
         title="About Welcome Palace"
         subtitle="Your Home for Memorable Celebrations & Luxury Family Stays in Surat"
@@ -53,7 +53,7 @@ export default function AboutUsPage() {
         <div className="relative z-10 mx-auto max-w-[1180px] px-[clamp(18px,4vw,54px)]">
           <div className="grid items-center gap-[clamp(32px,5vw,72px)] md:grid-cols-[1fr_1.05fr]">
             <Reveal className="aspect-[4/5] rounded-[22px] shadow-[0_30px_60px_-34px_rgba(20,16,10,0.35)] md:order-2">
-              <WarmVideo src={cldVideo("hero.mp4")} className="h-full w-full rounded-[22px]">
+              <WarmVideo src={cldVideo("new/room-101-tour.mp4")} className="h-full w-full rounded-[22px]">
                 <span className="absolute top-5 left-5 rounded-full bg-white/92 px-3.5 py-[7px] text-[11px] font-semibold tracking-[0.08em] text-ink uppercase">
                   Property Experience
                 </span>

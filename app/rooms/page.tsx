@@ -7,6 +7,7 @@ import { TariffCard } from "@/components/TariffCard";
 import { cldVideo } from "@/lib/cloudinary";
 import { RomanticStay } from "@/components/RomanticStay";
 import { RoomsClient } from "@/app/rooms/RoomsClient";
+import { LongStayOffer } from "@/app/rooms/LongStayOffer";
 import { PariwarNiwasBooking } from "@/app/rooms/PariwarNiwasBooking";
 import { ThemedDecorSection } from "@/app/rooms/ThemedDecorSection";
 import { roomTariffRows, roomAmenities } from "@/app/rooms/content";
@@ -46,6 +47,9 @@ export default function RoomsPage() {
         title="Rooms & Stays"
         subtitle="Deluxe · Suite · Honeymoon · Family · Pariwar Niwas"
       />
+
+      {/* ── Long Stay Offer ──────────────────────────────────────────────── */}
+      <LongStayOffer />
 
       {/* ── Interactive Room Booking ──────────────────────────────────────
           RoomsClient owns all modal + cart state (client component).
