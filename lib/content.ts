@@ -184,7 +184,7 @@ export const footerExploreLinks = [
 export const socialLinks = [
   { href: "https://www.facebook.com/wp.surat?mibextid=9R9pXO", label: "Facebook", icon: "facebook" },
   {
-    href: "https://www.instagram.com/rooms_banquet_catering?igsh=MXA3ZmlzMTFnMjRlYQ==",
+    href: "https://www.instagram.com/rooms_banquet_catering?utm_source=qr&igsh=MXA3ZmlzMTFnMjRlYQ%3D%3D",
     label: "Instagram",
     icon: "instagram",
   },
