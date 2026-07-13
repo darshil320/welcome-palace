@@ -52,7 +52,7 @@ export function EnquiryForm() {
           name="phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          placeholder="+91 63563 20206"
+          placeholder="+91 XXXXX XXXXX"
         />
         <TextField
           label="Event Date"

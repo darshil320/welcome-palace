@@ -57,7 +57,7 @@ export function EnquiryForm() {
             name="mobileNumber"
             type="tel"
             required
-            placeholder="+91 63563 20206"
+            placeholder="+91 XXXXX XXXXX"
           />
         </div>
 

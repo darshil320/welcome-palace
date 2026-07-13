@@ -5,8 +5,8 @@ export const contact = {
   phoneDisplay: "+91 80000 14410",
   phoneHref: "tel:+918000014410",
   whatsappNumber: "918000014410",
-  altPhones: ["+91 63563 20206", "+91 96878 41000"],
-  aboutPagePhones: ["+91 80000 14410", "+91 76230 99099", "+91 63563 20206"],
+  altPhones: ["+91 96878 41000"],
+  aboutPagePhones: ["+91 80000 14410", "+91 76230 99099"],
   email: "welcomepalacesurat@gmail.com",
   address:
     "1st Floor, Chandni Chowk Complex, Near Surat–Dumas Rd, Piplod, Surat – 395007, Gujarat, India",

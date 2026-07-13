@@ -54,6 +54,7 @@ export function RoomCategorySection({ onSelectCategory }: Props) {
                     src={cat.image}
                     alt={cat.title}
                     fill
+                    priority={i < 2}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.06]"
                   />
