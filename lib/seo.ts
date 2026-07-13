@@ -51,7 +51,7 @@ export const POSTAL_ADDRESS = {
 export const SAME_AS = [
   "https://www.facebook.com/wp.surat?mibextid=9R9pXO",
   "https://www.instagram.com/rooms_banquet_catering?igsh=MXA3ZmlzMTFnMjRlYQ==",
-  "https://youtu.be/1SqSrVRk1RA?si=YoFJ9t_IOecPvcE_",
+  "https://youtube.com/@hotel_welcome_palace?si=Bn-GUcRfx6BxIhLn",
 ] as const;
 
 /** E.164 phone for schema (+ human display lives in contact). */

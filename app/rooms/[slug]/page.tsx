@@ -145,30 +145,32 @@ export default async function RoomPdpPage({
 
                 {/* Slot price table */}
                 <div className="mt-5 overflow-hidden rounded-[14px] border border-line">
-                  <table className="w-full border-collapse text-[13px]">
-                    <thead>
-                      <tr className="bg-panel text-left">
-                        <th className="px-4 py-2.5 font-semibold text-muted uppercase tracking-[0.08em] text-[11px]">Room Type</th>
-                        {SLOTS.map((s) => (
-                          <th key={s} className="px-3 py-2.5 text-right font-semibold text-muted uppercase tracking-[0.08em] text-[11px]">
-                            {s}h
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {typeRows.map((room) => (
-                        <tr key={room.type} className="border-t border-line">
-                          <td className="px-4 py-3 font-semibold">{room.type}</td>
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse text-[12px] sm:text-[13px]" style={{ minWidth: "340px" }}>
+                      <thead>
+                        <tr className="bg-panel text-left">
+                          <th className="px-3 sm:px-4 py-2.5 font-semibold text-muted uppercase tracking-[0.08em] text-[10px] sm:text-[11px]">Room Type</th>
                           {SLOTS.map((s) => (
-                            <td key={s} className="px-3 py-3 text-right font-medium text-ink-soft">
-                              ₹{slotPrice(room, s).toLocaleString()}
-                            </td>
+                            <th key={s} className="px-2 sm:px-3 py-2.5 text-right font-semibold text-muted uppercase tracking-[0.08em] text-[10px] sm:text-[11px]">
+                              {s}h
+                            </th>
                           ))}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {typeRows.map((room) => (
+                          <tr key={room.type} className="border-t border-line">
+                            <td className="px-3 sm:px-4 py-3 font-semibold">{room.type}</td>
+                            {SLOTS.map((s) => (
+                              <td key={s} className="px-2 sm:px-3 py-3 text-right font-medium text-ink-soft whitespace-nowrap">
+                                ₹{slotPrice(room, s).toLocaleString()}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <p className="mt-2 text-[12px] font-medium text-faint">
                   24h price is per night. 1-guest (−35%) and 2-guest (−15%) discounts on 24h stays · 5% GST applies.

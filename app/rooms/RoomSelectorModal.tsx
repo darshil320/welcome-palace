@@ -43,17 +43,17 @@ export function RoomSelectorModal({ category, onClose, onBookRoom }: Props) {
       id="room-selector-modal"
       onClick={handleDialogClick}
       onClose={onClose}
-      className="room-dialog m-auto w-[90%] max-w-[560px] rounded-[28px] border-0 p-0 shadow-[0_40px_120px_-20px_rgba(20,16,10,0.45)] outline-none backdrop:bg-[rgba(20,16,10,0.6)] backdrop:backdrop-blur-sm"
-      style={{ height: "min(88vh, 700px)" }}
+      className="room-dialog m-auto w-[94%] max-w-[560px] rounded-[28px] border-0 p-0 shadow-[0_40px_120px_-20px_rgba(20,16,10,0.45)] outline-none backdrop:bg-[rgba(20,16,10,0.6)] backdrop:backdrop-blur-sm"
+      style={{ height: "min(90vh, 700px)" }}
     >
       <div className="flex flex-col bg-cream" style={{ height: "100%" }}>
         {/* Header */}
-        <div className="flex items-center justify-between gap-4 border-b border-line px-6 py-5">
+        <div className="flex items-center justify-between gap-4 border-b border-line px-5 py-4 sm:px-6 sm:py-5">
           <div>
             <div className="text-[11px] font-semibold tracking-[0.14em] text-gold-deep uppercase">
               Select Your Room
             </div>
-            <h2 className="mt-0.5 font-display text-[22px] font-semibold leading-tight">
+            <h2 className="mt-0.5 font-display text-[20px] sm:text-[22px] font-semibold leading-tight">
               {catData?.title}
             </h2>
           </div>
@@ -68,38 +68,39 @@ export function RoomSelectorModal({ category, onClose, onBookRoom }: Props) {
         </div>
 
         {/* Room list */}
-        <div className="flex-1 overflow-y-auto overscroll-contain p-5 grid gap-4">
+        <div className="flex-1 overflow-y-auto overscroll-contain p-4 sm:p-5 grid gap-3 sm:gap-4">
           {rooms.map((room) => {
             const displayPrice = Math.round(room.base24 * 0.85);
             return (
               <div
                 key={room.no}
-                className="flex gap-4 rounded-[18px] border border-line bg-panel p-4 transition-shadow hover:shadow-[0_4px_20px_-8px_rgba(20,16,10,0.18)]"
+                className="rounded-[18px] border border-line bg-panel p-3 sm:p-4 transition-shadow hover:shadow-[0_4px_20px_-8px_rgba(20,16,10,0.18)]"
               >
-                {/* Room image */}
-                <div className="relative h-[80px] w-[100px] flex-none overflow-hidden rounded-[12px]">
-                  <Image
-                    src={room.image}
-                    alt={`Room ${room.no}`}
-                    fill
-                    sizes="100px"
-                    className="object-cover"
-                  />
-                  <div className="img-warm" />
-                </div>
+                {/* Top row: image + info */}
+                <div className="flex gap-3 sm:gap-4">
+                  {/* Room image */}
+                  <div className="relative h-[72px] w-[90px] sm:h-[80px] sm:w-[100px] flex-none overflow-hidden rounded-[10px] sm:rounded-[12px]">
+                    <Image
+                      src={room.image}
+                      alt={`Room ${room.no}`}
+                      fill
+                      sizes="100px"
+                      className="object-cover"
+                    />
+                    <div className="img-warm" />
+                  </div>
 
-                {/* Info */}
-                <div className="flex flex-1 flex-col justify-between min-w-0">
-                  <div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-display text-[17px] font-semibold">
+                  {/* Info */}
+                  <div className="flex flex-1 flex-col justify-center min-w-0">
+                    <div className="flex items-baseline gap-2 flex-wrap">
+                      <span className="font-display text-[16px] sm:text-[17px] font-semibold">
                         Room {room.no}
                       </span>
                       <span className="text-[11px] font-medium text-muted-2 truncate">
                         {room.type}
                       </span>
                     </div>
-                    <div className="mt-1 flex items-center gap-3 text-[12px] font-medium text-muted-2">
+                    <div className="mt-1 flex items-center gap-3 text-[12px] font-medium text-muted-2 flex-wrap">
                       <span className="flex items-center gap-1">
                         <Bed className="w-[10px] h-[10px] text-gold-deep" />
                         Up to {room.max} guests
@@ -109,32 +110,33 @@ export function RoomSelectorModal({ category, onClose, onBookRoom }: Props) {
                       </span>
                     </div>
                   </div>
+                </div>
 
-                  <div className="flex gap-2 mt-3">
-                    {pdp && (
-                      <Link
-                        id={`view-room-${room.no}`}
-                        href={`/rooms/${pdp.slug}`}
-                        onClick={onClose}
-                        className="flex items-center gap-1.5 rounded-full border border-line-strong px-3.5 py-1.5 text-[12px] font-semibold text-ink-soft no-underline transition-colors hover:border-ink hover:text-ink"
-                        aria-label={`View ${pdp.title} details`}
-                      >
-                        <Eye className="w-[10px] h-[10px]" />
-                        View
-                      </Link>
-                    )}
-                    <button
-                      id={`book-room-${room.no}`}
-                      onClick={() => {
-                        onBookRoom(room.no);
-                        onClose();
-                      }}
-                      className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-ink px-4 py-1.5 text-[12px] font-semibold text-white transition-transform hover:scale-[1.02]"
+                {/* Action buttons */}
+                <div className="flex gap-2 mt-3">
+                  {pdp && (
+                    <Link
+                      id={`view-room-${room.no}`}
+                      href={`/rooms/${pdp.slug}`}
+                      onClick={onClose}
+                      className="flex items-center justify-center gap-1.5 rounded-full border border-line-strong px-3 sm:px-3.5 py-2 sm:py-1.5 text-[12px] font-semibold text-ink-soft no-underline transition-colors hover:border-ink hover:text-ink"
+                      aria-label={`View ${pdp.title} details`}
                     >
-                      <Calendar className="w-[10px] h-[10px]" />
-                      Book This Room
-                    </button>
-                  </div>
+                      <Eye className="w-[10px] h-[10px]" />
+                      View
+                    </Link>
+                  )}
+                  <button
+                    id={`book-room-${room.no}`}
+                    onClick={() => {
+                      onBookRoom(room.no);
+                      onClose();
+                    }}
+                    className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-ink px-3 sm:px-4 py-2 sm:py-1.5 text-[12px] font-semibold text-white transition-transform hover:scale-[1.02]"
+                  >
+                    <Calendar className="w-[10px] h-[10px]" />
+                    Book This Room
+                  </button>
                 </div>
               </div>
             );
@@ -142,7 +144,7 @@ export function RoomSelectorModal({ category, onClose, onBookRoom }: Props) {
         </div>
 
         {/* Footer note */}
-        <div className="border-t border-line px-6 py-3 text-center text-[12px] font-medium text-faint">
+        <div className="border-t border-line px-4 sm:px-6 py-3 text-center text-[11px] sm:text-[12px] font-medium text-faint">
           Prices shown are indicative · 5% GST applicable · Flexible 3h / 6h / 12h / 24h slots
         </div>
       </div>

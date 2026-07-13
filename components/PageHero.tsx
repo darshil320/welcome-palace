@@ -17,7 +17,7 @@ export function PageHero({
   return (
     <section className="px-[clamp(12px,2.4vw,26px)] pt-[88px]">
       <div className="relative flex h-[min(58svh,560px)] min-h-[380px] items-center justify-center overflow-hidden rounded-3xl">
-        <video autoPlay muted loop playsInline preload="none" poster={posterSrc} className="absolute inset-0 h-full w-full object-cover">
+        <video autoPlay muted loop playsInline preload="auto" poster={posterSrc} className="absolute inset-0 h-full w-full object-cover">
           <source src={videoSrc} type="video/mp4" />
         </video>
         <div className="img-warm" />

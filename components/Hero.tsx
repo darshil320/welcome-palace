@@ -6,7 +6,10 @@ import { ArrowDown, ArrowRight, MapPin } from "lucide-react";
 import { Magnetic } from "@/components/Magnetic";
 import { WordsReveal } from "@/components/WordsReveal";
 import { cldVideo, cldImage } from "@/lib/cloudinary";
+import { contact } from "@/lib/content";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+
+const mapUrl = contact.mapUrl;
 
 export function Hero() {
   const [timedOut, setTimedOut] = useState(false);
@@ -75,7 +78,7 @@ export function Hero() {
     <section id="top" className="px-[clamp(12px,2.4vw,26px)] pt-[88px]">
       <div className="relative overflow-hidden rounded-3xl" style={{ height: "min(82svh, 760px)", minHeight: "520px" }}>
         <div ref={mediaRef} className="absolute inset-x-0 -top-[120px] -bottom-[120px]" style={{ willChange: "transform" }}>
-          <video autoPlay muted loop playsInline preload="none" poster={cldImage("hero-poster.jpg")} className="hero-zoom absolute inset-0 h-full w-full object-cover">
+          <video autoPlay muted loop playsInline preload="auto" poster={cldImage("hero-poster.jpg", "q_auto,f_auto,w_1200")} className="hero-zoom absolute inset-0 h-full w-full object-cover">
             <source src={cldVideo("hero.mp4")} type="video/mp4" />
           </video>
           <div className="img-warm" />
@@ -87,10 +90,15 @@ export function Hero() {
             ctaPlay ? "opacity-100" : "opacity-0"
           }`}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[12px] font-semibold tracking-[0.08em] text-white backdrop-blur-md">
+          <a
+            href={mapUrl}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[12px] font-semibold tracking-[0.08em] text-white backdrop-blur-md no-underline"
+          >
             <MapPin className="w-[11px] h-[11px] text-gold" />
             Piplod, Surat · Est. 2013
-          </span>
+          </a>
         </div>
 
         <Link

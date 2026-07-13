@@ -12,6 +12,10 @@ export const contact = {
     "1st Floor, Chandni Chowk Complex, Near Surat–Dumas Rd, Piplod, Surat – 395007, Gujarat, India",
   fullAddress:
     "1st Floor, Chandni Chowk Complex, Near Surat–Dumas Rd, behind Shardayatan School, Nandi Park Society, Piplod, Surat – 395007, Gujarat, India",
+  mapUrl:
+    "https://www.google.com/maps/place/1st+Floor,+FabHotel+Prime+Welcome+Palace,+Chandni+Chowk+Complex,+Near,+Surat+-+Dumas+Rd,+behind+Shardayatan+School,+Nandi+Park+Society,+Piplod,+Surat,+Gujarat+395007/data=!4m2!3m1!1s0x3be04d947a5dd739:0xb9b6b8a8031f434c",
+  mapEmbed:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.0!2d72.7856!3d21.147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04d947a5dd739%3A0xb9b6b8a8031f434c!2sFabHotel%20Prime%20Welcome%20Palace!5e0!3m2!1sen!2sin",
 };
 
 export function waLink(message: string) {
@@ -70,11 +74,11 @@ export const spaces = [
   },
   {
     image: cldImage("new-rooms/room-110-a.jpg"),
-    alt: "Pariwar Niwas family residence",
+    alt: "Family Rooms",
     tag: "Group · up to 12",
-    name: "Pariwar Niwas",
-    price: "₹11,000/nt",
-    message: "Hi Welcome Palace! I'm interested in Pariwar Niwas.",
+    name: "Family Rooms",
+    price: "₹5,500 each",
+    message: "Hi Welcome Palace! I'm interested in Family Rooms.",
   },
   {
     image: cldImage("banquet-haldi.jpg"),
@@ -188,7 +192,6 @@ export const socialLinks = [
     label: "Instagram",
     icon: "instagram",
   },
-  { href: "https://youtu.be/1SqSrVRk1RA?si=YoFJ9t_IOecPvcE_", label: "YouTube", icon: "youtube" },
-  { href: "https://twitter.com/welcomepalace", label: "Twitter", icon: "twitter" },
+  { href: "https://youtube.com/@hotel_welcome_palace?si=Bn-GUcRfx6BxIhLn", label: "YouTube", icon: "youtube" },
   { href: "https://wa.me/918000014410", label: "WhatsApp", icon: "whatsapp" },
 ] as const;

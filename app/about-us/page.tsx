@@ -354,7 +354,7 @@ export default function AboutUsPage() {
 
             <Reveal delay={0.16} className="overflow-hidden rounded-2xl border border-line">
               <iframe
-                src="https://www.google.com/maps?q=Piplod,Surat,Gujarat&output=embed"
+                src={contact.mapEmbed}
                 width="100%"
                 height="440"
                 style={{ border: 0, display: "block" }}

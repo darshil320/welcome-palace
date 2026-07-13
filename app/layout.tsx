@@ -94,6 +94,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-IN" className={`${schibstedGrotesk.variable} ${hankenGrotesk.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+      </head>
       {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <JsonLd data={siteGraph()} />
       <body className="bg-cream text-ink font-sans antialiased overflow-x-hidden">

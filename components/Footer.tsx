@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Share2, Heart, Phone, MessageCircle, Share, Play } from "lucide-react";
+import { Share2, Heart, Phone, MessageCircle, Play } from "lucide-react";
 import { FooterStatement } from "@/components/FooterStatement";
 import { contact, footerExploreLinks, socialLinks } from "@/lib/content";
 
@@ -7,7 +7,6 @@ const socialIcons = {
   facebook: Share2,
   instagram: Heart,
   youtube: Play,
-  twitter: Share,
   whatsapp: MessageCircle,
 } as const;
 
@@ -81,7 +80,7 @@ export function Footer() {
 
           <div>
             <div className="mb-3.5 text-[11px] font-semibold tracking-[0.16em] text-gold uppercase">Visit Us</div>
-            <p className="m-0 text-[14px] leading-[1.7] font-medium text-[#c9c1b2]">{contact.address}</p>
+            <a href={contact.mapUrl} target="_blank" rel="noopener" className="m-0 text-[14px] leading-[1.7] font-medium text-[#c9c1b2] no-underline hover:text-white transition-colors duration-200 block">{contact.address}</a>
           </div>
 
           <div>

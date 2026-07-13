@@ -11,6 +11,7 @@ import {
   TELEPHONE,
   AMENITIES,
   absoluteUrl,
+  contact,
 } from "@/lib/seo";
 import { roomCategories } from "@/app/rooms/content";
 
@@ -48,7 +49,7 @@ function hotelNode() {
       latitude: SITE.geo.latitude,
       longitude: SITE.geo.longitude,
     },
-    hasMap: "https://www.google.com/maps?q=Piplod,Surat,Gujarat",
+    hasMap: contact.mapUrl,
     numberOfRooms: {
       "@type": "QuantitativeValue",
       value: SITE.numberOfRooms,
