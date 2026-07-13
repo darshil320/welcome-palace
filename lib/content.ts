@@ -61,8 +61,8 @@ export const spaces = [
     message: "Hi Welcome Palace! I'd like to book a Suite Room.",
   },
   {
-    image: cldImage("new-rooms/room-114-a.jpg"),
-    alt: "Honeymoon Suite 114",
+    image: "/images/honeymoon-new-1.png",
+    alt: "Honeymoon Suite",
     tag: "Jacuzzi · 3 suites",
     name: "Honeymoon Suites",
     price: "from ₹5,500",
