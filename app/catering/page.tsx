@@ -8,22 +8,44 @@ import { cldVideo } from "@/lib/cloudinary";
 import { cateringIntro, luxuryPlans, standardPlans, type CateringPlan } from "@/app/catering/content";
 import { EnquiryForm } from "@/app/catering/EnquiryForm";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { FaqBlock } from "@/components/FaqBlock";
+import { breadcrumbSchema, cateringSchema, faqSchema } from "@/lib/schema";
+import { cateringFaqs } from "@/lib/faqs";
 
 const description =
   "Pure veg, live-kitchen catering in Surat by Chandni Chowk Live Kitchen — heritage flavours, live counters and six curated plans from ₹650 to ₹1,850 per person.";
 
+const title = "Catering | Chandni Chowk Live Kitchen - Welcome Palace Surat";
+
 export const metadata: Metadata = {
-  title: "Catering | Chandni Chowk Live Kitchen - Welcome Palace Surat",
+  title,
   description,
+  keywords: [
+    "catering in Surat",
+    "pure veg catering Surat",
+    "wedding catering Surat",
+    "live kitchen catering",
+    "Chandni Chowk Live Kitchen",
+    "vegetarian caterer Piplod",
+    "event catering per plate Surat",
+  ],
   alternates: { canonical: "/catering" },
   openGraph: {
     type: "website",
     url: "/catering",
-    title: "Catering | Chandni Chowk Live Kitchen - Welcome Palace Surat",
+    title,
     description,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Chandni Chowk Live Kitchen catering" }],
   },
+  twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
 };
+
+// Flatten the real per-person plans into {name, price, tagline} for Menu schema.
+const menuPlans = [...standardPlans, ...luxuryPlans].map((p) => ({
+  name: p.name,
+  price: Number(p.price.replace(/[^0-9]/g, "")),
+  tagline: p.tagline,
+}));
 
 function PlanCard({ plan, index }: { plan: CateringPlan; index: number }) {
   return (
@@ -100,6 +122,8 @@ export default function CateringPage() {
           { name: "Catering", path: "/catering" },
         ])}
       />
+      <JsonLd data={cateringSchema(menuPlans)} />
+      <JsonLd data={faqSchema(cateringFaqs)} />
       <PageHero
         videoSrc={cldVideo("new/chandni-chowk-1.mp4")}
         eyebrow="Taste of Heritage"
@@ -201,6 +225,9 @@ export default function CateringPage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <FaqBlock items={cateringFaqs} eyebrow="Catering FAQ" heading="Catering Questions, Answered" />
 
       {/* Enquiry Form */}
       <section className="relative overflow-hidden py-[clamp(56px,8vh,104px)]">

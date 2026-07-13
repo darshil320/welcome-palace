@@ -19,21 +19,36 @@ import {
 } from "@/app/banquet/content";
 import { EnquiryForm } from "@/app/banquet/EnquiryForm";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { FaqBlock } from "@/components/FaqBlock";
+import { breadcrumbSchema, banquetVenueSchema, faqSchema } from "@/lib/schema";
+import { banquetFaqs } from "@/lib/faqs";
 
 const description =
   "Book Welcome Palace's Banquet Hall in Surat for 125–175 guests — weddings, Satsang, Haldi, Mehandi, Sangeet, corporate meets and more, with outside catering allowed.";
 
+const title = "Banquet Hall & Events | Welcome Palace Surat";
+
 export const metadata: Metadata = {
-  title: "Banquet Hall & Events | Welcome Palace Surat",
+  title,
   description,
+  keywords: [
+    "banquet hall Surat",
+    "wedding venue Surat",
+    "banquet hall Piplod",
+    "party hall Surat",
+    "corporate event venue Surat",
+    "Haldi Mehandi Sangeet venue",
+    "banquet hall with catering Surat",
+  ],
   alternates: { canonical: "/banquet" },
   openGraph: {
     type: "website",
     url: "/banquet",
-    title: "Banquet Hall & Events | Welcome Palace Surat",
+    title,
     description,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Welcome Palace Banquet Hall" }],
   },
+  twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
 };
 
 export default function BanquetPage() {
@@ -45,6 +60,8 @@ export default function BanquetPage() {
           { name: "Banquet Hall", path: "/banquet" },
         ])}
       />
+      <JsonLd data={banquetVenueSchema()} />
+      <JsonLd data={faqSchema(banquetFaqs)} />
       <PageHero
         videoSrc={cldVideo("banquet/wedding-function.mp4")}
         eyebrow="125–175 Guests · Full Privacy"
@@ -169,6 +186,8 @@ export default function BanquetPage() {
           </div>
         </div>
       </section>
+
+      <FaqBlock items={banquetFaqs} eyebrow="Banquet FAQ" heading="Banquet Hall Questions" />
 
       <section className="relative overflow-hidden py-[clamp(56px,8vh,104px)]">
         <GuideLines />

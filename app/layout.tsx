@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Schibsted_Grotesk, Hanken_Grotesk } from "next/font/google";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@/components/Analytics";
@@ -69,14 +69,22 @@ export const metadata: Metadata = {
     title: "Welcome Palace | Luxury Hotel, Banquet & Catering in Piplod, Surat",
     description:
       "Your Shadi Wala Ghar in Surat — 15 luxury rooms, a private banquet hall for 125–175 guests and in-house Live Kitchen catering.",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Welcome Palace | Luxury Hotel & Banquet in Piplod, Surat",
     description:
       "Your Shadi Wala Ghar in Surat — luxury rooms, banquet hall for 125–175 guests and in-house catering.",
+    images: ["/opengraph-image"],
   },
   category: "travel",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#14100a",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

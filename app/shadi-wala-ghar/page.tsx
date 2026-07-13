@@ -18,21 +18,36 @@ import {
 } from "@/app/shadi-wala-ghar/content";
 import { EnquiryForm } from "@/app/shadi-wala-ghar/EnquiryForm";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { FaqBlock } from "@/components/FaqBlock";
+import { breadcrumbSchema, shadiServiceSchema, faqSchema } from "@/lib/schema";
+import { shadiFaqs } from "@/lib/faqs";
 
 const description =
   "Book the entire floor at Welcome Palace Surat — 16 rooms plus a private banquet hall so your whole family stays, eats and celebrates together, from ₹61,000 for a full 60-pax buyout.";
 
+const title = "Shadi Wala Ghar | Welcome Palace Surat - Family Wedding Stay";
+
 export const metadata: Metadata = {
-  title: "Shadi Wala Ghar | Welcome Palace Surat - Family Wedding Stay",
+  title,
   description,
+  keywords: [
+    "Shadi Wala Ghar",
+    "family wedding stay Surat",
+    "entire floor booking Surat",
+    "wedding home Surat",
+    "family function venue Surat",
+    "wedding accommodation Piplod",
+    "group stay Surat wedding",
+  ],
   alternates: { canonical: "/shadi-wala-ghar" },
   openGraph: {
     type: "website",
     url: "/shadi-wala-ghar",
-    title: "Shadi Wala Ghar | Welcome Palace Surat - Family Wedding Stay",
+    title,
     description,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Shadi Wala Ghar family wedding stay" }],
   },
+  twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
 };
 
 const eliteHighlights = [
@@ -50,8 +65,10 @@ export default function ShadiWalaGharPage() {
           { name: "Shadi Wala Ghar", path: "/shadi-wala-ghar" },
         ])}
       />
+      <JsonLd data={shadiServiceSchema()} />
+      <JsonLd data={faqSchema(shadiFaqs)} />
       <PageHero
-        videoSrc={cldVideo("pariwar-niwas.mp4")}
+        videoSrc={cldVideo("new/pariwar-niwas-hero.mp4")}
         eyebrow="Piplod, Surat"
         title="Shadi Wala Ghar"
         subtitle="Entire Floor • All Rooms • Banquet Hall • Family Stays Together"
@@ -237,6 +254,9 @@ export default function ShadiWalaGharPage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <FaqBlock items={shadiFaqs} eyebrow="Shadi Wala Ghar FAQ" heading="Family Wedding Stay Questions" />
 
       {/* Enquiry form */}
       <section className="relative overflow-hidden bg-panel py-[clamp(56px,8vh,104px)]">

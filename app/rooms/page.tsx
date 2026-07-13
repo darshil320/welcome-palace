@@ -11,24 +11,40 @@ import { LongStayOffer } from "@/app/rooms/LongStayOffer";
 import { PariwarNiwasBooking } from "@/app/rooms/PariwarNiwasBooking";
 import { ThemedDecorSection } from "@/app/rooms/ThemedDecorSection";
 import { roomTariffRows, roomAmenities } from "@/app/rooms/content";
+import { roomPdps } from "@/app/rooms/[slug]/pdp-content";
 import { waLink } from "@/lib/content";
 import { Check } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { FaqBlock } from "@/components/FaqBlock";
+import { breadcrumbSchema, roomListSchema, faqSchema } from "@/lib/schema";
+import { roomsFaqs } from "@/lib/faqs";
 
 const description =
   "Book one of 15 luxury rooms at Welcome Palace, Piplod, Surat — Deluxe Rooms from ₹3,500, Suite Rooms from ₹4,500, Honeymoon Suites with Jacuzzi from ₹5,500, Pariwar Niwas family residence at ₹11,000/night.";
 
+const title = "Rooms & Booking | Welcome Palace Surat";
+
 export const metadata: Metadata = {
-  title: "Rooms & Booking | Welcome Palace Surat",
+  title,
   description,
+  keywords: [
+    "hotel rooms Surat",
+    "luxury rooms Piplod Surat",
+    "honeymoon suite Surat jacuzzi",
+    "family rooms Surat",
+    "hourly rooms Surat",
+    "hotel booking Piplod",
+    "Welcome Palace rooms",
+  ],
   alternates: { canonical: "/rooms" },
   openGraph: {
     type: "website",
     url: "/rooms",
-    title: "Rooms & Booking | Welcome Palace Surat",
+    title,
     description,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Welcome Palace rooms" }],
   },
+  twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
 };
 
 export default function RoomsPage() {
@@ -40,6 +56,12 @@ export default function RoomsPage() {
           { name: "Rooms", path: "/rooms" },
         ])}
       />
+      <JsonLd
+        data={roomListSchema(
+          roomPdps.map((p) => ({ title: p.title, slug: p.slug, description: p.seoDescription })),
+        )}
+      />
+      <JsonLd data={faqSchema(roomsFaqs)} />
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <PageHero
         videoSrc={cldVideo("hero.mp4")}
@@ -120,6 +142,9 @@ export default function RoomsPage() {
 
       {/* ── Themed Decorations Gallery ───────────────────────────────────── */}
       <ThemedDecorSection />
+
+      {/* ── FAQ ──────────────────────────────────────────────────────────── */}
+      <FaqBlock items={roomsFaqs} eyebrow="Rooms FAQ" heading="Room Booking Questions" />
 
       {/* ── Final CTA ────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-panel py-[clamp(56px,8vh,90px)]">
