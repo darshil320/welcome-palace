@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Welcome Palace — Hotel, Banquet & Catering in Surat",
     short_name: "Welcome Palace",
     description:
-      "Your Shadi Wala Ghar in Piplod, Surat — 15 luxury rooms, a private banquet hall for 125–175 guests and in-house Chandni Chowk Live Kitchen catering.",
+      "Your Shadi Wala Ghar in Piplod, Surat — 15 luxury rooms, a private banquet hall for 125–175 guests and in-house Chandni Chowk Chaat & Catering.",
     start_url: "/",
     display: "standalone",
     background_color: "#14100a",

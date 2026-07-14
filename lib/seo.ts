@@ -64,7 +64,7 @@ export const AMENITIES = [
   "Free WiFi",
   "Air Conditioning",
   "Private Banquet Hall",
-  "In-house Catering (Chandni Chowk Live Kitchen)",
+  "In-house Catering (Chandni Chowk Chaat & Catering)",
   "Entire-Floor Family Stays",
   "Private Jacuzzi Suites",
   "Free Parking",

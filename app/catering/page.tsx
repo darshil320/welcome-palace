@@ -13,9 +13,9 @@ import { breadcrumbSchema, cateringSchema, faqSchema } from "@/lib/schema";
 import { cateringFaqs } from "@/lib/faqs";
 
 const description =
-  "Pure veg, live-kitchen catering in Surat by Chandni Chowk Live Kitchen — heritage flavours, live counters and six curated plans from ₹650 to ₹1,850 per person.";
+  "Pure veg, live-kitchen catering in Surat by Chandni Chowk Chaat & Catering — heritage flavours, live counters and six curated plans from ₹650 to ₹1,850 per person.";
 
-const title = "Catering | Chandni Chowk Live Kitchen - Welcome Palace Surat";
+const title = "Catering | Chandni Chowk Chaat & Catering - Welcome Palace Surat";
 
 export const metadata: Metadata = {
   title,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "pure veg catering Surat",
     "wedding catering Surat",
     "live kitchen catering",
-    "Chandni Chowk Live Kitchen",
+    "Chandni Chowk Chaat & Catering",
     "vegetarian caterer Piplod",
     "event catering per plate Surat",
   ],
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     url: "/catering",
     title,
     description,
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Chandni Chowk Live Kitchen catering" }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Chandni Chowk Chaat & Catering" }],
   },
   twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
 };
@@ -127,7 +127,7 @@ export default function CateringPage() {
       <PageHero
         videoSrc={cldVideo("new/chandni-chowk-1.mp4")}
         eyebrow="Taste of Heritage"
-        title="Chandni Chowk Live Kitchen"
+        title="Chandni Chowk Chaat & Catering"
         subtitle="Pure Veg • Live Counters • Heritage Flavours of Surat"
       />
 
@@ -145,7 +145,7 @@ export default function CateringPage() {
                   { content: "Chandni Chowk" },
                   {
                     content: <>
-                      <em className="italic">Live Kitchen</em>
+                      <em className="italic">Chaat &amp; Catering</em>
                     </>,
                     delaySeconds: 0.1,
                   },

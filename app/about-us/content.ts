@@ -69,7 +69,7 @@ export const highlightCards: {
     icon: "utensils",
     image: cldImage("banquet-mehandi.jpg"),
     alt: "Chandni Chowk live kitchen catering setup",
-    title: "Chandni Chowk Live Kitchen",
+    title: "Chandni Chowk Chaat & Catering",
     description: "Pure-veg catering with live counters",
     stat: { kind: "text", value: "From ₹650/person" },
     statLabel: "Live Counters",

@@ -90,9 +90,9 @@ export const spaces = [
   },
   {
     image: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=80",
-    alt: "Chandni Chowk Live Kitchen",
+    alt: "Chandni Chowk Chaat & Catering",
     tag: "Dining · Pure Veg",
-    name: "Live Kitchen",
+    name: "Chaat & Catering",
     price: "from ₹650/pax",
     message: "Hi Welcome Palace! I'd like to enquire about Chandni Chowk catering.",
   },
@@ -163,7 +163,7 @@ export const faqItems = [
   {
     question: "Is outside catering allowed?",
     answer:
-      "Yes — outside catering is allowed. You can also choose our in-house brand, Chandni Chowk Live Kitchen, with live counters and pure-veg heritage flavours from ₹650 per person. Kitchen usage is ₹3,000 per event.",
+      "Yes — outside catering is allowed. You can also choose our in-house brand, Chandni Chowk Chaat & Catering, with live counters and pure-veg heritage flavours from ₹650 per person. Kitchen usage is ₹3,000 per event.",
   },
   {
     question: "What is your cancellation policy?",

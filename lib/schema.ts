@@ -35,7 +35,7 @@ function hotelNode() {
     name: SITE.name,
     legalName: SITE.legalName,
     description:
-      "Welcome Palace is a luxury hotel, banquet hall and catering venue in Piplod, Surat, Gujarat. Known as the 'Shadi Wala Ghar', it offers entire-floor family wedding stays across 15 rooms, a private banquet hall for 125–175 guests, and in-house pure-veg Chandni Chowk Live Kitchen catering.",
+      "Welcome Palace is a luxury hotel, banquet hall and catering venue in Piplod, Surat, Gujarat. Known as the 'Shadi Wala Ghar', it offers entire-floor family wedding stays across 15 rooms, a private banquet hall for 125–175 guests, and in-house pure-veg Chandni Chowk Chaat & Catering.",
     url: SITE_URL,
     telephone: TELEPHONE,
     email: "welcomepalacesurat@gmail.com",
@@ -198,14 +198,14 @@ export function roomListSchema(
   };
 }
 
-/** FoodEstablishment for the in-house Chandni Chowk Live Kitchen catering brand,
+/** FoodEstablishment for the in-house Chandni Chowk Chaat & Catering brand,
  *  with a machine-readable Menu of the real per-person plans. */
 export function cateringSchema(plans: { name: string; price: number; tagline: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FoodEstablishment",
     "@id": `${SITE_URL}/catering#foodestablishment`,
-    name: "Chandni Chowk Live Kitchen",
+    name: "Chandni Chowk Chaat & Catering",
     description:
       "In-house pure-vegetarian catering brand of Welcome Palace, Surat — live counters and heritage Delhi-style flavours for weddings and events. Plans from ₹650 to ₹1,850 per person.",
     url: absoluteUrl("/catering"),

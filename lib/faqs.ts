@@ -51,7 +51,7 @@ export const banquetFaqs: Faq[] = [
   {
     question: "Is outside catering allowed in the banquet hall?",
     answer:
-      "Yes — outside catering is allowed. You can also choose our in-house brand, Chandni Chowk Live Kitchen, a pure-veg caterer with live counters from ₹650 per person.",
+      "Yes — outside catering is allowed. You can also choose our in-house brand, Chandni Chowk Chaat & Catering, a pure-veg caterer with live counters from ₹650 per person.",
   },
   {
     question: "What facilities come with the banquet hall?",
@@ -62,9 +62,9 @@ export const banquetFaqs: Faq[] = [
 
 export const cateringFaqs: Faq[] = [
   {
-    question: "What is Chandni Chowk Live Kitchen?",
+    question: "What is Chandni Chowk Chaat & Catering?",
     answer:
-      "Chandni Chowk Live Kitchen is Welcome Palace's in-house pure-veg catering brand in Surat, serving heritage Delhi-style flavours with live counters. Plans range from ₹650 to ₹1,850 per person across six menu tiers.",
+      "Chandni Chowk Chaat & Catering is Welcome Palace's in-house pure-veg catering brand in Surat, serving heritage Delhi-style flavours with live counters. Plans range from ₹650 to ₹1,850 per person across six menu tiers.",
   },
   {
     question: "How much does catering cost per person?",
@@ -74,7 +74,7 @@ export const cateringFaqs: Faq[] = [
   {
     question: "Is the catering pure vegetarian?",
     answer:
-      "Yes. Chandni Chowk Live Kitchen is 100% pure vegetarian, with live chaat and food counters, welcome drinks, starters, main course, breads, sweets and desserts depending on the plan.",
+      "Yes. Chandni Chowk Chaat & Catering is 100% pure vegetarian, with live chaat and food counters, welcome drinks, starters, main course, breads, sweets and desserts depending on the plan.",
   },
   {
     question: "Can I book catering without booking the venue?",
@@ -97,7 +97,7 @@ export const shadiFaqs: Faq[] = [
   {
     question: "What is included in an entire-floor buyout?",
     answer:
-      "An entire-floor Shadi Wala Ghar buyout includes all guest rooms, the private banquet hall, complete privacy and the option of in-house Chandni Chowk Live Kitchen catering or outside caterers.",
+      "An entire-floor Shadi Wala Ghar buyout includes all guest rooms, the private banquet hall, complete privacy and the option of in-house Chandni Chowk Chaat & Catering or outside caterers.",
   },
   {
     question: "Where is Welcome Palace located?",

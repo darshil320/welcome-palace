@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     default: "Welcome Palace | Luxury Hotel, Banquet & Catering in Piplod, Surat",
   },
   description:
-    "Welcome Palace is your Shadi Wala Ghar in Piplod, Surat — 15 luxury rooms, the Pariwar Niwas family residence, a private banquet hall for 125–175 guests and in-house Chandni Chowk Live Kitchen catering. Book entire-floor family wedding stays.",
+    "Welcome Palace is your Shadi Wala Ghar in Piplod, Surat — 15 luxury rooms, the Pariwar Niwas family residence, a private banquet hall for 125–175 guests and in-house Chandni Chowk Chaat & Catering. Book entire-floor family wedding stays.",
   keywords: [
     "hotel in Piplod Surat",
     "banquet hall Surat",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "Welcome Palace | Luxury Hotel, Banquet & Catering in Piplod, Surat",
     description:
-      "Your Shadi Wala Ghar in Surat — 15 luxury rooms, a private banquet hall for 125–175 guests and in-house Live Kitchen catering.",
+      "Your Shadi Wala Ghar in Surat — 15 luxury rooms, a private banquet hall for 125–175 guests and in-house Chandni Chowk Chaat & Catering.",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: SITE.name }],
   },
   twitter: {

@@ -17,7 +17,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
 const description =
-  "Welcome Palace - Surat's premium Shadi Wala Ghar & luxury hotel since 2013. A unit of TW Hospitality Services Pvt. Ltd. Rooms, Banquet, Live Kitchen, Catering & more.";
+  "Welcome Palace - Surat's premium Shadi Wala Ghar & luxury hotel since 2013. A unit of TW Hospitality Services Pvt. Ltd. Rooms, Banquet, Chandni Chowk Chaat & Catering & more.";
 
 const title = "About Us | Welcome Palace - Luxury Stay & Banquets Surat";
 

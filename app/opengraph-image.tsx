@@ -51,7 +51,7 @@ export default function OpengraphImage() {
             Your Shadi Wala Ghar in Piplod, Surat
           </div>
           <div style={{ fontSize: 30, color: "#c9a84c", fontWeight: 500, display: "flex" }}>
-            15 Luxury Rooms · Banquet Hall for 125–175 · Live Kitchen Catering
+            15 Luxury Rooms · Banquet Hall for 125–175 · Chaat & Catering
           </div>
         </div>
 
