@@ -19,7 +19,10 @@ import {
 } from "@/app/banquet/content";
 import { EnquiryForm } from "@/app/banquet/EnquiryForm";
 import { JsonLd } from "@/components/JsonLd";
+import { CateringLogo } from "@/components/CateringLogo";
 import { FaqBlock } from "@/components/FaqBlock";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { breadcrumbSchema, banquetVenueSchema, faqSchema } from "@/lib/schema";
 import { banquetFaqs } from "@/lib/faqs";
 
@@ -184,6 +187,35 @@ export default function BanquetPage() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* In-house catering callout */}
+      <section className="relative overflow-hidden py-[clamp(40px,6vh,72px)]">
+        <GuideLines />
+        <div className="relative z-10 mx-auto max-w-[1180px] px-[clamp(18px,4vw,54px)]">
+          <Reveal className="flex flex-col items-center gap-7 rounded-[24px] border border-line bg-panel p-[clamp(26px,4vw,44px)] text-center sm:flex-row sm:text-left">
+            <CateringLogo className="h-auto w-[128px] flex-none" />
+            <div className="flex-1">
+              <div className="text-[11px] font-semibold tracking-[0.14em] text-gold-deep uppercase">
+                In-House Catering
+              </div>
+              <h3 className="mt-2 font-display text-[clamp(22px,3vw,30px)] font-semibold leading-tight">
+                Chandni Chowk Chaat &amp; Catering
+              </h3>
+              <p className="mt-2.5 max-w-[52ch] text-[14.5px] leading-[1.7] font-medium text-muted">
+                Pure-veg live counters and heritage Delhi-style flavours for your banquet — six plans from
+                ₹650 to ₹1,850 per person. Outside catering is also welcome.
+              </p>
+            </div>
+            <Link
+              href="/catering"
+              className="inline-flex flex-none items-center gap-2.5 rounded-full bg-ink px-[26px] py-3.5 text-[14px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.03]"
+            >
+              View Catering
+              <ArrowRight className="w-[13px] h-[13px]" />
+            </Link>
+          </Reveal>
         </div>
       </section>
 

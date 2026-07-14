@@ -8,6 +8,7 @@ import { cldVideo } from "@/lib/cloudinary";
 import { cateringIntro, luxuryPlans, standardPlans, type CateringPlan } from "@/app/catering/content";
 import { EnquiryForm } from "@/app/catering/EnquiryForm";
 import { JsonLd } from "@/components/JsonLd";
+import { CateringLogo } from "@/components/CateringLogo";
 import { FaqBlock } from "@/components/FaqBlock";
 import { breadcrumbSchema, cateringSchema, faqSchema } from "@/lib/schema";
 import { cateringFaqs } from "@/lib/faqs";
@@ -136,7 +137,10 @@ export default function CateringPage() {
         <GuideLines />
         <div className="relative z-10 mx-auto max-w-[1180px] px-[clamp(18px,4vw,54px)]">
           <div className="max-w-[640px]">
-            <Reveal className="inline-flex rounded-full border border-line-soft px-3.5 py-[7px] text-[11px] font-semibold tracking-[0.14em] text-muted uppercase">
+            <Reveal>
+              <CateringLogo className="h-auto w-[112px]" />
+            </Reveal>
+            <Reveal delay={0.05} className="mt-6 inline-flex rounded-full border border-line-soft px-3.5 py-[7px] text-[11px] font-semibold tracking-[0.14em] text-muted uppercase">
               Taste of Heritage
             </Reveal>
             <h2 className="mt-4 font-display text-[clamp(30px,4.4vw,54px)] leading-[1.08] font-semibold tracking-tight">
