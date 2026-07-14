@@ -15,8 +15,8 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "en-IN",
     categories: ["travel", "hospitality", "food"],
     icons: [
-      { src: "/icon", sizes: "256x256", type: "image/png" },
-      { src: "/apple-icon", sizes: "180x180", type: "image/png" },
+      { src: "/icon.svg", sizes: "any", type: "image/svg+xml" },
+      { src: "/apple-icon.png", sizes: "180x180", type: "image/png" },
     ],
   };
 }

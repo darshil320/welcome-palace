@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, Phone, X } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { contact, navLinks } from "@/lib/content";
 
 export function Header() {
@@ -64,13 +65,12 @@ export function Header() {
         scrolled ? "bg-cream/90 shadow-[0_1px_0_rgba(20,19,14,0.07)] backdrop-saturate-150 backdrop-blur-lg" : ""
       }`}
     >
-      <Link href="/" className="relative z-10 flex flex-col text-ink no-underline">
-        <span className="font-display text-[22px] leading-none font-semibold tracking-tight">
-          Welcome Palace<span className="text-gold">*</span>
-        </span>
-        <span className="mt-[3px] text-[11px] font-medium tracking-wide opacity-60">
-          your peaceful retreat in Surat
-        </span>
+      <Link
+        href="/"
+        aria-label="Welcome Palace home"
+        className="relative z-10 flex w-[148px] shrink-0 items-center no-underline sm:w-[178px] xl:w-[210px]"
+      >
+        <BrandLogo priority className="h-auto w-full rounded-[3px]" />
       </Link>
 
       <nav className="hidden items-center gap-6 lg:flex">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { BrandLogo } from "@/components/BrandLogo";
 
 /**
  * LoadingScreen — full-viewport intro that plays once per page load.
@@ -123,21 +124,16 @@ export function LoadingScreen() {
             ✦
           </div>
 
-          <h1
+          <div
             className="loader-fade-up"
             style={{
-              fontFamily: "var(--font-display, sans-serif)",
-              fontWeight: 600,
-              fontSize: "clamp(32px,6vw,72px)",
-              lineHeight: 1,
-              letterSpacing: "-0.02em",
-              color: "#efece6",
-              margin: 0,
+              width: "min(72vw, 360px)",
+              margin: "0 auto",
               animationDelay: "0.45s",
             }}
           >
-            Welcome Palace
-          </h1>
+            <BrandLogo priority className="h-auto w-full" />
+          </div>
 
           <p
             className="loader-fade-up"

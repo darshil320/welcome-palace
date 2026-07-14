@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Share2, Heart, Phone, MessageCircle, Play } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { FooterStatement } from "@/components/FooterStatement";
 import { contact, footerExploreLinks, socialLinks } from "@/lib/content";
 
@@ -16,8 +17,8 @@ export function Footer() {
       <div className="mx-auto max-w-[1180px]">
         <div className="flex flex-wrap items-start justify-between gap-7.5">
           <div className="max-w-[30ch]">
-            <div className="font-display text-[26px] font-semibold text-white">
-              Welcome Palace<span className="text-gold">*</span>
+            <div className="w-[230px] max-w-full">
+              <BrandLogo className="h-auto w-full rounded-[3px]" />
             </div>
             <div className="mt-4 text-[11px] font-semibold tracking-[0.16em] text-gold uppercase">
               Follow Us &amp; Stay Connected
