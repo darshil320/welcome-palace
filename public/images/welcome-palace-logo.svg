@@ -1,28 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 348" role="img" aria-labelledby="title desc">
   <title id="title">Welcome Palace Rooms and Banquet logo</title>
   <desc id="desc">Welcome Palace wordmark with crown mark and Rooms and Banquet tagline.</desc>
-  <rect width="1080" height="348" fill="#000000"/>
   <g transform="translate(92 30)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 132c20-42 64-38 82-10 10-44 42-76 66-98 25 22 56 54 66 98 18-28 62-32 82 10" stroke="#ffffff" stroke-width="8"/>
+    <path d="M12 132c20-42 64-38 82-10 10-44 42-76 66-98 25 22 56 54 66 98 18-28 62-32 82 10" stroke="#14100a" stroke-width="8"/>
     <path d="M12 132c20-42 64-38 82-10 10-44 42-76 66-98 25 22 56 54 66 98 18-28 62-32 82 10" stroke="#8d3d22" stroke-width="5"/>
-    <path d="M36 142c30 30 68 46 124 46s94-16 124-46" stroke="#ffffff" stroke-width="8"/>
+    <path d="M36 142c30 30 68 46 124 46s94-16 124-46" stroke="#14100a" stroke-width="8"/>
     <path d="M36 142c30 30 68 46 124 46s94-16 124-46" stroke="#8d3d22" stroke-width="5"/>
-    <path d="M58 136c-18-2-34-14-43-32 20-4 38 2 52 17m195 15c18-2 34-14 43-32-20-4-38 2-52 17" stroke="#ffffff" stroke-width="8"/>
+    <path d="M58 136c-18-2-34-14-43-32 20-4 38 2 52 17m195 15c18-2 34-14 43-32-20-4-38 2-52 17" stroke="#14100a" stroke-width="8"/>
     <path d="M58 136c-18-2-34-14-43-32 20-4 38 2 52 17m195 15c18-2 34-14 43-32-20-4-38 2-52 17" stroke="#8d3d22" stroke-width="5"/>
-    <path d="M68 164c46 18 138 18 184 0" stroke="#ffffff" stroke-width="8"/>
+    <path d="M68 164c46 18 138 18 184 0" stroke="#14100a" stroke-width="8"/>
     <path d="M68 164c46 18 138 18 184 0" stroke="#8d3d22" stroke-width="5"/>
-    <path d="M160 52c-15-14-15-34 0-50 15 16 15 36 0 50Z" stroke="#ffffff" stroke-width="7"/>
+    <path d="M160 52c-15-14-15-34 0-50 15 16 15 36 0 50Z" stroke="#14100a" stroke-width="7"/>
     <path d="M160 52c-15-14-15-34 0-50 15 16 15 36 0 50Z" stroke="#8d3d22" stroke-width="4"/>
-    <path d="M118 70c-22-14-39-10-52 10 24 1 43 8 56 25m80-35c22-14 39-10 52 10-24 1-43 8-56 25" stroke="#ffffff" stroke-width="7"/>
+    <path d="M118 70c-22-14-39-10-52 10 24 1 43 8 56 25m80-35c22-14 39-10 52 10-24 1-43 8-56 25" stroke="#14100a" stroke-width="7"/>
     <path d="M118 70c-22-14-39-10-52 10 24 1 43 8 56 25m80-35c22-14 39-10 52 10-24 1-43 8-56 25" stroke="#8d3d22" stroke-width="4"/>
-    <path d="M112 147c20-24 76-24 96 0" stroke="#ffffff" stroke-width="7"/>
+    <path d="M112 147c20-24 76-24 96 0" stroke="#14100a" stroke-width="7"/>
     <path d="M112 147c20-24 76-24 96 0" stroke="#8d3d22" stroke-width="4"/>
-    <text x="160" y="135" text-anchor="middle" fill="#000000" stroke="#ffffff" stroke-width="1.5" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700" letter-spacing="-4">WP</text>
     <text x="160" y="135" text-anchor="middle" fill="#8d3d22" stroke="none" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700" letter-spacing="-4">WP</text>
   </g>
   <g text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" letter-spacing="6">
-    <text x="600" y="94" fill="#000000" stroke="#ffffff" stroke-width="2.1" font-size="78">WELCOME</text>
-    <text x="600" y="174" fill="#000000" stroke="#ffffff" stroke-width="2.1" font-size="78">PALACE</text>
+    <text x="600" y="94" fill="#14100a" font-size="78">WELCOME</text>
+    <text x="600" y="174" fill="#14100a" font-size="78">PALACE</text>
   </g>
-  <text x="96" y="288" fill="#8d3d22" stroke="#ffffff" stroke-width="1.1" paint-order="stroke fill" font-family="'Brush Script MT', 'Segoe Script', 'Apple Chancery', cursive" font-size="88" font-style="italic" letter-spacing="1">Rooms &amp; Banquet...</text>
+  <text x="96" y="288" fill="#8d3d22" font-family="'Brush Script MT', 'Segoe Script', 'Apple Chancery', cursive" font-size="88" font-style="italic" letter-spacing="1">Rooms &amp; Banquet...</text>
 </svg>
