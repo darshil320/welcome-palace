@@ -125,6 +125,18 @@ html {
   display: none;
 }
 
+/* Safe area padding for sticky bottom bar (iPhone home indicator) */
+.safe-bottom {
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
+
+/* Add bottom padding to main content when sticky bar is present on PDP pages */
+@media (max-width: 1023px) {
+  body:has(.safe-bottom) main {
+    padding-bottom: 76px;
+  }
+}
+
 .foot-word {
   opacity: 0.3;
   transition: opacity 0.4s ease;
