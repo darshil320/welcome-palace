@@ -126,7 +126,7 @@ export default function RoomsPage() {
                   ))}
                 </div>
                 <div className="mt-2 rounded-[14px] bg-gold-soft/50 px-4 py-3 text-[13px] font-medium text-gold-deep">
-                  Flexible check-in · Romantic décor add-ons available · Family packages on request
+                  Standard check-in 12 noon · check-out 11 AM next day · flexible 3h/6h/12h/24h slots
                 </div>
               </div>
             </Reveal>

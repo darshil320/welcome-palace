@@ -28,7 +28,7 @@ export const SITE = {
   // Approximate Piplod, Surat coordinates. Refine from Google Business Profile pin.
   geo: { latitude: 21.147, longitude: 72.7856 },
   priceRange: "₹₹₹",
-  checkinTime: "14:00",
+  checkinTime: "12:00",
   checkoutTime: "11:00",
   numberOfRooms: 15,
   // ⚠️ Fabricating ratings violates Google policy. Fill ONLY from a verified

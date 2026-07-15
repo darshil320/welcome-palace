@@ -301,6 +301,7 @@ export default async function RoomPdpPage({
                 </div>
                 <p className="mt-2 text-[12px] font-medium text-faint">
                   24h price is per night. 1-guest (−35%) and 2-guest (−15%) discounts on 24h stays · 5% GST applies.
+                  Standard check-in 12 noon, check-out 11 AM next day.
                 </p>
 
                 {/* Highlights */}

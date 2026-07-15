@@ -16,9 +16,14 @@ export const roomsFaqs: Faq[] = [
       "Welcome Palace has 15 rooms in Piplod, Surat: Deluxe Rooms from ₹3,500/night, Suite Rooms from ₹4,500, Honeymoon Suites with a private jacuzzi from ₹5,500, and Family Rooms for up to 5 guests. The Pariwar Niwas family residence sleeps up to 12 at ₹11,000/night.",
   },
   {
+    question: "What are the standard check-in and check-out times?",
+    answer:
+      "Standard check-in is 12 noon and check-out is 11 AM the next day for 24-hour stays. Flexible 3, 6, 12 and 24-hour slots are also available, timed from your chosen start.",
+  },
+  {
     question: "Do you offer hourly or short-stay room bookings?",
     answer:
-      "Yes. Every room can be booked in flexible 3-hour, 6-hour, 12-hour or 24-hour slots, so you pay only for the time you need. A flat 5% GST applies to all bookings.",
+      "Yes. Every room can be booked in flexible 3-hour, 6-hour, 12-hour or 24-hour slots, so you pay only for the time you need. A flat 5% GST applies to all bookings. Standard 24-hour check-in is 12 noon and check-out is 11 AM the next day.",
   },
   {
     question: "Are there discounts for single or double occupancy?",

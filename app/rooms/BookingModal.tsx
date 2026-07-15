@@ -51,7 +51,7 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
   const [slot, setSlot] = useState<StaySlot>("24");
   const [checkIn, setCheckIn] = useState(todayIso());
   const [checkOut, setCheckOut] = useState(todayIso());
-  const [checkInTime, setCheckInTime] = useState("14:00");
+  const [checkInTime, setCheckInTime] = useState("12:00");
   const [guests, setGuests] = useState(2);
   const [guestName, setGuestName] = useState("");
   const [guestPhone, setGuestPhone] = useState("");
@@ -69,7 +69,7 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
       setSlot("24");
       setCheckIn(todayIso());
       setCheckOut(todayIso());
-      setCheckInTime("14:00");
+      setCheckInTime("12:00");
       setGuests(2);
       setGuestName("");
       setGuestPhone("");

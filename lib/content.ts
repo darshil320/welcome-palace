@@ -153,7 +153,7 @@ export const faqItems = [
   {
     question: "What time is check-in and check-out?",
     answer:
-      "We offer flexible stays — 3, 6, 12 and 24-hour slots. Standard 24-hour bookings run check-in to check-out across the day; short slots are timed from your chosen start. A flat 5% GST applies to every booking.",
+      "Standard check-in is 12 noon and check-out is 11 AM the next day. We also offer flexible 3, 6, 12 and 24-hour stay slots — short slots are timed from your chosen start, so you pay only for the time you need. A flat 5% GST applies to every booking.",
   },
   {
     question: "How many guests can the banquet hall hold?",
