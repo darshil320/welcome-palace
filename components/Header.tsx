@@ -10,6 +10,10 @@ import { contact, navLinks } from "@/lib/content";
 export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  // Swap the navbar brand to the Chandni Chowk catering roundel on the food
+  // pages; every other route keeps the Welcome Palace crown wordmark.
+  const brandVariant =
+    pathname.startsWith("/banquet") || pathname.startsWith("/catering") ? "chandni" : "welcome";
   const [scrolled, setScrolled] = useState(false);
   const [roomsInView, setRoomsInView] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -68,9 +72,13 @@ export function Header() {
       <Link
         href="/"
         aria-label="Welcome Palace home"
-        className="relative z-10 flex w-[148px] shrink-0 items-center no-underline sm:w-[178px] xl:w-[210px]"
+        className="relative z-10 flex shrink-0 items-center no-underline"
       >
-        <BrandLogo priority className="h-auto w-full rounded-[3px]" />
+        {brandVariant === "chandni" ? (
+          <BrandLogo variant="chandni" priority className="h-[52px] w-auto sm:h-[58px] xl:h-[64px]" />
+        ) : (
+          <BrandLogo variant="welcome" priority className="h-auto w-[148px] sm:w-[178px] xl:w-[210px]" />
+        )}
       </Link>
 
       <nav className="hidden items-center gap-6 lg:flex">

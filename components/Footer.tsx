@@ -18,7 +18,8 @@ export function Footer() {
         <div className="flex flex-wrap items-start justify-between gap-7.5">
           <div className="max-w-[30ch]">
             <div className="w-[230px] max-w-full">
-              <BrandLogo className="h-auto w-full rounded-[3px]" />
+              {/* Dark-ink logo on a dark footer → render it white via filter. */}
+              <BrandLogo className="h-auto w-full [filter:brightness(0)_invert(1)]" />
             </div>
             <div className="mt-4 text-[11px] font-semibold tracking-[0.16em] text-gold uppercase">
               Follow Us &amp; Stay Connected
