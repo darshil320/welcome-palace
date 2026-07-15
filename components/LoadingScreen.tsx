@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { BrandLogo } from "@/components/BrandLogo";
+import Image from "next/image";
 
 /**
  * LoadingScreen — full-viewport intro that plays once per page load.
  * Matches the Welcome Palace design language:
  *   - Dark (#14110c) background with gold accent (#c9a84c)
- *   - Schibsted Grotesk display font via CSS variable
  *   - Animated gold progress bar + counter
- *   - Staggered text reveals
+ *   - Logo image with subtle glow & scale animation
  *   - Exit: two-panel curtain wipe (top & bottom) that splits open
  */
 export function LoadingScreen() {
@@ -99,56 +98,27 @@ export function LoadingScreen() {
           opacity: done ? 0 : 1,
         }}
       >
-        {/* Wordmark block */}
-        <div style={{ textAlign: "center" }}>
-          <div
-            className="loader-line-in"
+        {/* Logo image */}
+        <div
+          className="loader-fade-up"
+          style={{
+            width: "min(80vw, 420px)",
+            animationDelay: "0.3s",
+          }}
+        >
+          <Image
+            src="/images/welcome-palace-loader-logo.png"
+            alt="Welcome Palace — Rooms & Banquet"
+            width={1024}
+            height={576}
+            priority
+            unoptimized
             style={{
-              width: "1px",
-              height: "clamp(32px,4vw,52px)",
-              background: "linear-gradient(to bottom, transparent, rgba(201,168,76,0.55))",
-              margin: "0 auto 20px",
+              width: "100%",
+              height: "auto",
+              filter: "drop-shadow(0 0 24px rgba(201,168,76,0.25))",
             }}
           />
-
-          <div
-            className="loader-fade-up"
-            style={{
-              color: "#c9a84c",
-              fontSize: "clamp(14px,1.8vw,18px)",
-              letterSpacing: "0.3em",
-              marginBottom: "14px",
-              animationDelay: "0.3s",
-            }}
-          >
-            ✦
-          </div>
-
-          <div
-            className="loader-fade-up"
-            style={{
-              width: "min(72vw, 360px)",
-              margin: "0 auto",
-              animationDelay: "0.45s",
-            }}
-          >
-            <BrandLogo priority className="h-auto w-full" />
-          </div>
-
-          <p
-            className="loader-fade-up"
-            style={{
-              fontFamily: "var(--font-sans, system-ui, sans-serif)",
-              fontSize: "clamp(11px,1.2vw,13px)",
-              letterSpacing: "0.22em",
-              textTransform: "uppercase" as const,
-              color: "rgba(239,236,230,0.4)",
-              marginTop: "14px",
-              animationDelay: "0.65s",
-            }}
-          >
-            Piplod, Surat · Est. 2013
-          </p>
         </div>
 
         {/* Progress bar */}
