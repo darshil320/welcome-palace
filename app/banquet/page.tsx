@@ -117,7 +117,7 @@ export default function BanquetPage() {
                 href={waLink("Hi Welcome Palace! I'd like to enquire about the Banquet Hall. Please share available dates & slots.")}
                 target="_blank"
                 rel="noopener"
-                className="mt-6 inline-flex items-center justify-center gap-[9px] rounded-full bg-ink px-[22px] py-3.5 text-[14px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.02]"
+                className="press mt-6 inline-flex items-center justify-center gap-[9px] rounded-full bg-ink px-[22px] py-3.5 text-[14px] font-semibold text-white no-underline hover:scale-[1.02]"
               >
                 Enquire on WhatsApp
               </a>
@@ -161,7 +161,7 @@ export default function BanquetPage() {
                 href={waLink("Hi Welcome Palace! I'd like to book the Banquet Hall. Please share available dates & slots.")}
                 target="_blank"
                 rel="noopener"
-                className="mt-5 inline-flex items-center justify-center gap-[9px] rounded-full bg-ink px-[22px] py-3.5 text-[14px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.02]"
+                className="press mt-5 inline-flex items-center justify-center gap-[9px] rounded-full bg-ink px-[22px] py-3.5 text-[14px] font-semibold text-white no-underline hover:scale-[1.02]"
               >
                 <Check className="w-[11px] h-[11px]" />
                 Book Banquet Now
@@ -210,7 +210,7 @@ export default function BanquetPage() {
             </div>
             <Link
               href="/catering"
-              className="inline-flex flex-none items-center gap-2.5 rounded-full bg-ink px-[26px] py-3.5 text-[14px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.03]"
+              className="press inline-flex flex-none items-center gap-2.5 rounded-full bg-ink px-[26px] py-3.5 text-[14px] font-semibold text-white no-underline hover:scale-[1.03]"
             >
               View Catering
               <ArrowRight className="w-[13px] h-[13px]" />

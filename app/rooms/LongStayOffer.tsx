@@ -51,7 +51,7 @@ export function LongStayOffer() {
                 )}
                 target="_blank"
                 rel="noopener"
-                className="inline-flex flex-none items-center justify-center gap-2.5 rounded-full bg-white px-[26px] py-[15px] text-[14.5px] font-semibold text-ink no-underline transition-transform duration-[220ms] hover:scale-[1.03]"
+                className="press inline-flex flex-none items-center justify-center gap-2.5 rounded-full bg-white px-[26px] py-[15px] text-[14.5px] font-semibold text-ink no-underline hover:scale-[1.03]"
               >
                 Claim This Offer
               </a>

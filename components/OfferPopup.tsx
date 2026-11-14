@@ -6,7 +6,8 @@ import { longStayOffer } from "@/app/rooms/content";
 import { waLink } from "@/lib/content";
 
 const DISMISS_KEY = "wp-offer-popup-dismissed";
-const SHOW_DELAY_MS = 2500;
+// Long enough that people have seen the page (and the once-per-session loader) first.
+const SHOW_DELAY_MS = 8000;
 
 export function OfferPopup() {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -49,7 +50,7 @@ export function OfferPopup() {
           id="close-offer-popup"
           onClick={dismiss}
           aria-label="Close offer"
-          className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+          className="press absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-white/70 before:absolute before:-inset-1.5 before:content-[''] hover:bg-white/10 hover:text-white"
         >
           <X className="w-[13px] h-[13px]" />
         </button>
@@ -78,7 +79,7 @@ export function OfferPopup() {
             target="_blank"
             rel="noopener"
             onClick={dismiss}
-            className="mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-white px-7 py-[15px] text-[14.5px] font-semibold text-ink no-underline transition-transform duration-[220ms] hover:scale-[1.02]"
+            className="mt-6 press-surface inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-white px-7 py-[15px] text-[14.5px] font-semibold text-ink no-underline"
           >
             Claim This Offer
           </a>

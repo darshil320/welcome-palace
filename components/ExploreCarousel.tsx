@@ -31,7 +31,7 @@ export function ExploreCarousel() {
               onClick={() => scrollByStep(-1)}
               disabled={atStart}
               aria-label="Previous"
-              className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-[250ms] hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
+              className="press inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border border-line-strong text-ink hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
             >
               <ArrowLeft className="w-4 h-4" />
             </button>
@@ -40,7 +40,7 @@ export function ExploreCarousel() {
               onClick={() => scrollByStep(1)}
               disabled={atEnd}
               aria-label="Next"
-              className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-[250ms] hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
+              className="press inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border border-line-strong text-ink hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
             >
               <ArrowRight className="w-4 h-4" />
             </button>

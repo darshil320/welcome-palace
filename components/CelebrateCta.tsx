@@ -68,10 +68,10 @@ export function CelebrateCta() {
                 href={waLink("Hi Welcome Palace! I'd like to enquire about the Banquet Hall. Please share available dates & slots.")}
                 target="_blank"
                 rel="noopener"
-                className="btn-shimmer group inline-flex items-center gap-[11px] rounded-full bg-gold px-8 py-4 text-[15px] font-semibold text-[#1c1608] no-underline"
+                className="press btn-shimmer group inline-flex items-center gap-[11px] rounded-full bg-gold px-8 py-4 text-[15px] font-semibold text-[#1c1608] no-underline"
               >
                 Book Banquet Now
-                <ArrowRight className="w-[13px] h-[13px] transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="w-[13px] h-[13px] transition-transform duration-(--dur-hover) ease-(--ease-enter) group-hover:translate-x-1" />
               </a>
             </Magnetic>
           </div>

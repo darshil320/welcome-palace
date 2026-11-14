@@ -42,7 +42,7 @@ export function PariwarNiwas() {
                 href={waLink("Hi Welcome Palace! I'm interested in Pariwar Niwas (private family residence, up to 12 guests).")}
                 target="_blank"
                 rel="noopener"
-                className="inline-flex items-center gap-2.5 rounded-full bg-ink px-[26px] py-3.5 text-[15px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.03]"
+                className="press inline-flex items-center gap-2.5 rounded-full bg-ink px-[26px] py-3.5 text-[15px] font-semibold text-white no-underline hover:scale-[1.03]"
               >
                 Book Now
               </a>

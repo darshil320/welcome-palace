@@ -100,7 +100,7 @@ export default function RoomsPage() {
                   href={waLink("Hi Welcome Palace! I'd like to book a room. Please share availability.")}
                   target="_blank"
                   rel="noopener"
-                  className="mt-5 inline-flex items-center justify-center gap-[9px] rounded-full bg-ink px-[22px] py-3.5 text-[14px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.02]"
+                  className="press mt-5 inline-flex items-center justify-center gap-[9px] rounded-full bg-ink px-[22px] py-3.5 text-[14px] font-semibold text-white no-underline hover:scale-[1.02]"
                 >
                   <Check className="w-[11px] h-[11px]" />
                   Book Now via WhatsApp
@@ -166,7 +166,7 @@ export default function RoomsPage() {
               href={waLink("Hi Welcome Palace! I'd like to book a room. Please help me with availability.")}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-2.5 rounded-full bg-ink px-[28px] py-4 text-[15px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.03]"
+              className="press inline-flex items-center gap-2.5 rounded-full bg-ink px-[28px] py-4 text-[15px] font-semibold text-white no-underline hover:scale-[1.03]"
             >
               Enquire on WhatsApp
             </a>

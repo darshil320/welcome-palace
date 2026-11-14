@@ -45,7 +45,7 @@ export function ShadiWalaGharFeature() {
                   href={waLink("Hi Welcome Palace! I'd like to enquire about the Shadi Wala Ghar (entire floor buyout).")}
                   target="_blank"
                   rel="noopener"
-                  className="inline-flex items-center gap-[9px] rounded-full bg-white px-[22px] py-[13px] text-[14px] font-semibold text-ink no-underline transition-transform duration-[220ms] hover:scale-[1.03]"
+                  className="press inline-flex items-center gap-[9px] rounded-full bg-white px-[22px] py-[13px] text-[14px] font-semibold text-ink no-underline hover:scale-[1.03]"
                 >
                   Book Now
                 </a>
@@ -54,7 +54,7 @@ export function ShadiWalaGharFeature() {
                   className="group inline-flex items-center gap-[9px] rounded-full border border-white/55 px-[22px] py-[13px] text-[14px] font-semibold text-white no-underline"
                 >
                   See Details{" "}
-                  <ArrowRight className="w-[12px] h-[12px] transition-transform duration-[220ms] group-hover:translate-x-1" />
+                  <ArrowRight className="w-[12px] h-[12px] transition-transform duration-(--dur-hover) ease-(--ease-enter) group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>
@@ -102,7 +102,7 @@ export function ShadiWalaGharFeature() {
                     onClick={() => scrollByStep(-1)}
                     disabled={atStart}
                     aria-label="Previous space"
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-[13px] text-ink transition-colors duration-[250ms] hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
+                    className="press inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-[13px] text-ink hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
                   >
                     <ArrowLeft className="w-[13px] h-[13px]" />
                   </button>
@@ -111,7 +111,7 @@ export function ShadiWalaGharFeature() {
                     onClick={() => scrollByStep(1)}
                     disabled={atEnd}
                     aria-label="Next space"
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-[13px] text-ink transition-colors duration-[250ms] hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
+                    className="press inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-[13px] text-ink hover:not-disabled:bg-ink hover:not-disabled:text-white disabled:opacity-30"
                   >
                     <ArrowRight className="w-[13px] h-[13px]" />
                   </button>

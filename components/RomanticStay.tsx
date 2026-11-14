@@ -59,10 +59,10 @@ export function RomanticStay() {
                 href={waLink("Hi Welcome Palace! I'd like to book the Romantic Couple Stay.")}
                 target="_blank"
                 rel="noopener"
-                className="group mt-7 inline-flex items-center gap-2.5 rounded-full bg-ink px-[26px] py-3.5 text-[15px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.03]"
+                className="press group mt-7 inline-flex items-center gap-2.5 rounded-full bg-ink px-[26px] py-3.5 text-[15px] font-semibold text-white no-underline hover:scale-[1.03]"
               >
                 Book Romantic Stay Now
-                <ArrowRight className="w-[12px] h-[12px] transition-transform duration-[220ms] group-hover:translate-x-1" />
+                <ArrowRight className="w-[12px] h-[12px] transition-transform duration-(--dur-hover) ease-(--ease-enter) group-hover:translate-x-1" />
               </a>
             </Reveal>
           </div>

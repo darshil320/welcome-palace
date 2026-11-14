@@ -71,7 +71,7 @@ export function OffersBanquet() {
               <button
                 type="button"
                 onClick={() => setTab("banquet")}
-                className={`rounded-full px-[15px] py-[9px] text-[12px] font-semibold transition-colors duration-[250ms] ${
+                className={`press rounded-full px-[15px] py-[9px] text-[12px] font-semibold ${
                   tab === "banquet" ? "bg-ink text-white" : "text-muted"
                 }`}
               >
@@ -80,7 +80,7 @@ export function OffersBanquet() {
               <button
                 type="button"
                 onClick={() => setTab("home")}
-                className={`rounded-full px-[15px] py-[9px] text-[12px] font-semibold transition-colors duration-[250ms] ${
+                className={`press rounded-full px-[15px] py-[9px] text-[12px] font-semibold ${
                   tab === "home" ? "bg-ink text-white" : "text-muted"
                 }`}
               >

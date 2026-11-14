@@ -241,7 +241,7 @@ export default async function RoomPdpPage({
                   href={waLink(`Hi Welcome Palace! I'd like to book a ${pdp.title.replace(/s$/, "")}. Please share availability.`)}
                   target="_blank"
                   rel="noopener"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-[14px] font-semibold text-white no-underline transition-transform duration-200 active:scale-[0.98]"
+                  className="press-surface inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-[14px] font-semibold text-white no-underline"
                 >
                   Enquire on WhatsApp
                 </a>
@@ -320,7 +320,7 @@ export default async function RoomPdpPage({
                   href={waLink(`Hi Welcome Palace! I'd like to book a ${pdp.title.replace(/s$/, "")}. Please share availability.`)}
                   target="_blank"
                   rel="noopener"
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-ink px-7 py-4 text-[15px] font-semibold text-white no-underline transition-transform duration-[220ms] hover:scale-[1.015]"
+                  className="mt-6 press-surface inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-ink px-7 py-4 text-[15px] font-semibold text-white no-underline"
                 >
                   Enquire on WhatsApp
                 </a>
@@ -442,7 +442,7 @@ export default async function RoomPdpPage({
             href={waLink(`Hi Welcome Palace! I'd like to book a ${pdp.title.replace(/s$/, "")}. Please share availability.`)}
             target="_blank"
             rel="noopener"
-            className="flex-none inline-flex items-center justify-center rounded-full bg-ink px-5 py-2.5 text-[13px] font-semibold text-white no-underline transition-transform active:scale-[0.97]"
+            className="press flex-none inline-flex items-center justify-center rounded-full bg-ink px-5 py-2.5 text-[13px] font-semibold text-white no-underline"
           >
             Book Now
           </a>
