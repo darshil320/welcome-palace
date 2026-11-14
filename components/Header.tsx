@@ -171,10 +171,11 @@ export function Header() {
       aria-modal="true"
       aria-label="Menu"
       inert={!menuOpen}
-      className={`fixed inset-0 z-[100] bg-cream transition-[opacity,visibility] lg:hidden ${
+      className={`fixed inset-0 z-[100] bg-cream lg:hidden ${
         menuOpen
-          ? "pointer-events-auto visible opacity-100 duration-(--dur-modal-in) ease-(--ease-enter)"
-          : "pointer-events-none invisible opacity-0 duration-(--dur-modal-out) ease-(--ease-exit)"
+          ? // visibility flips at once on open (so focus can land), and waits for the fade on close
+            "pointer-events-auto visible opacity-100 transition-opacity duration-(--dur-modal-in) ease-(--ease-enter)"
+          : "pointer-events-none invisible opacity-0 transition-[opacity,visibility] duration-(--dur-modal-out) ease-(--ease-exit)"
       }`}
     >
       <button
