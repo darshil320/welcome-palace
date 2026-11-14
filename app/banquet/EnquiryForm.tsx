@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FormShell } from "@/components/form/FormShell";
+import { SentNotice } from "@/components/form/SentNotice";
 import { SelectField, SubmitButton, TextField } from "@/components/form/fields";
 import { waLink } from "@/lib/content";
 import { banquetSlotOptions } from "@/app/banquet/content";
@@ -9,6 +10,7 @@ import { banquetSlotOptions } from "@/app/banquet/content";
 const todayIso = () => new Date().toISOString().split("T")[0];
 
 export function EnquiryForm() {
+  const [sent, setSent] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [eventDate, setEventDate] = useState("");
@@ -28,6 +30,7 @@ export function EnquiryForm() {
     ].join("\n");
 
     window.open(waLink(message), "_blank");
+    setSent(true);
   }
 
   return (
@@ -41,6 +44,7 @@ export function EnquiryForm() {
           label="Guest Name"
           required
           name="name"
+          autoComplete="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Your full name"
@@ -50,6 +54,8 @@ export function EnquiryForm() {
           required
           type="tel"
           name="phone"
+          autoComplete="tel"
+          inputMode="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder="+91 XXXXX XXXXX"
@@ -88,6 +94,7 @@ export function EnquiryForm() {
           placeholder="e.g. 85"
         />
         <SubmitButton>SUBMIT ENQUIRY</SubmitButton>
+        <SentNotice show={sent} />
       </form>
     </FormShell>
   );

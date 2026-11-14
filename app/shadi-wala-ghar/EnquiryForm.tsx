@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FormShell } from "@/components/form/FormShell";
+import { SentNotice } from "@/components/form/SentNotice";
 import { SelectField, SubmitButton, TextAreaField, TextField } from "@/components/form/fields";
 import { waLink } from "@/lib/content";
 import { banquetRequiredOptions, banquetSlotOptions, cateringOptions } from "@/app/shadi-wala-ghar/content";
@@ -9,6 +10,7 @@ import { banquetRequiredOptions, banquetSlotOptions, cateringOptions } from "@/a
 const todayIso = () => new Date().toISOString().split("T")[0];
 
 export function EnquiryForm() {
+  const [sent, setSent] = useState(false);
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [guests, setGuests] = useState("");
@@ -55,6 +57,7 @@ export function EnquiryForm() {
     }
 
     window.open(waLink(lines.join("\n")), "_blank");
+    setSent(true);
   }
 
   return (
@@ -68,6 +71,7 @@ export function EnquiryForm() {
           label="Guest Name"
           required
           name="name"
+          autoComplete="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Your full name"
@@ -77,6 +81,8 @@ export function EnquiryForm() {
           required
           type="tel"
           name="mobile"
+          autoComplete="tel"
+          inputMode="tel"
           value={mobile}
           onChange={(e) => setMobile(e.target.value)}
           placeholder="+91 XXXXX XXXXX"
@@ -173,6 +179,8 @@ export function EnquiryForm() {
         />
 
         <SubmitButton>SUBMIT SHAADI WALA GHAR ENQUIRY</SubmitButton>
+
+        <SentNotice show={sent} />
       </form>
     </FormShell>
   );

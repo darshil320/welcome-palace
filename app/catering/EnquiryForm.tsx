@@ -2,11 +2,13 @@
 
 import { type FormEvent, useState } from "react";
 import { FormShell } from "@/components/form/FormShell";
+import { SentNotice } from "@/components/form/SentNotice";
 import { SelectField, SubmitButton, TextAreaField, TextField } from "@/components/form/fields";
 import { waLink } from "@/lib/content";
 import { cateringPlanOptions } from "@/app/catering/content";
 
 export function EnquiryForm() {
+  const [sent, setSent] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -41,6 +43,7 @@ export function EnquiryForm() {
 
     const url = waLink(message);
     window.open(url, "_blank");
+    setSent(true);
   }
 
   return (
@@ -51,10 +54,12 @@ export function EnquiryForm() {
     >
       <form onSubmit={handleSubmit} className="grid gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
-          <TextField label="Guest Name" name="guestName" required placeholder="Your full name" />
+          <TextField label="Guest Name" name="guestName" autoComplete="name" required placeholder="Your full name" />
           <TextField
             label="Mobile Number"
             name="mobileNumber"
+          autoComplete="tel"
+          inputMode="tel"
             type="tel"
             required
             placeholder="+91 XXXXX XXXXX"
@@ -93,6 +98,8 @@ export function EnquiryForm() {
         {submitError ? <p className="text-[13px] font-semibold text-red-600">{submitError}</p> : null}
 
         <SubmitButton>SUBMIT CATERING ENQUIRY</SubmitButton>
+
+        <SentNotice show={sent} />
       </form>
     </FormShell>
   );

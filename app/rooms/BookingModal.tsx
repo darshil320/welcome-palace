@@ -10,6 +10,8 @@ import {
   slotLabels,
 } from "@/app/rooms/content";
 import { TextField, SelectField } from "@/components/form/fields";
+import { normalizeIndianMobile, NAME_ERROR, PHONE_ERROR } from "@/lib/phone";
+import { shakeAndFocus } from "@/lib/motion";
 
 interface Props {
   roomNo: string | null;
@@ -56,8 +58,13 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
   const [guestName, setGuestName] = useState("");
   const [guestPhone, setGuestPhone] = useState("");
   const [city, setCity] = useState("");
+  const [nameError, setNameError] = useState<string | null>(null);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
 
-  const room = roomNo ? roomData.find((r) => r.no === roomNo) : null;
+  // Keep the last room rendered while the dialog animates out.
+  const [shownRoomNo, setShownRoomNo] = useState(roomNo);
+  if (roomNo && roomNo !== shownRoomNo) setShownRoomNo(roomNo);
+  const room = shownRoomNo ? roomData.find((r) => r.no === shownRoomNo) : null;
 
   // Open/close dialog
   useEffect(() => {
@@ -74,6 +81,8 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
       setGuestName("");
       setGuestPhone("");
       setCity("");
+      setNameError(null);
+      setPhoneError(null);
     } else {
       dialog.close();
     }
@@ -94,8 +103,17 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!room) return;
-    if (!guestName.trim()) { alert("Please enter your name."); return; }
-    if (!guestPhone.trim() || guestPhone.trim().length < 10) { alert("Please enter a valid 10-digit phone number."); return; }
+    if (!guestName.trim()) {
+      setNameError(NAME_ERROR);
+      shakeAndFocus(document.getElementById("booking-name"));
+      return;
+    }
+    const phone = normalizeIndianMobile(guestPhone);
+    if (!phone) {
+      setPhoneError(PHONE_ERROR);
+      shakeAndFocus(document.getElementById("booking-phone"));
+      return;
+    }
 
     const item: EnquiryItem = {
       id: `${room.no}-${Date.now()}`,
@@ -107,7 +125,7 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
       checkInTime: slot !== "24" ? checkInTime : undefined,
       guests,
       guestName: guestName.trim(),
-      guestPhone: guestPhone.trim(),
+      guestPhone: phone,
       city: city.trim(),
       ...pricing,
     };
@@ -138,7 +156,7 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
           <button
             id="close-booking-modal"
             onClick={onClose}
-            className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line bg-panel text-ink-soft transition-colors hover:bg-ink hover:text-white"
+            className="press hit-area flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line bg-panel text-ink-soft hover:bg-ink hover:text-white"
             aria-label="Close booking form"
           >
             <X className="w-[13px] h-[13px]" />
@@ -159,7 +177,8 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
                   type="button"
                   id={`slot-${s}hr`}
                   onClick={() => setSlot(s)}
-                  className={`rounded-[10px] py-2.5 text-[13px] font-semibold transition-all duration-200 ${
+                  aria-pressed={slot === s}
+                  className={`press rounded-[10px] py-2.5 text-[13px] font-semibold ${
                     slot === s
                       ? "bg-ink text-white shadow-sm"
                       : "border border-line bg-white text-ink-soft hover:border-ink-soft"
@@ -242,8 +261,13 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
             id="booking-name"
             name="guestName"
             placeholder="Your full name"
+            autoComplete="name"
             value={guestName}
-            onChange={(e) => setGuestName(e.target.value)}
+            error={nameError}
+            onChange={(e) => {
+              setGuestName(e.target.value);
+              if (nameError && e.target.value.trim()) setNameError(null);
+            }}
           />
           <div className="grid gap-4 sm:grid-cols-2">
             <TextField
@@ -253,15 +277,21 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
               id="booking-phone"
               name="guestPhone"
               placeholder="+91 98765 43210"
-              maxLength={10}
+              inputMode="tel"
+              autoComplete="tel"
               value={guestPhone}
-              onChange={(e) => setGuestPhone(e.target.value)}
+              error={phoneError}
+              onChange={(e) => {
+                setGuestPhone(e.target.value);
+                if (phoneError && normalizeIndianMobile(e.target.value)) setPhoneError(null);
+              }}
             />
             <TextField
               label="City"
               id="booking-city"
               name="city"
               placeholder="Surat"
+              autoComplete="address-level2"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
@@ -294,7 +324,7 @@ export function BookingModal({ roomNo, onClose, onAddToCart }: Props) {
           <button
             type="submit"
             id="add-to-enquiry-cart"
-            className="mt-1 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-ink px-8 py-4 text-[15px] font-semibold text-white transition-transform duration-[220ms] hover:scale-[1.015]"
+            className="press-surface mt-1 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-ink px-8 py-4 text-[15px] font-semibold text-white"
           >
             <Check className="w-[12px] h-[12px]" />
             Add to Enquiry

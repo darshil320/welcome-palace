@@ -9,6 +9,9 @@ import { FeatureIcon } from "@/components/FeatureIcon";
 import { pariwarFeatures, waLink } from "@/lib/content";
 import { pariwarPricing, getNumberOfNights } from "@/app/rooms/content";
 import { cldVideo } from "@/lib/cloudinary";
+import { fieldControlClass, FieldError } from "@/components/form/fields";
+import { normalizeIndianMobile, NAME_ERROR, PHONE_ERROR } from "@/lib/phone";
+import { shakeAndFocus } from "@/lib/motion";
 
 type BookingType = "full" | "room1" | "room2" | "both";
 type StayPeriod = "short" | "long";
@@ -55,6 +58,8 @@ export function PariwarNiwasBooking() {
   const [guests, setGuests] = useState(4);
   const [guestName, setGuestName] = useState("");
   const [guestPhone, setGuestPhone] = useState("");
+  const [nameError, setNameError] = useState<string | null>(null);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [price, setPrice] = useState<number | null>(null);
 
@@ -91,12 +96,25 @@ export function PariwarNiwasBooking() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!guestName.trim()) { alert("Please enter your name."); return; }
-    if (!guestPhone.trim() || guestPhone.trim().length < 10) { alert("Please enter a valid 10-digit phone number."); return; }
-    if (error) { alert(error); return; }
+    if (!guestName.trim()) {
+      setNameError(NAME_ERROR);
+      shakeAndFocus(document.getElementById("pariwar-name"));
+      return;
+    }
+    const phone = normalizeIndianMobile(guestPhone);
+    if (!phone) {
+      setPhoneError(PHONE_ERROR);
+      shakeAndFocus(document.getElementById("pariwar-phone"));
+      return;
+    }
+    if (error) {
+      // The reason is already shown in the price panel; point at the date that fixes it.
+      shakeAndFocus(document.getElementById("pariwar-checkout"));
+      return;
+    }
     const msg = buildPariwarMessage(
       bookingType, stayPeriod, checkIn, checkOut,
-      guests, guestName.trim(), guestPhone.trim(), price ?? 0
+      guests, guestName.trim(), phone, price ?? 0
     );
     window.open(
       `https://wa.me/918000014410?text=${encodeURIComponent(msg)}`,
@@ -161,7 +179,8 @@ export function PariwarNiwasBooking() {
                     type="button"
                     id={`pariwar-type-${opt.id}`}
                     onClick={() => setBookingType(opt.id)}
-                    className={`flex flex-col items-start gap-0.5 rounded-[14px] border px-4 py-3 text-left transition-all duration-200 ${
+                    aria-pressed={bookingType === opt.id}
+                    className={`flex flex-col items-start gap-0.5 rounded-[14px] border px-4 py-3 text-left transition-[background-color,border-color,color] duration-(--dur-state) ease-(--ease-enter) ${
                       bookingType === opt.id
                         ? "border-gold bg-gold-soft text-ink"
                         : "border-line bg-white text-ink-soft hover:border-gold/50"
@@ -189,7 +208,8 @@ export function PariwarNiwasBooking() {
                     type="button"
                     id={`pariwar-period-${opt.id}`}
                     onClick={() => setStayPeriod(opt.id)}
-                    className={`flex flex-col items-start gap-0.5 rounded-[14px] border px-4 py-3 text-left transition-all duration-200 ${
+                    aria-pressed={stayPeriod === opt.id}
+                    className={`flex flex-col items-start gap-0.5 rounded-[14px] border px-4 py-3 text-left transition-[background-color,border-color,color] duration-(--dur-state) ease-(--ease-enter) ${
                       stayPeriod === opt.id
                         ? "border-gold bg-gold-soft text-ink"
                         : "border-line bg-white text-ink-soft hover:border-gold/50"
@@ -216,7 +236,7 @@ export function PariwarNiwasBooking() {
                     setCheckIn(e.target.value);
                     if (checkOut < e.target.value) setCheckOut(e.target.value);
                   }}
-                  className="w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] font-medium text-ink transition-colors focus:border-gold focus:outline-none"
+                  className={fieldControlClass}
                 />
               </label>
               <label className="block">
@@ -228,7 +248,7 @@ export function PariwarNiwasBooking() {
                   min={checkIn}
                   value={checkOut}
                   onChange={(e) => setCheckOut(e.target.value)}
-                  className="w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] font-medium text-ink transition-colors focus:border-gold focus:outline-none"
+                  className={fieldControlClass}
                 />
               </label>
             </div>
@@ -242,7 +262,7 @@ export function PariwarNiwasBooking() {
                 id="pariwar-guests"
                 value={guests}
                 onChange={(e) => setGuests(parseInt(e.target.value))}
-                className="w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] font-medium text-ink transition-colors focus:border-gold focus:outline-none appearance-none"
+                className={`${fieldControlClass} appearance-none`}
               >
                 {Array.from({ length: maxGuests }, (_, i) => i + 1).map((n) => (
                   <option key={n} value={n}>{n} Guest{n > 1 ? "s" : ""}</option>
@@ -261,10 +281,17 @@ export function PariwarNiwasBooking() {
                   id="pariwar-name"
                   required
                   placeholder="Full name"
+                  autoComplete="name"
                   value={guestName}
-                  onChange={(e) => setGuestName(e.target.value)}
-                  className="w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] font-medium text-ink placeholder:text-faint transition-colors focus:border-gold focus:outline-none"
+                  aria-invalid={nameError ? true : undefined}
+                  aria-describedby={nameError ? "pariwar-name-error" : undefined}
+                  onChange={(e) => {
+                    setGuestName(e.target.value);
+                    if (nameError && e.target.value.trim()) setNameError(null);
+                  }}
+                  className={fieldControlClass}
                 />
+                <FieldError id="pariwar-name-error" message={nameError} />
               </label>
               <label className="block">
                 <span className="mb-1.5 block text-[13px] font-semibold text-ink-soft">
@@ -275,17 +302,25 @@ export function PariwarNiwasBooking() {
                   id="pariwar-phone"
                   required
                   placeholder="10-digit number"
-                  maxLength={10}
+                  inputMode="tel"
+                  autoComplete="tel"
                   value={guestPhone}
-                  onChange={(e) => setGuestPhone(e.target.value)}
-                  className="w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] font-medium text-ink placeholder:text-faint transition-colors focus:border-gold focus:outline-none"
+                  aria-invalid={phoneError ? true : undefined}
+                  aria-describedby={phoneError ? "pariwar-phone-error" : undefined}
+                  onChange={(e) => {
+                    setGuestPhone(e.target.value);
+                    if (phoneError && normalizeIndianMobile(e.target.value)) setPhoneError(null);
+                  }}
+                  className={fieldControlClass}
                 />
+                <FieldError id="pariwar-phone-error" message={phoneError} />
               </label>
             </div>
 
             {/* Live price display */}
             <div
-              className={`rounded-[16px] p-4 text-center transition-colors duration-300 ${
+              aria-live="polite"
+              className={`rounded-[16px] p-4 text-center transition-[background-color,border-color] duration-(--dur-state) ease-(--ease-enter) ${
                 error
                   ? "bg-red-50 border border-red-200"
                   : price !== null
@@ -321,11 +356,11 @@ export function PariwarNiwasBooking() {
             <button
               type="submit"
               id="pariwar-enquire-whatsapp"
-              className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-ink px-8 py-4 text-[15px] font-semibold text-white transition-transform duration-[220ms] hover:scale-[1.015]"
+              className="press group inline-flex items-center justify-center gap-2.5 rounded-full bg-ink px-8 py-4 text-[15px] font-semibold text-white"
             >
               <Check className="w-[12px] h-[12px]" />
               Enquire on WhatsApp
-              <ArrowRight className="w-[12px] h-[12px] transition-transform duration-[220ms] group-hover:translate-x-1" />
+              <ArrowRight className="w-[12px] h-[12px] transition-transform duration-(--dur-hover) ease-(--ease-enter) group-hover:translate-x-1" />
             </button>
 
             <p className="text-center text-[11.5px] font-medium text-faint">
