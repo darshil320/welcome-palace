@@ -1,7 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+
+const SEEN_KEY = "wp-loader-seen";
+/* ANIMATION STORYBOARD (ms after mount)
+ *     0ms  progress fill + counter run (CSS, 1800ms)
+ *  2120ms  curtain splits open (--ease-move, 500ms), content fades (200ms)
+ *  2670ms  loader unmounts
+ * Plays once per session; skipped entirely without JS or under reduced motion (globals.css). */
+const TIMING = { open: 2120, unmount: 550 };
+const CURTAIN = "translate 500ms var(--ease-move)";
 
 /**
  * LoadingScreen — full-viewport intro that plays once per page load.
@@ -10,40 +19,32 @@ import Image from "next/image";
  *   - Animated gold progress bar + counter
  *   - Logo image with subtle glow & scale animation
  *   - Exit: two-panel curtain wipe (top & bottom) that splits open
+ * Shown once per browser session (flag read before first paint in layout.tsx).
  */
 export function LoadingScreen() {
-  const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    let current = 0;
-    const total = 1800;
-    const tick = 16;
-    const steps = total / tick;
-
-    intervalRef.current = setInterval(() => {
-      current += 1;
-      const ratio = current / steps;
-      const eased = 1 - Math.pow(1 - ratio, 2.8);
-      const p = Math.min(Math.round(eased * 100), 100);
-      setProgress(p);
-
-      if (p >= 100) {
-        clearInterval(intervalRef.current!);
-        setTimeout(() => setDone(true), 320);
-      }
-    }, tick);
-
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
+    const root = document.documentElement;
+    const skip =
+      root.hasAttribute("data-loader-seen") || matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (skip) {
+      const t = setTimeout(() => setHidden(true), 0);
+      return () => clearTimeout(t);
+    }
+    try {
+      sessionStorage.setItem(SEEN_KEY, "1");
+    } catch {
+      // Storage unavailable (private mode): the loader simply plays again next load.
+    }
+    const t = setTimeout(() => setDone(true), TIMING.open);
+    return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
     if (!done) return;
-    const t = setTimeout(() => setHidden(true), 950);
+    const t = setTimeout(() => setHidden(true), TIMING.unmount);
     return () => clearTimeout(t);
   }, [done]);
 
@@ -52,6 +53,7 @@ export function LoadingScreen() {
   return (
     <div
       aria-hidden="true"
+      className="loader-root"
       style={{
         position: "fixed",
         inset: 0,
@@ -66,9 +68,8 @@ export function LoadingScreen() {
           position: "absolute",
           inset: "0 0 50% 0",
           background: "#14110c",
-          transformOrigin: "top center",
-          transition: done ? "transform 0.88s cubic-bezier(0.76,0,0.24,1)" : "none",
-          transform: done ? "translateY(-100%)" : "translateY(0)",
+          transition: done ? CURTAIN : "none",
+          translate: done ? "0 -100%" : "0 0",
         }}
       />
 
@@ -78,9 +79,8 @@ export function LoadingScreen() {
           position: "absolute",
           inset: "50% 0 0 0",
           background: "#14110c",
-          transformOrigin: "bottom center",
-          transition: done ? "transform 0.88s cubic-bezier(0.76,0,0.24,1)" : "none",
-          transform: done ? "translateY(100%)" : "translateY(0)",
+          transition: done ? CURTAIN : "none",
+          translate: done ? "0 100%" : "0 0",
         }}
       />
 
@@ -94,7 +94,7 @@ export function LoadingScreen() {
           alignItems: "center",
           justifyContent: "center",
           gap: "clamp(28px,4vw,44px)",
-          transition: done ? "opacity 0.35s ease" : "none",
+          transition: done ? "opacity 200ms var(--ease-exit)" : "none",
           opacity: done ? 0 : 1,
         }}
       >
@@ -135,12 +135,12 @@ export function LoadingScreen() {
             }}
           >
             <div
+              className="loader-fill motion-keep"
               style={{
                 height: "100%",
-                width: `${progress}%`,
+                width: "100%",
                 background: "linear-gradient(90deg,#9a7b2b,#c9a84c,#f4ecd6)",
                 borderRadius: "1px",
-                transition: "width 0.12s linear",
                 boxShadow: "0 0 8px rgba(201,168,76,0.45)",
               }}
             />
@@ -154,6 +154,7 @@ export function LoadingScreen() {
             }}
           >
             <span
+              className="loader-count motion-keep"
               style={{
                 fontFamily: "var(--font-display, sans-serif)",
                 fontWeight: 500,
@@ -163,7 +164,6 @@ export function LoadingScreen() {
                 fontVariantNumeric: "tabular-nums",
               }}
             >
-              {String(progress).padStart(2, "0")}
             </span>
           </div>
         </div>

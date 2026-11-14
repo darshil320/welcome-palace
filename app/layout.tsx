@@ -93,7 +93,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" className={`${schibstedGrotesk.variable} ${hankenGrotesk.variable}`}>
+    <html
+      lang="en-IN"
+      className={`${schibstedGrotesk.variable} ${hankenGrotesk.variable}`}
+      // The inline script below may add data-loader-seen before hydration.
+      suppressHydrationWarning
+    >
       <head>
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
@@ -118,6 +123,7 @@ export default function RootLayout({
               (function(){
                 var w=window.innerWidth-document.documentElement.clientWidth;
                 document.documentElement.style.setProperty('--scrollbar-width',w+'px');
+                try{if(sessionStorage.getItem('wp-loader-seen'))document.documentElement.setAttribute('data-loader-seen','');}catch(e){}
               })();
             `,
           }}
