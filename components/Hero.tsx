@@ -2,15 +2,19 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { preload } from "react-dom";
 import { ArrowDown, ArrowRight, MapPin } from "lucide-react";
 import { Magnetic } from "@/components/Magnetic";
-import { cldVideo, cldImage } from "@/lib/cloudinary";
+import { cldVideo, cldImage, HERO_VIDEO_TRANSFORM } from "@/lib/cloudinary";
 import { contact } from "@/lib/content";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const mapUrl = contact.mapUrl;
+// Poster is the LCP image until the video's first frame decodes; fetch it first.
+const HERO_POSTER = cldImage("new-rooms/room-111-a.jpg", "q_auto,f_auto,w_1200");
 
 export function Hero() {
+  preload(HERO_POSTER, { as: "image", fetchPriority: "high" });
   const reduced = usePrefersReducedMotion();
   const mediaRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -69,8 +73,8 @@ export function Hero() {
     <section id="top" className="px-[clamp(12px,2.4vw,26px)] pt-[88px]">
       <div className="relative overflow-hidden rounded-3xl" style={{ height: "min(82svh, 760px)", minHeight: "520px" }}>
         <div ref={mediaRef} className="absolute inset-x-0 -top-[120px] -bottom-[120px]" style={{ willChange: "transform" }}>
-          <video autoPlay muted loop playsInline preload="auto" poster={cldImage("hero-poster.jpg", "q_auto,f_auto,w_1200")} className="hero-zoom absolute inset-0 h-full w-full object-cover">
-            <source src={cldVideo("hero.mp4")} type="video/mp4" />
+          <video autoPlay muted loop playsInline preload="auto" poster={HERO_POSTER} className="hero-zoom absolute inset-0 h-full w-full object-cover">
+            <source src={cldVideo("hero.mp4", HERO_VIDEO_TRANSFORM)} type="video/mp4" />
           </video>
           <div className="img-warm" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,10,0.42)_0%,rgba(20,16,10,0)_34%,rgba(20,16,10,0)_55%,rgba(20,16,10,0.72)_100%)]" />

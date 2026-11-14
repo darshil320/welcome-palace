@@ -8,7 +8,7 @@ import { WarmVideo } from "@/components/WarmVideo";
 import { WarmImage } from "@/components/WarmImage";
 import { CountUp } from "@/components/CountUp";
 import { FeatureIcon } from "@/components/FeatureIcon";
-import { cldImage, cldVideo } from "@/lib/cloudinary";
+import { cldImage, cldVideo, HERO_VIDEO_TRANSFORM } from "@/lib/cloudinary";
 import { contact, waLink } from "@/lib/content";
 import { journeyMilestones, missionVisionValues, highlightCards } from "@/app/about-us/content";
 import { Testimonials } from "@/app/about-us/Testimonials";
@@ -52,7 +52,8 @@ export default function AboutUsPage() {
         ])}
       />
       <PageHero
-        videoSrc={cldVideo("new/pariwar-niwas-hero.mp4")}
+        videoSrc={cldVideo("new/pariwar-niwas-hero.mp4", HERO_VIDEO_TRANSFORM)}
+        posterSrc={cldImage("new-rooms/room-110-a.jpg", "q_auto,f_auto,w_1200")}
         eyebrow="Piplod, Surat · Est. 2013"
         title="About Welcome Palace"
         subtitle="Your Home for Memorable Celebrations & Luxury Family Stays in Surat"

@@ -1,5 +1,6 @@
 "use client";
 
+import { LazyAutoplayVideo } from "@/components/LazyAutoplayVideo";
 import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 import { GuideLines } from "@/components/GuideLines";
@@ -38,9 +39,11 @@ export function OffersBanquet() {
 
         <Reveal className="mt-[38px] grid gap-6 md:grid-cols-2">
           <div className="relative min-h-[300px] overflow-hidden rounded-[22px]">
-            <video autoPlay muted loop playsInline preload="metadata" poster={cldImage("banquet-hall-tour-poster.jpg")} className="absolute inset-0 h-full w-full object-cover">
-              <source src={cldVideo("banquet-hall-tour.mp4")} type="video/mp4" />
-            </video>
+            <LazyAutoplayVideo
+              src={cldVideo("banquet-hall-tour.mp4")}
+              poster={cldImage("banquet-mehandi.jpg", "q_auto,f_auto,w_1000")}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
             <div className="img-warm" />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,10,0)_34%,rgba(20,16,10,0.86)_100%)]" />
             <div className="absolute inset-x-0 bottom-0 p-[26px]">

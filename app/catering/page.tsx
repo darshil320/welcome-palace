@@ -4,7 +4,7 @@ import { GuideLines } from "@/components/GuideLines";
 import { MaskReveal } from "@/components/MaskReveal";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
-import { cldVideo } from "@/lib/cloudinary";
+import { cldImage, cldVideo, HERO_VIDEO_TRANSFORM } from "@/lib/cloudinary";
 import { cateringIntro, luxuryPlans, standardPlans, type CateringPlan } from "@/app/catering/content";
 import { EnquiryForm } from "@/app/catering/EnquiryForm";
 import { MenuSection } from "@/app/catering/MenuSection";
@@ -128,7 +128,8 @@ export default function CateringPage() {
       <JsonLd data={cateringSchema(menuPlans)} />
       <JsonLd data={faqSchema(cateringFaqs)} />
       <PageHero
-        videoSrc={cldVideo("new/chandni-chowk-1.mp4")}
+        videoSrc={cldVideo("new/chandni-chowk-1.mp4", HERO_VIDEO_TRANSFORM)}
+        posterSrc={cldImage("banquet-haldi-detail.jpeg", "q_auto,f_auto,w_1200")}
         eyebrow="Taste of Heritage"
         title="Chandni Chowk Chaat & Catering"
         subtitle="Pure Veg • Live Counters • Heritage Flavours of Surat"

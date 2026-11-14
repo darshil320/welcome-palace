@@ -79,3 +79,22 @@ home is the median of 6 runs; other routes median of 3.
 
 - Every route improved; nothing regressed past noise; nothing reverted.
 - Still short of LCP ≤ 2.5s / score ≥ 90: the remaining lever is the missing hero video posters (above).
+
+## Posters + video weight — branch `perf/hero-posters`
+
+Missing Cloudinary posters (`hero-poster`, `banquet-hall-tour-poster`, `ambient-jacuzzi-poster`,
+`romantic-decor-poster`) now point at existing photos; every PageHero has a poster. Below-the-fold autoplay
+videos (jacuzzi, banquet tour) attach their source only near the viewport. Hero videos are served with
+`q_auto,w_1280` (hero.mp4 2.3MB → 0.7MB; the 85MB Pariwar Niwas / Chandni Chowk originals → 8MB / 15MB).
+
+| Route | Perf (live → branch) | LCP s | TBT ms | Page weight |
+|---|---|---|---|---|
+| home (median of 6) | 76 → 76 | 6.59 → 6.25 | 14 → 43 | ~8MB+ → 2.0MB |
+| rooms | 79 → 77 | 5.67 → 6.33 | 13 → 6 | → 1.6MB |
+| banquet | 81 → 85 | 5.16 → 4.42 | 18 → 19 | |
+| catering | 78 → 82 | 5.37 → 4.56 | 36 → 40 | |
+
+LCP is now the hero video's first decoded frame (Chrome counts it), so it tracks video bytes: under
+Lighthouse's slow-4G model even 0.7MB takes ~5s. Rooms/home LCP moves are within this run-to-run spread
+(5.1–6.4s across runs). Next lever: shorter/lighter hero loops (e.g. `q_auto:eco,w_960,du_15`: hero.mp4
+0.43MB, Pariwar Niwas 1.05MB) — trims the clips, so it needs an owner decision.

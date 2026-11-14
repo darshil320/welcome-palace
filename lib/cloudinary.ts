@@ -26,3 +26,10 @@ export function cldImage(relPath: string, transforms?: string) {
 export function cldVideo(relPath: string, transforms?: string) {
   return cldUrl("video", relPath, transforms);
 }
+
+/**
+ * Background hero videos: Cloudinary picks the quality and caps width at
+ * 1280px. Same footage and length, 3–10x fewer bytes (hero.mp4 2.3MB → 0.7MB,
+ * the 85MB Pariwar Niwas / Chandni Chowk originals → 8MB / 15MB).
+ */
+export const HERO_VIDEO_TRANSFORM = "q_auto,w_1280";

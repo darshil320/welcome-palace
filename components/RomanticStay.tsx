@@ -20,7 +20,7 @@ export function RomanticStay() {
         <div className="grid items-center gap-[clamp(32px,5vw,72px)] md:grid-cols-[1fr_1.05fr]">
           <Parallax speed={0.06} className="order-first md:order-none">
             <Reveal className="aspect-[4/5] rounded-[22px] shadow-[0_30px_60px_-34px_rgba(20,16,10,0.35)]">
-              <WarmVideo src={cldVideo("romantic-decor.mp4")} poster={cldImage("romantic-decor-poster.jpg")} className="h-full w-full rounded-[22px]" />
+              <WarmVideo src={cldVideo("romantic-decor.mp4")} poster={cldImage("new-rooms/room-103-a.jpg", "q_auto,f_auto,w_1000")} className="h-full w-full rounded-[22px]" />
             </Reveal>
           </Parallax>
 

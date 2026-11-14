@@ -4,7 +4,7 @@ import { GuideLines } from "@/components/GuideLines";
 import { Reveal } from "@/components/Reveal";
 import { MaskReveal } from "@/components/MaskReveal";
 import { TariffCard } from "@/components/TariffCard";
-import { cldVideo } from "@/lib/cloudinary";
+import { cldImage, cldVideo, HERO_VIDEO_TRANSFORM } from "@/lib/cloudinary";
 import { RomanticStay } from "@/components/RomanticStay";
 import { RoomsClient } from "@/app/rooms/RoomsClient";
 import { LongStayOffer } from "@/app/rooms/LongStayOffer";
@@ -66,7 +66,8 @@ export default function RoomsPage() {
       <JsonLd data={faqSchema(roomsFaqs)} />
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <PageHero
-        videoSrc={cldVideo("hero.mp4")}
+        videoSrc={cldVideo("hero.mp4", HERO_VIDEO_TRANSFORM)}
+        posterSrc={cldImage("new-rooms/room-104-a.jpg", "q_auto,f_auto,w_1200")}
         eyebrow="15 Luxury Rooms · Piplod, Surat"
         title="Rooms & Stays"
         subtitle="Deluxe · Queen Suite · King Suite · Family · Pariwar Niwas"

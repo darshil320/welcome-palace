@@ -4,7 +4,7 @@ import { GuideLines } from "@/components/GuideLines";
 import { MaskReveal } from "@/components/MaskReveal";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
-import { cldVideo } from "@/lib/cloudinary";
+import { cldImage, cldVideo, HERO_VIDEO_TRANSFORM } from "@/lib/cloudinary";
 import { TariffCard } from "@/components/TariffCard";
 import { WarmImage } from "@/components/WarmImage";
 import {
@@ -68,7 +68,8 @@ export default function ShadiWalaGharPage() {
       <JsonLd data={shadiServiceSchema()} />
       <JsonLd data={faqSchema(shadiFaqs)} />
       <PageHero
-        videoSrc={cldVideo("new/pariwar-niwas-hero.mp4")}
+        videoSrc={cldVideo("new/pariwar-niwas-hero.mp4", HERO_VIDEO_TRANSFORM)}
+        posterSrc={cldImage("new-rooms/room-110-a.jpg", "q_auto,f_auto,w_1200")}
         eyebrow="Piplod, Surat"
         title="Shadi Wala Ghar"
         subtitle="Entire Floor • All Rooms • Banquet Hall • Family Stays Together"

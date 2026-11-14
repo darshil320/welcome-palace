@@ -7,7 +7,7 @@ import { WarmVideo } from "@/components/WarmVideo";
 import { VideoTile } from "@/components/VideoTile";
 import { PageHero } from "@/components/PageHero";
 import { TariffCard } from "@/components/TariffCard";
-import { cldVideo } from "@/lib/cloudinary";
+import { cldImage, cldVideo } from "@/lib/cloudinary";
 import { FeatureIcon } from "@/components/FeatureIcon";
 import { waLink } from "@/lib/content";
 import {
@@ -67,6 +67,7 @@ export default function BanquetPage() {
       <JsonLd data={faqSchema(banquetFaqs)} />
       <PageHero
         videoSrc={cldVideo("banquet/wedding-function.mp4")}
+        posterSrc={cldImage("banquet-haldi.jpg", "q_auto,f_auto,w_1200")}
         eyebrow="125–175 Guests · Full Privacy"
         title="Banquet Hall & Events"
         subtitle="Celebrations • Weddings • Corporate • Haldi • Mehandi • Sangeet • Satsang"
