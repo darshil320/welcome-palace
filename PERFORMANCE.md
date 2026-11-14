@@ -64,3 +64,18 @@ PageHero videos on inner pages have no poster at all. Without a poster, LCP wait
 frame of a `preload="auto"` MP4 over slow 4G. Uploading the posters (or pointing `poster` at an existing
 image), adding posters to PageHero, and using `preload="metadata"` is the change most likely to bring LCP
 under 2.5s and the score over 90.
+
+## Final — loader removed + mosaic transform-only, branch `ux/animation-pass` @ `53de86a`
+
+Same setup. Home shows a bimodal LCP (6.5s or 7.5s, depending on when the hero video's first frame paints), so
+home is the median of 6 runs; other routes median of 3.
+
+| Route | Perf (baseline → final) | LCP s | CLS | TBT ms | JS KB |
+|---|---|---|---|---|---|
+| home | 71 → 76 | 7.05 → 6.59 (−6.5%) | 0 → 0 | 14 → 14 | 353 → 353 |
+| rooms | 72 → 79 | 6.05 → 5.67 (−6.3%) | 0 → 0 | 64 → 13 | 353 → 353 |
+| banquet | 76 → 81 | 5.58 → 5.16 (−7.5%) | 0 → 0 | 46 → 18 | 353 → 353 |
+| catering | 74 → 78 | 5.57 → 5.37 (−3.6%) | 0 → 0 | 44 → 36 | 353 → 353 |
+
+- Every route improved; nothing regressed past noise; nothing reverted.
+- Still short of LCP ≤ 2.5s / score ≥ 90: the remaining lever is the missing hero video posters (above).

@@ -48,8 +48,8 @@ Sev: **B** broken · **F** friction · **P** polish. Status: applied / proposed�
 | 7 | B | Q4 a11y | `PdpGallery.tsx` | arrows invisible on keyboard focus → `focus-visible:opacity-100` | applied |
 | 8 | B | Q5 errors | `BookingModal`, `PariwarNiwasBooking` | `alert()` → message beside field, focus, 360ms shake, clears when valid | applied |
 | 9 | B | Q5 Postel | phone fields | placeholder `+91 98765 43210` untypeable (`maxLength 10`) → parse +91/0/spaces/dashes, store 10 digits | proposed → **decided: applied** |
-| 10 | F | Q1 Doherty | `LoadingScreen.tsx` | ~3s loader every load → once per session, skipped under reduced motion | proposed → **decided: once/session applied; full removal is your call** |
-| 11 | F | Q3 properties | `LoadingScreen.tsx` | width + 112 state updates → scaleX + `@property` counter, no JS per frame | applied |
+| 10 | F | Q1 Doherty | `LoadingScreen.tsx` | ~3s loader every load → removed entirely | proposed → **owner approved: removed** (`eff207c`) |
+| 11 | F | Q3 properties | `LoadingScreen.tsx` | width + 112 state updates → scaleX + `@property` counter | applied, then superseded by #10 removal |
 | 12 | F | Q2 staging | `OfferPopup.tsx` | interrupts at 2.5s → 8s | proposed → **decided: applied (8s)** |
 | 13 | F | Q3 press | ~20 CTAs | no press state → `press` (0.96, 150ms) / `press-surface` for full-width | applied |
 | 14 | F | Verify: reduced motion | site-wide | dialog/menu/accordion still animated → global layer; `.motion-keep` for progress | applied |
@@ -58,7 +58,7 @@ Sev: **B** broken · **F** friction · **P** polish. Status: applied / proposed�
 | 17 | F | Q5 Parkinson | all enquiry forms | no autocomplete → name/tel/address-level2 | applied |
 | 18 | F | Q5 recover | `EnquiryCart.tsx` | instant remove, no undo → 5s Undo, restores in place, focus to Undo | proposed → **decided: applied** |
 | 19 | F | Q5 peak-end | enquiry forms + cart | bare jump to WhatsApp → status line "WhatsApp opened… reply within 2 hours" | proposed → **decided: applied** |
-| 20 | F | Q3 performance | `WelcomeSection` mosaic | gap/max-width/radius re-laid out every scroll frame → transform-only rework | proposed → **decided: deferred** (L effort, redesigns the effect) |
+| 20 | F | Q3 performance | `WelcomeSection` mosaic | gap/max-width/radius re-laid out every scroll frame → grid scale + tile translate + clip-path radius, fixed layout | proposed → **owner approved: applied** (`53de86a`) |
 | 21 | P | Q2 stagger | `Header.tsx` | links stagger inside fading overlay → arrive with it | applied |
 | 22 | P | Q3 exits | `globals.css` dialogs | 280ms keyframe in, instant out → 220/160 transitions, interruptible, content kept while leaving | applied |
 | 23 | P | Q3 properties | `Header.tsx` underline | `transition-all` width → scaleX | applied |
@@ -91,17 +91,16 @@ scroll-driven CSS would drop Firefox) · theme switch (site has none).
   `--dur-mask` 500ms, `--dur-shake` 360ms, `--stagger-piece` 90ms, `--reveal-rise` 12px, `--reveal-blur` 3px.
 - JS mirror: `lib/motion.ts` (`MOTION.modalOutMs`, `shakeMs`, `undoMs`).
 - Utilities: `press`, `press-surface`, `hit-area`; `.motion-keep` opt-out from the reduced-motion layer.
-- Storyboard: `LoadingScreen.tsx` (`TIMING`).
 
 ## Verify
 
-Automated with Playwright against the production build (`/tmp/uxverify/verify.mjs`, not committed): **49/49 pass.**
+Automated with Playwright against the production build (`/tmp/uxverify/verify.mjs`, not committed): **49/49 pass** before the loader removal; **47/47 pass** on the final build (the three loader checks were replaced by one "no loader" check). Mosaic captured at start / mid / end scroll positions at 375px and 1440px: seams close at the start, no overflow.
 
 | Check | Result |
 |---|---|
 | Static HTML of 7 routes has no hidden-at-paint state | pass |
 | No JS: loader hidden, all reveal content visible | pass |
-| Loader plays on first load, unmounts, absent on second load in session | pass |
+| Loader plays once per session (before removal) → no loader at all (final) | pass |
 | Reduced motion: loader skipped, reveals visible at once, transitions ≈0 | pass |
 | Below-the-fold reveals: 40 pending → 0 after scrolling (IO, once) | pass |
 | Mobile menu: inert closed, focus to first link, Tab trapped, Esc closes + restores focus | pass (failed first run; fixed in `07e6162`) |
@@ -131,14 +130,14 @@ Automated with Playwright against the production build (`/tmp/uxverify/verify.mj
 
 ## Before / after metrics
 
-See `PERFORMANCE.md`. Summary (median of 3, mobile):
+See `PERFORMANCE.md`. Baseline → final (median, mobile; home median of 6 because its LCP is bimodal):
 
 | Route | Perf | LCP s | TBT ms |
 |---|---|---|---|
-| home | 71 → 72 | 7.05 → 7.20 | 14 → 13 |
-| rooms | 72 → 74 | 6.05 → 6.17 | 64 → 8 |
-| banquet | 76 → 77 | 5.58 → 5.46 | 46 → 12 |
-| catering | 74 → 75 | 5.57 → 5.71 | 44 → 19 |
+| home | 71 → 76 | 7.05 → 6.59 | 14 → 14 |
+| rooms | 72 → 79 | 6.05 → 5.67 | 64 → 13 |
+| banquet | 76 → 81 | 5.58 → 5.16 | 46 → 18 |
+| catering | 74 → 78 | 5.57 → 5.37 | 44 → 36 |
 
-No regressions past noise; nothing reverted. Budgets (LCP ≤ 2.5s, score ≥ 90) were already missed at baseline;
-the poster 404s are the lever.
+Every route improved; nothing reverted. LCP ≤ 2.5s and score ≥ 90 are still missed: the missing Cloudinary
+posters for the hero videos are the remaining lever.
