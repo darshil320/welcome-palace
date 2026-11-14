@@ -22,12 +22,12 @@ export const roomData: RoomData[] = [
   { no: "109", type: "Premium Deluxe",    base24: 4000, base3: 1200, base6: 1700, base12: 2200, max: 4, isFamily: false, image: cldImage("new-rooms/room-109-a.jpg") },
   { no: "112", type: "Premium Deluxe",    base24: 4000, base3: 1200, base6: 1700, base12: 2200, max: 4, isFamily: false, image: cldImage("new-rooms/room-112-a.jpg") },
   { no: "201", type: "Deluxe Room",       base24: 3500, base3: 1000, base6: 1500, base12: 2000, max: 3, isFamily: false, image: cldImage("new-rooms/room-201-a.jpg") },
-  { no: "101", type: "Suite Room",        base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: cldImage("new-rooms/room-101-a.jpg") },
-  { no: "107", type: "Suite Room",        base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: cldImage("new-rooms/room-107-a.jpg") },
-  { no: "202", type: "Suite Room",        base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: cldImage("new-rooms/room-202-a.jpg") },
-  { no: "111", type: "Honeymoon Suite · Jacuzzi", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: cldImage("new-rooms/room-111-a.jpg") },
-  { no: "103", type: "Honeymoon Suite · Pre-Décor", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: cldImage("new-rooms/room-103-a.jpg") },
-  { no: "108", type: "Honeymoon Suite · Jacuzzi", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: cldImage("new-rooms/room-108-a.jpg") },
+  { no: "101", type: "Queen Suite",       base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: cldImage("new-rooms/room-101-a.jpg") },
+  { no: "107", type: "Queen Suite",       base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: cldImage("new-rooms/room-107-a.jpg") },
+  { no: "202", type: "Queen Suite",       base24: 4500, base3: 1500, base6: 2000, base12: 2500, max: 3, isFamily: false, image: cldImage("new-rooms/room-202-a.jpg") },
+  { no: "111", type: "King Suite · Jacuzzi", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: cldImage("new-rooms/room-111-a.jpg") },
+  { no: "103", type: "King Suite · Pre-Décor", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: cldImage("new-rooms/room-103-a.jpg") },
+  { no: "108", type: "King Suite · Jacuzzi", base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 4, isFamily: false, image: cldImage("new-rooms/room-108-a.jpg") },
   { no: "110", type: "Family Room",       base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 5, isFamily: true,  image: cldImage("new-rooms/room-110-a.jpg") },
   { no: "114", type: "Family Room",       base24: 5500, base3: 2000, base6: 2500, base12: 3500, max: 5, isFamily: true,  image: cldImage("new-rooms/room-114-a.jpg") },
 ];
@@ -56,7 +56,7 @@ export const roomCategories: {
   },
   {
     id: "Suite",
-    title: "Suite Rooms",
+    title: "Queen Suites",
     subtitle: "Premium Luxury",
     image: cldImage("new-rooms/room-107-a.jpg"),
     priceFrom: "from ₹4,500/night",
@@ -65,7 +65,7 @@ export const roomCategories: {
   },
   {
     id: "Honeymoon",
-    title: "Honeymoon Suites",
+    title: "King Suites",
     subtitle: "Private Jacuzzi · Pre-Décor",
     image: cldImage("new-rooms/room-111-a.jpg"),
     priceFrom: "from ₹5,500/night",
@@ -169,8 +169,9 @@ export const pariwarPricing = {
 export const roomTariffRows = [
   { label: "Deluxe Room", time: "per night", price: "₹3,500" },
   { label: "Premium Deluxe", time: "per night", price: "₹4,000" },
-  { label: "Suite Room", time: "per night", price: "₹4,500" },
-  { label: "Honeymoon Suite", time: "per night", price: "₹5,500" },
+  { label: "Queen Suite", time: "per night", price: "₹4,500" },
+  { label: "King Suite", time: "per night", price: "₹5,500" },
+  { label: "Family Room", time: "per night", price: "₹5,500" },
 ];
 
 export const roomAmenities = [

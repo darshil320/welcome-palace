@@ -60,10 +60,10 @@ export const roomPdps: RoomCategoryPdp[] = [
   {
     slug: "suite-room",
     id: "Suite",
-    title: "Suite Rooms",
+    title: "Queen Suites",
     tagline: "Premium Luxury · from ₹4,500/night",
     description:
-      "Step up to our Suite Rooms — larger layouts, refined furnishings and a lounge corner to unwind in. Suites pair the comfort of a premium hotel room with the warmth Welcome Palace is known for, and remain a favourite for wedding-party VIPs, anniversary stays and guests who simply want more room to breathe.",
+      "Step up to our Queen Suites — larger layouts, refined furnishings and a lounge corner to unwind in. Suites pair the comfort of a premium hotel room with the warmth Welcome Palace is known for, and remain a favourite for wedding-party VIPs, anniversary stays and guests who simply want more room to breathe.",
     highlights: [
       "3 suites · up to 3 guests each",
       "Separate lounge / sitting corner",
@@ -73,25 +73,25 @@ export const roomPdps: RoomCategoryPdp[] = [
       "Flexible 3h / 6h / 12h / 24h slots",
     ],
     gallery: [
-      { type: "image", src: cldImage("new-rooms/room-101-a.jpg"), alt: "Suite Room 101" },
-      { type: "image", src: cldImage("new-rooms/room-101-b.jpg"), alt: "Suite Room 101, alternate view" },
-      { type: "image", src: cldImage("new-rooms/room-107-a.jpg"), alt: "Suite Room 107" },
-      { type: "image", src: cldImage("new-rooms/room-107-b.jpg"), alt: "Suite Room 107, alternate view" },
-      { type: "image", src: cldImage("new-rooms/room-202-a.jpg"), alt: "Suite Room 202" },
-      { type: "image", src: cldImage("new-rooms/room-202-b.jpg"), alt: "Suite Room 202, alternate view" },
-      { type: "video", src: cldVideo("new/room-101-tour.mp4"), alt: "Suite Room 101 tour" },
+      { type: "image", src: cldImage("new-rooms/room-101-a.jpg"), alt: "Queen Suite 101" },
+      { type: "image", src: cldImage("new-rooms/room-101-b.jpg"), alt: "Queen Suite 101, alternate view" },
+      { type: "image", src: cldImage("new-rooms/room-107-a.jpg"), alt: "Queen Suite 107" },
+      { type: "image", src: cldImage("new-rooms/room-107-b.jpg"), alt: "Queen Suite 107, alternate view" },
+      { type: "image", src: cldImage("new-rooms/room-202-a.jpg"), alt: "Queen Suite 202" },
+      { type: "image", src: cldImage("new-rooms/room-202-b.jpg"), alt: "Queen Suite 202, alternate view" },
+      { type: "video", src: cldVideo("new/room-101-tour.mp4"), alt: "Queen Suite 101 tour" },
     ],
     maxGuests: 3,
     seoDescription:
-      "Book a Suite Room at Welcome Palace, Piplod, Surat from ₹4,500/night. Premium suites with lounge corner, king-size bed, AC, Wi-Fi and flexible stay slots.",
+      "Book a Queen Suite at Welcome Palace, Piplod, Surat from ₹4,500/night. Premium suites with lounge corner, king-size bed, AC, Wi-Fi and flexible stay slots.",
   },
   {
     slug: "honeymoon-suite",
     id: "Honeymoon",
-    title: "Honeymoon Suites",
+    title: "King Suites",
     tagline: "Private Jacuzzi · Pre-Décor · from ₹5,500/night",
     description:
-      "Made for two. Our Honeymoon Suites come with a private jacuzzi, romantic pre-decorated interiors and soft mood lighting — the most requested rooms in the house. Add a candlelight dinner or themed décor (birthday, anniversary, proposal) and let our team turn the evening into an occasion.",
+      "Made for two. Our King Suites come with a private jacuzzi, romantic pre-decorated interiors and soft mood lighting — the most requested rooms in the house. Add a candlelight dinner or themed décor (birthday, anniversary, proposal) and let our team turn the evening into an occasion.",
     highlights: [
       "3 suites · private jacuzzi",
       "Romantic pre-décor & mood lighting",
@@ -101,8 +101,8 @@ export const roomPdps: RoomCategoryPdp[] = [
       "24/7 room service & daily housekeeping",
     ],
     gallery: [
-      { type: "image", src: "/images/honeymoon-new-1.png", alt: "Honeymoon Suite" },
-      { type: "image", src: "/images/honeymoon-new-2.png", alt: "Honeymoon Suite alternate view" },
+      { type: "image", src: "/images/honeymoon-new-1.png", alt: "King Suite" },
+      { type: "image", src: "/images/honeymoon-new-2.png", alt: "King Suite alternate view" },
       { type: "video", src: cldVideo("new/jacuzzi-hero.mp4"), alt: "Private jacuzzi experience" },
       { type: "video", src: cldVideo("new/jacuzzi-1.mp4"), alt: "Jacuzzi suite tour" },
       { type: "video", src: cldVideo("new/jacuzzi-2.mp4"), alt: "Jacuzzi suite ambience" },
@@ -111,7 +111,7 @@ export const roomPdps: RoomCategoryPdp[] = [
     ],
     maxGuests: 4,
     seoDescription:
-      "Book a Honeymoon Suite with private jacuzzi at Welcome Palace, Piplod, Surat from ₹5,500/night. Romantic pre-décor, candlelight dinner add-ons and flexible stay slots.",
+      "Book a King Suite with private jacuzzi at Welcome Palace, Piplod, Surat from ₹5,500/night. Romantic pre-décor, candlelight dinner add-ons and flexible stay slots.",
   },
   {
     slug: "family-room",

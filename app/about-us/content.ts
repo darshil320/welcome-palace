@@ -43,7 +43,7 @@ export const highlightCards: {
     image: cldImage("room-108.jpg"),
     alt: "Premium luxury suite at Welcome Palace",
     title: "15 Premium Luxury Rooms",
-    description: "Deluxe, Suite, Family Rooms & Honeymoon Suites with Jacuzzi",
+    description: "Deluxe Rooms, Queen Suites, King Suites with Jacuzzi & Family Rooms",
     stat: { kind: "count", target: 65, suffix: "+", caption: "Guests" },
     statLabel: "Total Stay Capacity",
   },

@@ -13,7 +13,7 @@ export const roomsFaqs: Faq[] = [
   {
     question: "What room types does Welcome Palace offer in Surat?",
     answer:
-      "Welcome Palace has 15 rooms in Piplod, Surat: Deluxe Rooms from ₹3,500/night, Suite Rooms from ₹4,500, Honeymoon Suites with a private jacuzzi from ₹5,500, and Family Rooms for up to 5 guests. The Pariwar Niwas family residence sleeps up to 12 at ₹11,000/night.",
+      "Welcome Palace has 15 rooms in Piplod, Surat: Deluxe Rooms from ₹3,500/night, Queen Suites from ₹4,500, King Suites with a private jacuzzi from ₹5,500, and Family Rooms for up to 5 guests from ₹5,500. The Pariwar Niwas family residence sleeps up to 12 at ₹11,000/night.",
   },
   {
     question: "What are the standard check-in and check-out times?",
@@ -31,9 +31,9 @@ export const roomsFaqs: Faq[] = [
       "Yes — on 24-hour stays, single-guest bookings get 35% off and two-guest bookings get 15% off the base room rate.",
   },
   {
-    question: "Do the honeymoon suites really have a private jacuzzi?",
+    question: "Do the King Suites really have a private jacuzzi?",
     answer:
-      "Yes. Our Honeymoon Suites include an in-room private jacuzzi, romantic pre-décor and mood lighting. You can add themed décor (+₹2,000) and a candlelight dinner (+₹1,200 per couple).",
+      "Yes. Our King Suites include an in-room private jacuzzi, romantic pre-décor and mood lighting. You can add themed décor (+₹2,000) and a candlelight dinner (+₹1,200 per couple).",
   },
   {
     question: "What amenities are included in every room?",

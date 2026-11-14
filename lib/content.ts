@@ -58,19 +58,19 @@ export const spaces = [
   },
   {
     image: cldImage("new-rooms/room-108-a.jpg"),
-    alt: "Suite Room 108",
+    alt: "Queen Suite",
     tag: "Stay · 6 rooms",
-    name: "Suite Rooms",
+    name: "Queen Suites",
     price: "from ₹4,500",
-    message: "Hi Welcome Palace! I'd like to book a Suite Room.",
+    message: "Hi Welcome Palace! I'd like to book a Queen Suite.",
   },
   {
     image: "/images/honeymoon-new-1.png",
-    alt: "Honeymoon Suite",
+    alt: "King Suite",
     tag: "Jacuzzi · 3 suites",
-    name: "Honeymoon Suites",
+    name: "King Suites",
     price: "from ₹5,500",
-    message: "Hi Welcome Palace! I'd like to book a Honeymoon Suite with jacuzzi.",
+    message: "Hi Welcome Palace! I'd like to book a King Suite with jacuzzi.",
   },
   {
     image: cldImage("new-rooms/room-110-a.jpg"),
@@ -173,7 +173,7 @@ export const faqItems = [
   {
     question: "Do you offer honeymoon or romantic packages?",
     answer:
-      "Yes. Our Honeymoon Suites include a private jacuzzi, and any room can be turned into a romantic couple stay with décor (+₹2,000) and an optional candlelight dinner (+₹1,200 per couple).",
+      "Yes. Our King Suites include a private jacuzzi, and any room can be turned into a romantic couple stay with décor (+₹2,000) and an optional candlelight dinner (+₹1,200 per couple).",
   },
 ];
 

@@ -20,7 +20,7 @@ import { breadcrumbSchema, roomListSchema, faqSchema } from "@/lib/schema";
 import { roomsFaqs } from "@/lib/faqs";
 
 const description =
-  "Book one of 15 luxury rooms at Welcome Palace, Piplod, Surat — Deluxe Rooms from ₹3,500, Suite Rooms from ₹4,500, Honeymoon Suites with Jacuzzi from ₹5,500, Pariwar Niwas family residence at ₹11,000/night.";
+  "Book one of 15 luxury rooms at Welcome Palace, Piplod, Surat — Deluxe Rooms from ₹3,500, Queen Suites from ₹4,500, King Suites with Jacuzzi from ₹5,500, Family Rooms from ₹5,500, Pariwar Niwas family residence at ₹11,000/night.";
 
 const title = "Rooms & Booking | Welcome Palace Surat";
 
@@ -31,6 +31,8 @@ export const metadata: Metadata = {
     "hotel rooms Surat",
     "luxury rooms Piplod Surat",
     "honeymoon suite Surat jacuzzi",
+    "king suite Surat",
+    "queen suite Surat",
     "family rooms Surat",
     "hourly rooms Surat",
     "hotel booking Piplod",
@@ -67,7 +69,7 @@ export default function RoomsPage() {
         videoSrc={cldVideo("hero.mp4")}
         eyebrow="15 Luxury Rooms · Piplod, Surat"
         title="Rooms & Stays"
-        subtitle="Deluxe · Suite · Honeymoon · Family · Pariwar Niwas"
+        subtitle="Deluxe · Queen Suite · King Suite · Family · Pariwar Niwas"
       />
 
       {/* ── Long Stay Offer ──────────────────────────────────────────────── */}

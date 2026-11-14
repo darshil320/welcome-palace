@@ -7,6 +7,8 @@ import { Reveal } from "@/components/Reveal";
 import { cldVideo } from "@/lib/cloudinary";
 import { cateringIntro, luxuryPlans, standardPlans, type CateringPlan } from "@/app/catering/content";
 import { EnquiryForm } from "@/app/catering/EnquiryForm";
+import { MenuSection } from "@/app/catering/MenuSection";
+import { chaatMenu, specialityStalls } from "@/app/catering/menu";
 import { JsonLd } from "@/components/JsonLd";
 import { CateringLogo } from "@/components/CateringLogo";
 import { FaqBlock } from "@/components/FaqBlock";
@@ -229,6 +231,10 @@ export default function CateringPage() {
           </div>
         </div>
       </section>
+
+      {/* Full Menu */}
+      <MenuSection menu={chaatMenu} />
+      <MenuSection menu={specialityStalls} tinted />
 
       {/* FAQ */}
       <FaqBlock items={cateringFaqs} eyebrow="Catering FAQ" heading="Catering Questions, Answered" />
