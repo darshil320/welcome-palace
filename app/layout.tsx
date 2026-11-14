@@ -6,7 +6,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { GrainOverlay } from "@/components/GrainOverlay";
 import { ScrollProgress } from "@/components/ScrollProgress";
-import { LoadingScreen } from "@/components/LoadingScreen";
 import { OfferPopup } from "@/components/OfferPopup";
 import { JsonLd } from "@/components/JsonLd";
 import { GTM_ID } from "@/lib/analytics";
@@ -93,12 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en-IN"
-      className={`${schibstedGrotesk.variable} ${hankenGrotesk.variable}`}
-      // The inline script below may add data-loader-seen before hydration.
-      suppressHydrationWarning
-    >
+    <html lang="en-IN" className={`${schibstedGrotesk.variable} ${hankenGrotesk.variable}`}>
       <head>
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
@@ -123,12 +117,10 @@ export default function RootLayout({
               (function(){
                 var w=window.innerWidth-document.documentElement.clientWidth;
                 document.documentElement.style.setProperty('--scrollbar-width',w+'px');
-                try{if(sessionStorage.getItem('wp-loader-seen'))document.documentElement.setAttribute('data-loader-seen','');}catch(e){}
               })();
             `,
           }}
         />
-        <LoadingScreen />
         <Header />
         <main className="overflow-x-hidden">{children}</main>
         <Footer />

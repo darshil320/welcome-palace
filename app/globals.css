@@ -372,113 +372,6 @@ body:has(dialog[open]) {
   padding-right: var(--scrollbar-width, 0px);
 }
 
-/* ── Loading screen animations ───────────────────────────────── */
-
-/* Never block the page when JS can't remove the loader, when it already
-   played this session (flag set before first paint in layout.tsx), or when
-   the visitor asked for reduced motion. */
-@media (scripting: none) {
-  .loader-root {
-    display: none;
-  }
-}
-
-html[data-loader-seen] .loader-root {
-  display: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .loader-root {
-    display: none;
-  }
-}
-
-/* Progress fill grows with scaleX (never width), CSS-driven so the main
-   thread stays free while the page hydrates. Linear-ish ease-out matches the
-   old 1 - (1 - t)^2.8 curve. */
-@property --loader-count {
-  syntax: "<integer>";
-  initial-value: 0;
-  inherits: false;
-}
-
-@keyframes loader-fill {
-  from {
-    scale: 0 1;
-  }
-  to {
-    scale: 1 1;
-  }
-}
-
-@keyframes loader-count {
-  from {
-    --loader-count: 0;
-  }
-  to {
-    --loader-count: 100;
-  }
-}
-
-.loader-fill {
-  transform-origin: left center;
-  animation: loader-fill 1800ms cubic-bezier(0.25, 0.55, 0.3, 1) both;
-}
-
-.loader-count {
-  counter-reset: loader var(--loader-count);
-  animation: loader-count 1800ms cubic-bezier(0.25, 0.55, 0.3, 1) both;
-}
-
-.loader-count::after {
-  content: counter(loader, decimal-leading-zero);
-}
-
-@keyframes loader-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes loader-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes loader-line-in {
-  from {
-    transform: scaleY(0);
-    opacity: 0;
-  }
-  to {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-}
-
-.loader-fade-up {
-  opacity: 0;
-  animation: loader-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.loader-fade-in {
-  opacity: 0;
-  animation: loader-fade-in 0.7s ease both;
-}
-
-.loader-line-in {
-  animation: loader-line-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hero-zoom,
   .marquee-track,
@@ -497,13 +390,6 @@ html[data-loader-seen] .loader-root {
   .foot-word {
     opacity: 1;
     transition: none;
-  }
-  .loader-fade-up,
-  .loader-fade-in,
-  .loader-line-in {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
   }
 }
 

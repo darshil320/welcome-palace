@@ -6,7 +6,7 @@ import { longStayOffer } from "@/app/rooms/content";
 import { waLink } from "@/lib/content";
 
 const DISMISS_KEY = "wp-offer-popup-dismissed";
-// Long enough that people have seen the page (and the once-per-session loader) first.
+// Long enough that people have taken in the page before the offer interrupts.
 const SHOW_DELAY_MS = 8000;
 
 export function OfferPopup() {
