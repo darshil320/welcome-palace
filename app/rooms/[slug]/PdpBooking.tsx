@@ -6,6 +6,7 @@ import { Bed, Calendar } from "lucide-react";
 import { roomData, type RoomCategory } from "@/app/rooms/content";
 import { BookingModal, type EnquiryItem } from "@/app/rooms/BookingModal";
 import { EnquiryCartPanel } from "@/app/rooms/EnquiryCart";
+import { afterModalExit } from "@/lib/motion";
 
 interface Props {
   category: RoomCategory;
@@ -65,7 +66,7 @@ export function PdpBooking({ category, roomNos }: Props) {
                 <button
                   id={`pdp-book-room-${room.no}`}
                   onClick={() => setSelectedRoom(room.no)}
-                  className="mt-3 flex w-fit items-center gap-1.5 rounded-full bg-ink px-4 py-1.5 text-[12px] font-semibold text-white transition-transform hover:scale-[1.02]"
+                  className="press hit-area mt-3 flex w-fit items-center gap-1.5 rounded-full bg-ink px-4 py-1.5 text-[12px] font-semibold text-white hover:scale-[1.02]"
                 >
                   <Calendar className="w-[10px] h-[10px]" />
                   Book This Room
@@ -81,7 +82,7 @@ export function PdpBooking({ category, roomNos }: Props) {
         onClose={() => setSelectedRoom(null)}
         onAddToCart={(item) => {
           setCartItems((prev) => [...prev, item]);
-          setCartOpen(true);
+          afterModalExit(() => setCartOpen(true));
         }}
       />
 
@@ -91,6 +92,11 @@ export function PdpBooking({ category, roomNos }: Props) {
         onOpen={() => setCartOpen(true)}
         onClose={() => setCartOpen(false)}
         onRemove={(id) => setCartItems((prev) => prev.filter((i) => i.id !== id))}
+        onRestore={(item, index) =>
+          setCartItems((prev) =>
+            prev.some((i) => i.id === item.id) ? prev : [...prev.slice(0, index), item, ...prev.slice(index)],
+          )
+        }
       />
     </>
   );

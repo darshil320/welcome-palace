@@ -6,6 +6,7 @@ import { RoomCategorySection } from "@/app/rooms/RoomCategorySection";
 import { RoomSelectorModal } from "@/app/rooms/RoomSelectorModal";
 import { BookingModal, type EnquiryItem } from "@/app/rooms/BookingModal";
 import { EnquiryCartPanel } from "@/app/rooms/EnquiryCart";
+import { afterModalExit } from "@/lib/motion";
 
 export function RoomsClient() {
   const [selectedCategory, setSelectedCategory] = useState<RoomCategory | null>(null);
@@ -21,6 +22,11 @@ export function RoomsClient() {
     setCartItems((prev) => prev.filter((i) => i.id !== id));
   }
 
+  // Undo puts the item back where it was.
+  function handleRestoreToCart(item: EnquiryItem, index: number) {
+    setCartItems((prev) => (prev.some((i) => i.id === item.id) ? prev : [...prev.slice(0, index), item, ...prev.slice(index)]));
+  }
+
   return (
     <>
       <RoomCategorySection onSelectCategory={setSelectedCategory} />
@@ -29,7 +35,8 @@ export function RoomsClient() {
         category={selectedCategory}
         onClose={() => setSelectedCategory(null)}
         onBookRoom={(roomNo) => {
-          setSelectedRoom(roomNo);
+          // Staging: the room list finishes leaving before the booking form arrives.
+          afterModalExit(() => setSelectedRoom(roomNo));
         }}
       />
 
@@ -38,7 +45,7 @@ export function RoomsClient() {
         onClose={() => setSelectedRoom(null)}
         onAddToCart={(item) => {
           handleAddToCart(item);
-          setCartOpen(true);
+          afterModalExit(() => setCartOpen(true));
         }}
       />
 
@@ -48,6 +55,7 @@ export function RoomsClient() {
         onOpen={() => setCartOpen(true)}
         onClose={() => setCartOpen(false)}
         onRemove={handleRemoveFromCart}
+        onRestore={handleRestoreToCart}
       />
     </>
   );

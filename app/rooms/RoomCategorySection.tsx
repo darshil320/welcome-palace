@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 import { ArrowRight, Bed, Star, Users } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { roomCategories, type RoomCategory } from "@/app/rooms/content";
@@ -11,7 +10,6 @@ interface Props {
 }
 
 export function RoomCategorySection({ onSelectCategory }: Props) {
-  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
     <section
@@ -43,8 +41,6 @@ export function RoomCategorySection({ onSelectCategory }: Props) {
               <button
                 id={`room-category-${cat.id.toLowerCase()}`}
                 onClick={() => onSelectCategory(cat.id)}
-                onMouseEnter={() => setHovered(cat.id)}
-                onMouseLeave={() => setHovered(null)}
                 className="group w-full cursor-pointer text-left"
                 aria-label={`Browse ${cat.title}`}
               >
@@ -83,15 +79,11 @@ export function RoomCategorySection({ onSelectCategory }: Props) {
 
                     {/* CTA */}
                     <div
-                      className={`mt-4 flex items-center gap-2 text-[13px] font-semibold text-gold transition-all duration-300 ${
-                        hovered === cat.id ? "opacity-100 translate-y-0" : "opacity-70 translate-y-1"
-                      }`}
+                      className="mt-4 flex translate-y-1 items-center gap-2 text-[13px] font-semibold text-gold opacity-70 transition-[opacity,translate] duration-(--dur-state) ease-(--ease-enter) group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
                     >
                       Select Room
                       <ArrowRight
-                        className={`text-[11px] transition-transform duration-300 ${
-                          hovered === cat.id ? "translate-x-1.5" : ""
-                        }`}
+                        className="text-[11px] transition-transform duration-(--dur-state) ease-(--ease-enter) group-hover:translate-x-1.5 group-focus-visible:translate-x-1.5"
                       />
                     </div>
                   </div>

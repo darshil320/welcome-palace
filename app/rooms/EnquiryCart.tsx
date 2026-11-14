@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ShoppingCart, Trash2, X, MessageCircle, ArrowRight } from "lucide-react";
 import { type EnquiryItem } from "@/app/rooms/BookingModal";
 import { slotLabels, type StaySlot } from "@/app/rooms/content";
 import { contact } from "@/lib/content";
+import { MOTION } from "@/lib/motion";
+import { SentNotice } from "@/components/form/SentNotice";
 
 interface Props {
   items: EnquiryItem[];
@@ -12,6 +14,7 @@ interface Props {
   onOpen: () => void;
   onClose: () => void;
   onRemove: (id: string) => void;
+  onRestore: (item: EnquiryItem, index: number) => void;
 }
 
 function buildWhatsAppMessage(items: EnquiryItem[]): string {
@@ -34,8 +37,41 @@ function buildWhatsAppMessage(items: EnquiryItem[]): string {
   return msg;
 }
 
-export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: Props) {
+export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove, onRestore }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const undoButtonRef = useRef<HTMLButtonElement>(null);
+  const undoTimer = useRef<number | undefined>(undefined);
+  const [removed, setRemoved] = useState<{ item: EnquiryItem; index: number } | null>(null);
+  const [sent, setSent] = useState(false);
+
+  // A fresh open starts without the previous "sent" line.
+  const [wasOpen, setWasOpen] = useState(isOpen);
+  if (isOpen !== wasOpen) {
+    setWasOpen(isOpen);
+    if (isOpen) setSent(false);
+  }
+
+  useEffect(() => () => window.clearTimeout(undoTimer.current), []);
+
+  // Focus follows the removal to the Undo button (the row it was on is gone).
+  useEffect(() => {
+    if (removed) undoButtonRef.current?.focus();
+  }, [removed]);
+
+  // Recover instead of confirm: the item leaves at once, Undo stays for 5s.
+  function removeItem(item: EnquiryItem, index: number) {
+    onRemove(item.id);
+    setRemoved({ item, index });
+    window.clearTimeout(undoTimer.current);
+    undoTimer.current = window.setTimeout(() => setRemoved(null), MOTION.undoMs);
+  }
+
+  function undoRemove() {
+    if (!removed) return;
+    window.clearTimeout(undoTimer.current);
+    onRestore(removed.item, removed.index);
+    setRemoved(null);
+  }
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -57,7 +93,7 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
       `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(msg)}`,
       "_blank"
     );
-    onClose();
+    setSent(true);
   }
 
   return (
@@ -67,7 +103,7 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
         id="open-enquiry-cart"
         onClick={onOpen}
         aria-label={`Open enquiry cart (${items.length} items)`}
-        className={`fixed bottom-6 right-6 z-[60] flex items-center gap-2.5 rounded-full shadow-[0_8px_30px_-8px_rgba(20,16,10,0.45)] transition-all duration-300 ${
+        className={`press fixed bottom-6 right-6 z-[60] flex items-center gap-2.5 rounded-full shadow-[0_8px_30px_-8px_rgba(20,16,10,0.45)] ${
           items.length > 0
             ? "bg-ink px-5 py-3.5 text-white"
             : "bg-panel border border-line px-4 py-3 text-ink-soft"
@@ -107,7 +143,7 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
             <button
               id="close-enquiry-cart"
               onClick={onClose}
-              className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line bg-panel text-ink-soft transition-colors hover:bg-ink hover:text-white"
+              className="press hit-area flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line bg-panel text-ink-soft hover:bg-ink hover:text-white"
               aria-label="Close cart"
             >
               <X className="w-[13px] h-[13px]" />
@@ -116,6 +152,22 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
 
           {/* Items */}
           <div className="flex-1 overflow-y-auto overscroll-contain p-5 space-y-4">
+            {removed ? (
+              <div
+                role="status"
+                className="flex items-center justify-between gap-3 rounded-[14px] bg-ink px-4 py-3 text-[13.5px] font-medium text-white transition-[opacity,translate] duration-(--dur-modal-in) ease-(--ease-enter) starting:-translate-y-2 starting:opacity-0"
+              >
+                <span>Room {removed.item.roomNo} removed from your enquiry.</span>
+                <button
+                  ref={undoButtonRef}
+                  type="button"
+                  onClick={undoRemove}
+                  className="press hit-area rounded-full px-2 py-1 font-semibold text-gold underline underline-offset-2"
+                >
+                  Undo
+                </button>
+              </div>
+            ) : null}
             {items.length === 0 ? (
               <div className="py-12 text-center">
                 <ShoppingCart className="mx-auto mb-4 w-[36px] h-[36px] text-faint" />
@@ -127,7 +179,7 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
                 </p>
               </div>
             ) : (
-              items.map((item) => (
+              items.map((item, index) => (
                 <div
                   key={item.id}
                   className="flex gap-4 rounded-[16px] border border-line bg-panel p-4"
@@ -154,8 +206,8 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
                       </div>
                       <button
                         id={`remove-cart-${item.id}`}
-                        onClick={() => onRemove(item.id)}
-                        className="flex h-7 w-7 flex-none items-center justify-center rounded-full border border-line text-muted-2 transition-colors hover:border-red-300 hover:bg-red-50 hover:text-red-500"
+                        onClick={() => removeItem(item, index)}
+                        className="press hit-area flex h-7 w-7 flex-none items-center justify-center rounded-full border border-line text-muted-2 hover:border-red-300 hover:bg-red-50 hover:text-red-500"
                         aria-label={`Remove room ${item.roomNo} from cart`}
                       >
                         <Trash2 className="w-[10px] h-[10px]" />
@@ -187,12 +239,15 @@ export function EnquiryCartPanel({ items, isOpen, onOpen, onClose, onRemove }: P
               <button
                 id="proceed-to-whatsapp"
                 onClick={checkout}
-                className="flex w-full items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-8 py-4 text-[15px] font-semibold text-white shadow-[0_4px_20px_-4px_rgba(37,211,102,0.4)] transition-transform hover:scale-[1.015]"
+                className="press-surface flex w-full items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-8 py-4 text-[15px] font-semibold text-white shadow-[0_4px_20px_-4px_rgba(37,211,102,0.4)]"
               >
                 <MessageCircle className="w-[17px] h-[17px]" />
                 Send Enquiry via WhatsApp
                 <ArrowRight className="w-[12px] h-[12px]" />
               </button>
+              <div className="mt-3">
+                <SentNotice show={sent} />
+              </div>
               <p className="mt-3 text-center text-[11.5px] font-medium text-faint">
                 Our team responds within 2 hours · No payment required now
               </p>

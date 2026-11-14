@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { X, Bed, Eye, Calendar } from "lucide-react";
 import { roomData, roomCategories, type RoomCategory } from "@/app/rooms/content";
 import { getPdpByCategory } from "@/app/rooms/[slug]/pdp-content";
@@ -31,11 +31,15 @@ export function RoomSelectorModal({ category, onClose, onBookRoom }: Props) {
     if (e.target === dialogRef.current) onClose();
   };
 
-  const catData = category ? roomCategories.find((c) => c.id === category) : null;
-  const rooms = category
+  // Keep the last category rendered while the dialog animates out.
+  const [shownCategory, setShownCategory] = useState(category);
+  if (category && category !== shownCategory) setShownCategory(category);
+
+  const catData = shownCategory ? roomCategories.find((c) => c.id === shownCategory) : null;
+  const rooms = shownCategory
     ? roomData.filter((r) => catData?.rooms.includes(r.no))
     : [];
-  const pdp = category ? getPdpByCategory(category) : null;
+  const pdp = shownCategory ? getPdpByCategory(shownCategory) : null;
 
   return (
     <dialog
@@ -60,7 +64,7 @@ export function RoomSelectorModal({ category, onClose, onBookRoom }: Props) {
           <button
             id="close-room-selector"
             onClick={onClose}
-            className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line bg-panel text-ink-soft transition-colors hover:bg-ink hover:text-white"
+            className="press hit-area flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line bg-panel text-ink-soft hover:bg-ink hover:text-white"
             aria-label="Close"
           >
             <X className="w-[13px] h-[13px]" />
@@ -119,7 +123,7 @@ export function RoomSelectorModal({ category, onClose, onBookRoom }: Props) {
                       id={`view-room-${room.no}`}
                       href={`/rooms/${pdp.slug}`}
                       onClick={onClose}
-                      className="flex items-center justify-center gap-1.5 rounded-full border border-line-strong px-3 sm:px-3.5 py-2 sm:py-1.5 text-[12px] font-semibold text-ink-soft no-underline transition-colors hover:border-ink hover:text-ink"
+                      className="press hit-area flex items-center justify-center gap-1.5 rounded-full border border-line-strong px-3 sm:px-3.5 py-2 sm:py-1.5 text-[12px] font-semibold text-ink-soft no-underline hover:border-ink hover:text-ink"
                       aria-label={`View ${pdp.title} details`}
                     >
                       <Eye className="w-[10px] h-[10px]" />
@@ -132,7 +136,7 @@ export function RoomSelectorModal({ category, onClose, onBookRoom }: Props) {
                       onBookRoom(room.no);
                       onClose();
                     }}
-                    className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-ink px-3 sm:px-4 py-2 sm:py-1.5 text-[12px] font-semibold text-white transition-transform hover:scale-[1.02]"
+                    className="press hit-area flex flex-1 items-center justify-center gap-1.5 rounded-full bg-ink px-3 sm:px-4 py-2 sm:py-1.5 text-[12px] font-semibold text-white hover:scale-[1.02]"
                   >
                     <Calendar className="w-[10px] h-[10px]" />
                     Book This Room

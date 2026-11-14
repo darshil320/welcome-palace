@@ -114,10 +114,9 @@ export function PdpGallery({ media, title }: { media: PdpMedia[]; title: string 
                 type="button"
                 onClick={() => scrollToMobileSlide(i)}
                 aria-label={`Go to photo ${i + 1}`}
-                className={`rounded-full transition-all duration-300 ${
-                  i === mobileIdx
-                    ? "h-[7px] w-[7px] bg-gold-deep"
-                    : "h-[5px] w-[5px] bg-line-strong"
+                aria-current={i === mobileIdx ? "true" : undefined}
+                className={`h-[7px] w-[7px] rounded-full transition-[scale,background-color] duration-(--dur-state) ease-(--ease-move) ${
+                  i === mobileIdx ? "bg-gold-deep" : "scale-[0.714] bg-line-strong"
                 }`}
               />
             ))}
@@ -161,7 +160,7 @@ export function PdpGallery({ media, title }: { media: PdpMedia[]; title: string 
                 type="button"
                 onClick={() => setActive((active - 1 + media.length) % media.length)}
                 aria-label="Previous photo"
-                className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-ink opacity-0 shadow-lg backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 hover:bg-white"
+                className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-ink opacity-0 shadow-lg backdrop-blur-sm transition-[opacity,background-color] duration-(--dur-hover) ease-(--ease-enter) group-hover:opacity-100 focus-visible:opacity-100 hover:bg-white"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
@@ -169,7 +168,7 @@ export function PdpGallery({ media, title }: { media: PdpMedia[]; title: string 
                 type="button"
                 onClick={() => setActive((active + 1) % media.length)}
                 aria-label="Next photo"
-                className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-ink opacity-0 shadow-lg backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 hover:bg-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-ink opacity-0 shadow-lg backdrop-blur-sm transition-[opacity,background-color] duration-(--dur-hover) ease-(--ease-enter) group-hover:opacity-100 focus-visible:opacity-100 hover:bg-white"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>
@@ -195,7 +194,7 @@ export function PdpGallery({ media, title }: { media: PdpMedia[]; title: string 
                 id={`pdp-thumb-${i}`}
                 onClick={() => setActive(i)}
                 aria-label={`Show ${m.alt}`}
-                className={`relative flex-none w-[80px] aspect-[4/3] overflow-hidden rounded-[10px] transition-all duration-200 ${
+                className={`relative flex-none w-[80px] aspect-[4/3] overflow-hidden rounded-[10px] transition-[opacity,box-shadow] duration-(--dur-hover) ease-(--ease-enter) ${
                   i === active
                     ? "ring-2 ring-gold-deep ring-offset-2 ring-offset-cream"
                     : "opacity-60 hover:opacity-100"
