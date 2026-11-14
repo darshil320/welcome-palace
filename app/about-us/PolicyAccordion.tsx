@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { CheckCircle, Plus } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { cancellationPolicies, generalTerms } from "@/app/about-us/content";
 
 export function PolicyAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const panelId = useId();
 
   return (
     <div className="mt-[38px]">
@@ -24,18 +25,21 @@ export function PolicyAccordion() {
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : i)}
+                aria-expanded={isOpen}
+                aria-controls={`${panelId}-${i}`}
                 className="flex w-full items-center justify-between gap-4 px-[22px] py-5 text-left font-display text-[17px] font-semibold text-ink"
               >
                 {policy.title}
                 <span
-                  className={`inline-flex h-[26px] w-[26px] flex-none items-center justify-center rounded-full border text-[11px] transition-[transform,background-color,color,border-color] duration-[350ms] ${
+                  aria-hidden="true"
+                  className={`inline-flex h-[26px] w-[26px] flex-none items-center justify-center rounded-full border text-[11px] transition-[rotate,background-color,color,border-color] duration-(--dur-state) ease-(--ease-move) ${
                     isOpen ? "rotate-45 border-gold bg-gold text-[#1c1608]" : "border-line-strong text-ink"
                   }`}
                 >
                   <Plus className="w-[11px] h-[11px]" />
                 </span>
               </button>
-              <div className={`acc-body ${isOpen ? "is-open" : ""}`}>
+              <div id={`${panelId}-${i}`} inert={!isOpen} className={`acc-body ${isOpen ? "is-open" : ""}`}>
                 <div>
                   <ul className="space-y-2.5 px-[22px] pb-[22px]">
                     {policy.points.map((point) => (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Plus } from "lucide-react";
 import { GuideLines } from "@/components/GuideLines";
 import { Reveal } from "@/components/Reveal";
@@ -20,6 +20,7 @@ export function FaqBlock({
   heading?: string;
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const panelId = useId();
 
   return (
     <section id="faq" className="relative overflow-hidden py-[clamp(56px,8vh,104px)] [scroll-margin-top:84px]">
@@ -49,18 +50,20 @@ export function FaqBlock({
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                   aria-expanded={isOpen}
+                  aria-controls={`${panelId}-${i}`}
                   className="flex w-full items-center justify-between gap-4 px-[22px] py-5 text-left font-semibold text-[16px] text-ink"
                 >
                   {item.question}
                   <span
-                    className={`inline-flex h-[26px] w-[26px] flex-none items-center justify-center rounded-full border text-[11px] transition-[transform,background-color,color,border-color] duration-[350ms] ${
+                    aria-hidden="true"
+                    className={`inline-flex h-[26px] w-[26px] flex-none items-center justify-center rounded-full border text-[11px] transition-[rotate,background-color,color,border-color] duration-(--dur-state) ease-(--ease-move) ${
                       isOpen ? "rotate-45 border-gold bg-gold text-[#1c1608]" : "border-line-strong text-ink"
                     }`}
                   >
                     <Plus className="w-[11px] h-[11px]" />
                   </span>
                 </button>
-                <div className={`acc-body ${isOpen ? "is-open" : ""}`}>
+                <div id={`${panelId}-${i}`} inert={!isOpen} className={`acc-body ${isOpen ? "is-open" : ""}`}>
                   <div>
                     <div className="px-[22px] pb-[22px] text-[15px] leading-[1.7] font-medium text-muted">
                       {item.answer}
