@@ -280,15 +280,31 @@ html {
   background-size: 240px 240px;
 }
 
+/* Scroll-linked mosaic: starts as one seamless enlarged image and settles into
+   a gapped, rounded grid. Layout is fixed at its final size; only transform
+   and clip-path change per frame, so scrolling never re-lays out the page.
+   --p (0 → 1) is written by WelcomeSection; --mx/--my place each tile
+   relative to the grid centre, and translating by the gap closes the seams. */
 .mosaic-grid {
-  transform: scale(calc(1.22 - 0.22 * var(--p, 1)));
-  gap: calc(24px * var(--p, 1));
-  max-width: calc(880px + 360px * (1 - var(--p, 1)));
+  --mosaic-gap: 24px;
+  --mosaic-from: 1.22;
+  max-width: 880px;
+  gap: var(--mosaic-gap);
+  scale: calc(var(--mosaic-from) - (var(--mosaic-from) - 1) * var(--p, 1));
   will-change: transform;
 }
 
+@media (min-width: 1024px) {
+  .mosaic-grid {
+    --mosaic-from: 1.4;
+  }
+}
+
 .mosaic-item {
-  border-radius: calc(20px * var(--p, 1));
+  translate:
+    calc(var(--mx, 0) * var(--mosaic-gap) * (1 - var(--p, 1)))
+    calc(var(--my, 0) * var(--mosaic-gap) * (1 - var(--p, 1)));
+  clip-path: inset(0 round calc(20px * var(--p, 1)));
 }
 
 .rooms-head {

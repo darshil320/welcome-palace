@@ -7,6 +7,19 @@ import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { heroStats, mosaicImages } from "@/lib/content";
 
+const MOSAIC_COLUMNS = 3;
+
+/** Tile position relative to the grid centre, in gaps: closes the seams at --p = 0. */
+function mosaicOffset(index: number, count: number): React.CSSProperties {
+  const rows = Math.ceil(count / MOSAIC_COLUMNS);
+  const col = index % MOSAIC_COLUMNS;
+  const row = Math.floor(index / MOSAIC_COLUMNS);
+  return {
+    "--mx": (MOSAIC_COLUMNS - 1) / 2 - col,
+    "--my": (rows - 1) / 2 - row,
+  } as React.CSSProperties;
+}
+
 export function WelcomeSection() {
   const mosaicRef = useRef<HTMLDivElement | null>(null);
   const headRef = useRef<HTMLDivElement | null>(null);
@@ -70,8 +83,12 @@ export function WelcomeSection() {
           ref={mosaicRef}
           className="mosaic-grid mx-auto mt-[clamp(34px,5vw,56px)] grid grid-cols-3 gap-6"
         >
-          {mosaicImages.map((img) => (
-            <div key={img.src} className="mosaic-item group relative aspect-square overflow-hidden">
+          {mosaicImages.map((img, i) => (
+            <div
+              key={img.src}
+              className="mosaic-item group relative aspect-square overflow-hidden"
+              style={mosaicOffset(i, mosaicImages.length)}
+            >
               <Image src={img.src} alt={img.alt} fill sizes="(max-width: 820px) 50vw, 33vw" className="object-cover transition-transform duration-[1.6s] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-105" />
               <div className="img-warm" />
             </div>
