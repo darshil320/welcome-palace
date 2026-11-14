@@ -20,6 +20,31 @@
   --color-gold: #c9a84c;
   --color-gold-deep: #9a7b2b;
   --color-gold-soft: #f4ecd6;
+
+  /* Motion curves (charles-ux-animation). Named enter/exit/move rather than
+     overriding --ease-out/-in/-in-out so Tailwind's built-in ease-* keep their timing. */
+  --ease-enter: cubic-bezier(0.32, 0.72, 0, 1); /* appearing, responding to input */
+  --ease-exit: cubic-bezier(0.55, 0, 1, 0.45); /* leaving */
+  --ease-move: cubic-bezier(0.77, 0, 0.175, 1); /* moving or resizing on screen */
+  --ease-swap: cubic-bezier(0.25, 0.1, 0, 1); /* icon / content cross-fades */
+}
+
+/* Motion durations. Every transition and animation in the app reads these.
+   Keep lib/motion.ts in sync for the few values JS needs. */
+:root {
+  --dur-press: 150ms; /* press + hover feedback */
+  --dur-hover: 150ms;
+  --dur-state: 250ms; /* in-place state change: header bg, underline, selected chip */
+  --dur-modal-in: 220ms;
+  --dur-modal-out: 160ms;
+  --dur-expand-in: 250ms;
+  --dur-expand-out: 190ms;
+  --dur-reveal: 450ms; /* below-the-fold entrance (marketing allowance over the 350ms recipe) */
+  --dur-mask: 500ms; /* heading line / word mask rise */
+  --dur-shake: 360ms; /* error shake */
+  --stagger-piece: 90ms; /* heading → copy → actions */
+  --reveal-rise: 12px;
+  --reveal-blur: 3px;
 }
 
 ::selection {
@@ -30,23 +55,11 @@ html {
   scroll-behavior: smooth;
 }
 
-@keyframes rise-up {
-  from {
-    transform: translateY(115%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* ── Scroll reveals ──────────────────────────────────────────────
+   Content ships visible in the static HTML. useScrollReveal adds .is-pending
+   on the client only to elements that start below the fold, and removes it
+   when they scroll into view, so nothing is hidden without JS and nothing at
+   rest on first paint plays an entrance. */
 
 .mask-line {
   display: block;
@@ -57,11 +70,8 @@ html {
 
 .mask-line > span {
   display: block;
-  transform: translateY(115%);
-}
-
-.mask-line.play > span {
-  animation: rise-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform var(--dur-mask) var(--ease-enter);
+  transition-delay: var(--md, 0s);
 }
 
 /* Word-level mask reveal (inline words rising independently) */
@@ -75,36 +85,35 @@ html {
 
 .mask-word > span {
   display: inline-block;
-  transform: translateY(118%);
-}
-
-.mask-word.play > span {
-  animation: rise-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.fade-load {
-  opacity: 0;
-}
-
-.fade-load.play {
-  animation: fade-in 1s ease forwards;
+  transition: transform var(--dur-mask) var(--ease-enter);
+  transition-delay: var(--md, 0s);
 }
 
 .reveal-up {
-  opacity: 0;
-  transform: translateY(22px);
-  filter: blur(8px);
   transition:
-    opacity 0.7s ease,
-    transform 0.8s cubic-bezier(0.2, 0.75, 0.2, 1),
-    filter 0.7s ease;
+    opacity var(--dur-reveal) var(--ease-enter),
+    translate var(--dur-reveal) var(--ease-enter),
+    filter var(--dur-reveal) var(--ease-enter);
   transition-delay: var(--rd, 0s);
 }
 
-.reveal-up.is-in {
-  opacity: 1;
-  transform: none;
-  filter: none;
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .is-pending .mask-line > span {
+    transform: translateY(115%);
+    transition: none;
+  }
+
+  .is-pending .mask-word > span {
+    transform: translateY(118%);
+    transition: none;
+  }
+
+  .reveal-up.is-pending {
+    opacity: 0;
+    translate: 0 var(--reveal-rise);
+    filter: blur(var(--reveal-blur));
+    transition: none;
+  }
 }
 
 .img-warm {
@@ -234,7 +243,7 @@ html {
 /* One-shot shimmer sweep across a button on hover */
 @keyframes shimmer-sweep {
   to {
-    left: 130%;
+    translate: 432% 0; /* 190% of the button / 44% pseudo width */
   }
 }
 
@@ -290,14 +299,16 @@ html {
 .acc-body {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.38s cubic-bezier(0.3, 0.8, 0.3, 1);
+  transition: grid-template-rows var(--dur-expand-out) var(--ease-move);
 }
 
 .acc-body.is-open {
   grid-template-rows: 1fr;
+  transition-duration: var(--dur-expand-in);
 }
 
 .acc-body > div {
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -315,6 +326,45 @@ html {
   backdrop-filter: blur(4px);
 }
 
+/* Modal recipe: 220ms in / 160ms out, opacity + scale 0.97, backdrop on the
+   same clock. Transitions (not keyframes) so closing mid-open turns around.
+   Browsers without @starting-style / allow-discrete simply snap. */
+.room-dialog,
+.room-dialog::backdrop {
+  opacity: 0;
+  transition:
+    opacity var(--dur-modal-out) var(--ease-exit),
+    scale var(--dur-modal-out) var(--ease-exit),
+    overlay var(--dur-modal-out) allow-discrete,
+    display var(--dur-modal-out) allow-discrete;
+}
+
+.room-dialog {
+  scale: 0.97;
+}
+
+.room-dialog[open],
+.room-dialog[open]::backdrop {
+  opacity: 1;
+  transition-duration: var(--dur-modal-in);
+  transition-timing-function: var(--ease-enter);
+}
+
+.room-dialog[open] {
+  scale: 1;
+}
+
+@starting-style {
+  .room-dialog[open],
+  .room-dialog[open]::backdrop {
+    opacity: 0;
+  }
+
+  .room-dialog[open] {
+    scale: 0.97;
+  }
+}
+
 /* Prevent body scroll when a dialog is open */
 body:has(dialog[open]) {
   overflow: hidden;
@@ -322,23 +372,67 @@ body:has(dialog[open]) {
   padding-right: var(--scrollbar-width, 0px);
 }
 
-/* Smooth modal entrance */
-@keyframes modal-in {
+/* ── Loading screen animations ───────────────────────────────── */
+
+/* Never block the page when JS can't remove the loader, when it already
+   played this session (flag set before first paint in layout.tsx), or when
+   the visitor asked for reduced motion. */
+@media (scripting: none) {
+  .loader-root {
+    display: none;
+  }
+}
+
+html[data-loader-seen] .loader-root {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-root {
+    display: none;
+  }
+}
+
+/* Progress fill grows with scaleX (never width), CSS-driven so the main
+   thread stays free while the page hydrates. Linear-ish ease-out matches the
+   old 1 - (1 - t)^2.8 curve. */
+@property --loader-count {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes loader-fill {
   from {
-    opacity: 0;
-    transform: translateY(12px) scale(0.98);
+    scale: 0 1;
   }
   to {
-    opacity: 1;
-    transform: none;
+    scale: 1 1;
   }
 }
 
-dialog[open] {
-  animation: modal-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+@keyframes loader-count {
+  from {
+    --loader-count: 0;
+  }
+  to {
+    --loader-count: 100;
+  }
 }
 
-/* ── Loading screen animations ───────────────────────────────── */
+.loader-fill {
+  transform-origin: left center;
+  animation: loader-fill 1800ms cubic-bezier(0.25, 0.55, 0.3, 1) both;
+}
+
+.loader-count {
+  counter-reset: loader var(--loader-count);
+  animation: loader-count 1800ms cubic-bezier(0.25, 0.55, 0.3, 1) both;
+}
+
+.loader-count::after {
+  content: counter(loader, decimal-leading-zero);
+}
 
 @keyframes loader-fade-up {
   from {
@@ -386,11 +480,6 @@ dialog[open] {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mask-line > span,
-  .mask-word > span {
-    animation: none !important;
-    transform: none;
-  }
   .hero-zoom,
   .marquee-track,
   .spin-slow,
@@ -405,16 +494,6 @@ dialog[open] {
   .magnetic {
     transition: none;
   }
-  .fade-load {
-    animation: none !important;
-    opacity: 1;
-  }
-  .reveal-up {
-    transition: none;
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
   .foot-word {
     opacity: 1;
     transition: none;
@@ -425,5 +504,77 @@ dialog[open] {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+/* ── Utilities ─────────────────────────────────────────────────── */
+
+/* Press feedback (anticipation): buttons, icon buttons, chips scale to 0.96.
+   Owns the transition, so drop other transition-* classes where it's used.
+   Dense controls opt out by simply not using it. */
+@utility press {
+  transition-property: scale, color, background-color, border-color, box-shadow, opacity;
+  transition-duration: var(--dur-press);
+  transition-timing-function: var(--ease-enter);
+
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    scale: 0.96;
+  }
+}
+
+/* Wide surfaces (> 200px, e.g. full-width submit buttons): a 4% scale would
+   jump, so press and hover change brightness instead. */
+@utility press-surface {
+  transition-property: filter, color, background-color, border-color, box-shadow;
+  transition-duration: var(--dur-press);
+  transition-timing-function: var(--ease-enter);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover:not(:disabled) {
+      filter: brightness(1.12);
+    }
+  }
+
+  &:active:not(:disabled) {
+    filter: brightness(0.88);
+  }
+}
+
+/* Hit area: grow the clickable zone to 44px without growing the visual.
+   Element must not already be absolutely positioned or use ::after. */
+@utility hit-area {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    translate: -50% -50%;
+  }
+}
+
+/* Error shake is run from JS (lib/motion.ts) with WAAPI; this keeps the
+   field's message visible beside it. */
+
+/* ── Global reduced-motion layer ───────────────────────────────── */
+/* Everything stops, fades included; end states stay identical. Indicators of
+   ongoing work (spinners, progress bars) opt back in with .motion-keep. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *:not(.motion-keep),
+  *:not(.motion-keep)::before,
+  *:not(.motion-keep)::after,
+  *:not(.motion-keep)::backdrop {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
   }
 }
