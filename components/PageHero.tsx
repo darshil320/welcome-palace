@@ -1,5 +1,4 @@
 import { type ReactNode } from "react";
-import { MaskReveal } from "@/components/MaskReveal";
 
 export function PageHero({
   videoSrc,
@@ -32,7 +31,7 @@ export function PageHero({
             </div>
           ) : null}
           <h1 className="m-0 font-display text-[clamp(36px,6vw,72px)] leading-[1] font-semibold tracking-tight text-white">
-            <MaskReveal trigger="mount" lines={[{ content: title }]} />
+            {title}
           </h1>
           {subtitle ? (
             <p className="mx-auto mt-4 max-w-[60ch] text-[15px] font-medium tracking-wide text-white/85 uppercase">

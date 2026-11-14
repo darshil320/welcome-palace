@@ -156,7 +156,7 @@ export default function RoomsPage() {
             Your Peaceful Retreat Awaits
           </Reveal>
           <Reveal delay={0.08} as="h2" className="mt-4 font-display text-[clamp(28px,4.2vw,50px)] leading-[1.08] font-semibold tracking-tight">
-            <MaskReveal trigger="scroll" lines={[{ content: "Ready to Book Your Stay?" }]} />
+            <MaskReveal lines={[{ content: "Ready to Book Your Stay?" }]} />
           </Reveal>
           <Reveal delay={0.16} as="p" className="mx-auto mt-4 max-w-[52ch] text-[15px] leading-[1.75] font-medium text-muted">
             Call us or send a WhatsApp message — our hospitality team will confirm your room within 2 hours.

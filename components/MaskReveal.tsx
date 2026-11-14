@@ -1,55 +1,23 @@
 "use client";
 
-import { type ReactNode, useEffect, useRef, useState } from "react";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { type ReactNode } from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-export function MaskReveal({
-  lines,
-  trigger = "scroll",
-  initialDelayMs = 200,
-}: {
-  lines: { content: ReactNode; delaySeconds?: number }[];
-  trigger?: "mount" | "scroll";
-  initialDelayMs?: number;
-}) {
-  const ref = useRef<HTMLSpanElement | null>(null);
-  const [timedOut, setTimedOut] = useState(false);
-  const [inView, setInView] = useState(false);
-  const reduced = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (reduced || trigger !== "mount") return;
-    const timeout = setTimeout(() => setTimedOut(true), initialDelayMs);
-    return () => clearTimeout(timeout);
-  }, [reduced, trigger, initialDelayMs]);
-
-  useEffect(() => {
-    if (reduced || trigger !== "scroll") return;
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setInView(true);
-            observer.unobserve(entry.target);
-          }
-        }
-      },
-      { threshold: 0.3 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [reduced, trigger]);
-
-  const play = reduced || (trigger === "mount" ? timedOut : inView);
+/**
+ * Heading lines rising out of a mask as they scroll into view
+ * (--dur-mask, --ease-enter). Headings already on screen at first paint
+ * render in their final state. Not for heroes or the LCP element.
+ */
+export function MaskReveal({ lines }: { lines: { content: ReactNode; delaySeconds?: number }[] }) {
+  const ref = useScrollReveal<HTMLSpanElement>(0.3);
 
   return (
     <span ref={ref} className="block">
       {lines.map((line, i) => (
-        <span key={i} className={`mask-line ${play ? "play" : ""}`}>
-          <span style={{ animationDelay: `${line.delaySeconds ?? 0}s` }}>{line.content}</span>
+        <span key={i} className="mask-line">
+          <span style={line.delaySeconds ? ({ "--md": `${line.delaySeconds}s` } as React.CSSProperties) : undefined}>
+            {line.content}
+          </span>
         </span>
       ))}
     </span>

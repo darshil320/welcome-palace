@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowDown, ArrowRight, MapPin } from "lucide-react";
 import { Magnetic } from "@/components/Magnetic";
-import { WordsReveal } from "@/components/WordsReveal";
 import { cldVideo, cldImage } from "@/lib/cloudinary";
 import { contact } from "@/lib/content";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -12,17 +11,9 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 const mapUrl = contact.mapUrl;
 
 export function Hero() {
-  const [timedOut, setTimedOut] = useState(false);
   const reduced = usePrefersReducedMotion();
   const mediaRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
-  const ctaPlay = reduced || timedOut;
-
-  useEffect(() => {
-    if (reduced) return;
-    const timeout = setTimeout(() => setTimedOut(true), 700);
-    return () => clearTimeout(timeout);
-  }, [reduced]);
 
   // Scroll parallax: media lags behind the page, content drifts and fades.
   useEffect(() => {
@@ -85,11 +76,8 @@ export function Hero() {
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,10,0.42)_0%,rgba(20,16,10,0)_34%,rgba(20,16,10,0)_55%,rgba(20,16,10,0.72)_100%)]" />
         </div>
 
-        <div
-          className={`absolute top-[clamp(20px,3.4vw,44px)] left-[clamp(24px,4vw,52px)] transition-opacity duration-1000 ${
-            ctaPlay ? "opacity-100" : "opacity-0"
-          }`}
-        >
+        {/* Above the fold: ships in its final state, no entrance. */}
+        <div className="absolute top-[clamp(20px,3.4vw,44px)] left-[clamp(24px,4vw,52px)]">
           <a
             href={mapUrl}
             target="_blank"
@@ -104,9 +92,7 @@ export function Hero() {
         <Link
           href="#welcome"
           aria-label="Scroll to explore"
-          className={`group absolute top-[clamp(20px,3.4vw,44px)] right-[clamp(24px,4vw,52px)] hidden h-[clamp(88px,9vw,116px)] w-[clamp(88px,9vw,116px)] items-center justify-center text-white transition-opacity duration-1000 md:flex ${
-            ctaPlay ? "opacity-100" : "opacity-0"
-          }`}
+          className="group absolute top-[clamp(20px,3.4vw,44px)] right-[clamp(24px,4vw,52px)] hidden h-[clamp(88px,9vw,116px)] w-[clamp(88px,9vw,116px)] items-center justify-center text-white md:flex"
         >
           <svg viewBox="0 0 100 100" className="spin-slow absolute inset-0 h-full w-full" aria-hidden="true">
             <defs>
@@ -118,8 +104,8 @@ export function Hero() {
               </textPath>
             </text>
           </svg>
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 transition-colors duration-300 group-hover:border-gold group-hover:bg-gold group-hover:text-[#1c1608]">
-            <ArrowDown className="w-[12px] h-[12px] transition-transform duration-300 group-hover:translate-y-0.5" />
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 transition-colors duration-(--dur-hover) ease-(--ease-enter) group-hover:border-gold group-hover:bg-gold group-hover:text-[#1c1608]">
+            <ArrowDown className="w-[12px] h-[12px] transition-transform duration-(--dur-hover) ease-(--ease-enter) group-hover:translate-y-0.5" />
           </span>
         </Link>
 
@@ -128,26 +114,17 @@ export function Hero() {
           className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-6 p-[clamp(24px,4vw,52px)] will-change-transform"
         >
           <h1 className="m-0 max-w-[16ch] font-display text-[clamp(38px,6vw,84px)] leading-[0.98] font-semibold tracking-tight text-white">
-            <WordsReveal
-              trigger="mount"
-              segments={[
-                { text: "Not just a hotel, but a place that feels like" },
-                { text: "home", italic: true },
-              ]}
-            />
+            Not just a hotel, but a place that feels like <em className="font-normal italic">home</em>
           </h1>
 
           <Magnetic>
             <Link
               href="#explore"
-              className={`group inline-flex items-center gap-3 rounded-full bg-white py-[15px] pr-[15px] pl-[26px] text-[15px] font-semibold whitespace-nowrap text-ink no-underline ${
-                ctaPlay ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ transition: "opacity 1s ease" }}
+              className="press group inline-flex items-center gap-3 rounded-full bg-white py-[15px] pr-[15px] pl-[26px] text-[15px] font-semibold whitespace-nowrap text-ink no-underline"
             >
               Explore our stays
               <span className="inline-flex h-[38px] w-[38px] items-center justify-center rounded-full bg-ink text-white">
-                <ArrowRight className="w-[13px] h-[13px] transition-transform duration-300 group-hover:translate-x-0.5" />
+                <ArrowRight className="w-[13px] h-[13px] transition-transform duration-(--dur-hover) ease-(--ease-enter) group-hover:translate-x-0.5" />
               </span>
             </Link>
           </Magnetic>
